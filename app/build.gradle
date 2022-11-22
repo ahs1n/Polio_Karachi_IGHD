@@ -72,7 +72,7 @@ android {
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
 
-                def appName = "HF_PATIENT"
+                def appName = "Quasi_Experimental"
                 def date = new Date()
                 def formattedDate = date.format('yyyy_MM_dd')
 
@@ -100,7 +100,7 @@ android {
         }
 
         debug {
-            resValue("string", "DB_PASSWORD_hf_patient.db", "VaLu@b1ePeRcE!V3")
+            resValue("string", "DB_PASSWORD_quasi_experimental.db", "VaLu@b1ePeRcE!V3")
         }
     }
     compileOptions {

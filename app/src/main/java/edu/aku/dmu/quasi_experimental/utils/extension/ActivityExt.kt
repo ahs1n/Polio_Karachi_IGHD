@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import edu.aku.dmu.hf_patient.base.factory.ViewModelFactory
+import edu.aku.dmu.quasi_experimental.base.factory.ViewModelFactory
 import edu.aku.dmu.quasi_experimental.base.repository.GeneralRepository
 import java.io.Serializable
 

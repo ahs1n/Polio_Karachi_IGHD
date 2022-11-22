@@ -1,4 +1,4 @@
-package edu.aku.dmu.hf_patient.base.factory
+package edu.aku.dmu.quasi_experimental.base.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
