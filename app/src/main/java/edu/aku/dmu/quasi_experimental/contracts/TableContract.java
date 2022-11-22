@@ -8,6 +8,35 @@ import android.provider.BaseColumns;
 
 public class TableContract {
 
+    public static abstract class FormsTable implements BaseColumns {
+        public static final String TABLE_NAME = "Forms";
+        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
+        public static final String COLUMN_PROJECT_NAME = "projectName";
+        public static final String COLUMN_ID = "_id";
+        public static final String COLUMN_UID = "_uid";
+        public static final String COLUMN_USERNAME = "username";
+        public static final String COLUMN_SYSDATE = "sysdate";
+        public static final String COLUMN_DCODE = "districtCode";
+        public static final String COLUMN_UCODE = "ucCode";
+        public static final String COLUMN_CLUSTER = "clusterno";
+        public static final String COLUMN_HHNO = "hhno";
+        public static final String COLUMN_S01HH = "s01HH";
+        public static final String COLUMN_S05PD = "s05PD";
+        public static final String COLUMN_S06BF = "s06BF";
+        public static final String COLUMN_S07CV = "s07CV";
+        public static final String COLUMN_S08SE = "s08SE";
+        public static final String COLUMN_G5FLAG = "g5FLAG";
+        public static final String COLUMN_HHFLAG = "hhFLAG";
+        public static final String COLUMN_ISTATUS = "istatus";
+        public static final String COLUMN_ISTATUS96x = "istatus96x";
+        public static final String COLUMN_ENDINGDATETIME = "endingdatetime";
+        public static final String COLUMN_DEVICEID = "deviceid";
+        public static final String COLUMN_DEVICETAGID = "devicetagid";
+        public static final String COLUMN_SYNCED = "synced";
+        public static final String COLUMN_SYNCED_DATE = "synced_date";
+        public static final String COLUMN_APPVERSION = "appversion";
+    }
+
 
     public static abstract class PDTable implements BaseColumns {
         public static final String TABLE_NAME = "patientdetailsV2";

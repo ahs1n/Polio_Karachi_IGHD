@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import org.threeten.bp.LocalDate;
 
 import edu.aku.dmu.quasi_experimental.BR;
-import edu.aku.dmu.quasi_experimental.contracts.FormsContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract.FormsTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
 public class Form extends BaseObservable {
@@ -4564,31 +4564,31 @@ public class Form extends BaseObservable {
 
 
     public Form Sync(JSONObject jsonObject) throws JSONException {
-        this.id = jsonObject.getString(FormsContract.FormsTable.COLUMN_ID);
-        this.uid = jsonObject.getString(FormsContract.FormsTable.COLUMN_UID);
-        this.userName = jsonObject.getString(FormsContract.FormsTable.COLUMN_USERNAME);
-        this.sysDate = jsonObject.getString(FormsContract.FormsTable.COLUMN_SYSDATE);
-        this.dcode = jsonObject.getString(FormsContract.FormsTable.COLUMN_DCODE);
-        this.ucode = jsonObject.getString(FormsContract.FormsTable.COLUMN_UCODE);
-        this.cluster = jsonObject.getString(FormsContract.FormsTable.COLUMN_CLUSTER);
-        this.hhno = jsonObject.getString(FormsContract.FormsTable.COLUMN_HHNO);
-        this.deviceId = jsonObject.getString(FormsContract.FormsTable.COLUMN_DEVICEID);
-        this.deviceTag = jsonObject.getString(FormsContract.FormsTable.COLUMN_DEVICETAGID);
-        this.appver = jsonObject.getString(FormsContract.FormsTable.COLUMN_APPVERSION);
-        this.endTime = jsonObject.getString(FormsContract.FormsTable.COLUMN_ENDINGDATETIME);
-        this.iStatus = jsonObject.getString(FormsContract.FormsTable.COLUMN_ISTATUS);
-        this.iStatus96x = jsonObject.getString(FormsContract.FormsTable.COLUMN_ISTATUS96x);
-        this.iStatus96x = jsonObject.getString(FormsContract.FormsTable.COLUMN_ISTATUS96x);
-        this.synced = jsonObject.getString(FormsContract.FormsTable.COLUMN_SYNCED);
-        this.syncDate = jsonObject.getString(FormsContract.FormsTable.COLUMN_SYNCED_DATE);
-        this.g5Flag = jsonObject.getString(FormsContract.FormsTable.COLUMN_G5FLAG);
-        this.hhflag = jsonObject.getString(FormsContract.FormsTable.COLUMN_HHFLAG);
+        this.id = jsonObject.getString(FormsTable.COLUMN_ID);
+        this.uid = jsonObject.getString(FormsTable.COLUMN_UID);
+        this.userName = jsonObject.getString(FormsTable.COLUMN_USERNAME);
+        this.sysDate = jsonObject.getString(FormsTable.COLUMN_SYSDATE);
+        this.dcode = jsonObject.getString(FormsTable.COLUMN_DCODE);
+        this.ucode = jsonObject.getString(FormsTable.COLUMN_UCODE);
+        this.cluster = jsonObject.getString(FormsTable.COLUMN_CLUSTER);
+        this.hhno = jsonObject.getString(FormsTable.COLUMN_HHNO);
+        this.deviceId = jsonObject.getString(FormsTable.COLUMN_DEVICEID);
+        this.deviceTag = jsonObject.getString(FormsTable.COLUMN_DEVICETAGID);
+        this.appver = jsonObject.getString(FormsTable.COLUMN_APPVERSION);
+        this.endTime = jsonObject.getString(FormsTable.COLUMN_ENDINGDATETIME);
+        this.iStatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
+        this.iStatus96x = jsonObject.getString(FormsTable.COLUMN_ISTATUS96x);
+        this.iStatus96x = jsonObject.getString(FormsTable.COLUMN_ISTATUS96x);
+        this.synced = jsonObject.getString(FormsTable.COLUMN_SYNCED);
+        this.syncDate = jsonObject.getString(FormsTable.COLUMN_SYNCED_DATE);
+        this.g5Flag = jsonObject.getString(FormsTable.COLUMN_G5FLAG);
+        this.hhflag = jsonObject.getString(FormsTable.COLUMN_HHFLAG);
 
-        this.s01HH = jsonObject.getString(FormsContract.FormsTable.COLUMN_S01HH);
-        this.s05PD = jsonObject.getString(FormsContract.FormsTable.COLUMN_S05PD);
-        this.s06BF = jsonObject.getString(FormsContract.FormsTable.COLUMN_S06BF);
-        this.s07CV = jsonObject.getString(FormsContract.FormsTable.COLUMN_S07CV);
-        this.s08SE = jsonObject.getString(FormsContract.FormsTable.COLUMN_S08SE);
+        this.s01HH = jsonObject.getString(FormsTable.COLUMN_S01HH);
+        this.s05PD = jsonObject.getString(FormsTable.COLUMN_S05PD);
+        this.s06BF = jsonObject.getString(FormsTable.COLUMN_S06BF);
+        this.s07CV = jsonObject.getString(FormsTable.COLUMN_S07CV);
+        this.s08SE = jsonObject.getString(FormsTable.COLUMN_S08SE);
 
         return this;
 
@@ -4596,33 +4596,33 @@ public class Form extends BaseObservable {
 
 
     public Form Hydrate(Cursor cursor) {
-        this.id = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_ID));
-        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_UID));
-        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_USERNAME));
-        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_SYSDATE));
-        this.dcode = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_DCODE));
-        this.ucode = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_UCODE));
-        this.cluster = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_CLUSTER));
-        this.hhno = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_HHNO));
-        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_DEVICEID));
-        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_DEVICETAGID));
-        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_APPVERSION));
-        this.endTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_ENDINGDATETIME));
-        this.iStatus = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_ISTATUS));
-        this.iStatus96x = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_ISTATUS96x));
-        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_SYNCED));
-        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_SYNCED_DATE));
-        this.g5Flag = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_G5FLAG));
-        this.hhflag = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_HHFLAG));
+        this.id = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ID));
+        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_UID));
+        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_USERNAME));
+        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SYSDATE));
+        this.dcode = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_DCODE));
+        this.ucode = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_UCODE));
+        this.cluster = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_CLUSTER));
+        this.hhno = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_HHNO));
+        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_DEVICEID));
+        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_DEVICETAGID));
+        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_APPVERSION));
+        this.endTime = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ENDINGDATETIME));
+        this.iStatus = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ISTATUS));
+        this.iStatus96x = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ISTATUS96x));
+        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SYNCED));
+        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_SYNCED_DATE));
+        this.g5Flag = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_G5FLAG));
+        this.hhflag = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_HHFLAG));
 
         //For childCount
-        //this.s01HH = cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_S01HH));
+        //this.s01HH = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_S01HH));
 
-        s01HHHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_S01HH)));
-        s05PDHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_S05PD)));
-        s06BFHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_S06BF)));
-        s07CVHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_S07CV)));
-        s08SEHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsContract.FormsTable.COLUMN_S08SE)));
+        s01HHHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_S01HH)));
+        s05PDHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_S05PD)));
+        s06BFHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_S06BF)));
+        s07CVHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_S07CV)));
+        s08SEHydrate(cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_S08SE)));
 
         return this;
     }
@@ -5089,50 +5089,50 @@ public class Form extends BaseObservable {
         JSONObject json = new JSONObject();
 
         try {
-            json.put(FormsContract.FormsTable.COLUMN_ID, this.id == null ? JSONObject.NULL : this.id);
-            json.put(FormsContract.FormsTable.COLUMN_UID, this.uid == null ? JSONObject.NULL : this.uid);
-            json.put(FormsContract.FormsTable.COLUMN_USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
-            json.put(FormsContract.FormsTable.COLUMN_SYSDATE, this.sysDate == null ? JSONObject.NULL : this.sysDate);
-            json.put(FormsContract.FormsTable.COLUMN_DCODE, this.dcode == null ? JSONObject.NULL : this.dcode);
-            json.put(FormsContract.FormsTable.COLUMN_UCODE, this.ucode == null ? JSONObject.NULL : this.ucode);
-            json.put(FormsContract.FormsTable.COLUMN_CLUSTER, this.cluster == null ? JSONObject.NULL : this.cluster);
-            json.put(FormsContract.FormsTable.COLUMN_HHNO, this.hhno == null ? JSONObject.NULL : this.hhno);
-            json.put(FormsContract.FormsTable.COLUMN_DEVICEID, this.deviceId == null ? JSONObject.NULL : this.deviceId);
-            json.put(FormsContract.FormsTable.COLUMN_DEVICETAGID, this.deviceTag == null ? JSONObject.NULL : this.deviceTag);
-            json.put(FormsContract.FormsTable.COLUMN_APPVERSION, this.appver == null ? JSONObject.NULL : this.appver);
-            json.put(FormsContract.FormsTable.COLUMN_ENDINGDATETIME, this.endTime == null ? JSONObject.NULL : this.endTime);
-            json.put(FormsContract.FormsTable.COLUMN_ISTATUS, this.iStatus == null ? JSONObject.NULL : this.iStatus);
-            json.put(FormsContract.FormsTable.COLUMN_ISTATUS96x, this.iStatus96x == null ? JSONObject.NULL : this.iStatus96x);
-            json.put(FormsContract.FormsTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
-            json.put(FormsContract.FormsTable.COLUMN_SYNCED_DATE, this.syncDate == null ? JSONObject.NULL : this.syncDate);
-            json.put(FormsContract.FormsTable.COLUMN_G5FLAG, this.g5Flag == null ? JSONObject.NULL : this.g5Flag);
-            json.put(FormsContract.FormsTable.COLUMN_HHFLAG, this.hhflag == null ? JSONObject.NULL : this.hhflag);
+            json.put(FormsTable.COLUMN_ID, this.id == null ? JSONObject.NULL : this.id);
+            json.put(FormsTable.COLUMN_UID, this.uid == null ? JSONObject.NULL : this.uid);
+            json.put(FormsTable.COLUMN_USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
+            json.put(FormsTable.COLUMN_SYSDATE, this.sysDate == null ? JSONObject.NULL : this.sysDate);
+            json.put(FormsTable.COLUMN_DCODE, this.dcode == null ? JSONObject.NULL : this.dcode);
+            json.put(FormsTable.COLUMN_UCODE, this.ucode == null ? JSONObject.NULL : this.ucode);
+            json.put(FormsTable.COLUMN_CLUSTER, this.cluster == null ? JSONObject.NULL : this.cluster);
+            json.put(FormsTable.COLUMN_HHNO, this.hhno == null ? JSONObject.NULL : this.hhno);
+            json.put(FormsTable.COLUMN_DEVICEID, this.deviceId == null ? JSONObject.NULL : this.deviceId);
+            json.put(FormsTable.COLUMN_DEVICETAGID, this.deviceTag == null ? JSONObject.NULL : this.deviceTag);
+            json.put(FormsTable.COLUMN_APPVERSION, this.appver == null ? JSONObject.NULL : this.appver);
+            json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endTime == null ? JSONObject.NULL : this.endTime);
+            json.put(FormsTable.COLUMN_ISTATUS, this.iStatus == null ? JSONObject.NULL : this.iStatus);
+            json.put(FormsTable.COLUMN_ISTATUS96x, this.iStatus96x == null ? JSONObject.NULL : this.iStatus96x);
+            json.put(FormsTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
+            json.put(FormsTable.COLUMN_SYNCED_DATE, this.syncDate == null ? JSONObject.NULL : this.syncDate);
+            json.put(FormsTable.COLUMN_G5FLAG, this.g5Flag == null ? JSONObject.NULL : this.g5Flag);
+            json.put(FormsTable.COLUMN_HHFLAG, this.hhflag == null ? JSONObject.NULL : this.hhflag);
 
-            json.put(FormsContract.FormsTable.COLUMN_S01HH, new JSONObject(s01HHtoString()));
-            json.put(FormsContract.FormsTable.COLUMN_S05PD, new JSONObject(s05PDtoString()));
-            json.put(FormsContract.FormsTable.COLUMN_S06BF, new JSONObject(s06BFtoString()));
-            json.put(FormsContract.FormsTable.COLUMN_S07CV, new JSONObject(s07CVtoString()));
-            json.put(FormsContract.FormsTable.COLUMN_S08SE, new JSONObject(s08SEtoString()));
+            json.put(FormsTable.COLUMN_S01HH, new JSONObject(s01HHtoString()));
+            json.put(FormsTable.COLUMN_S05PD, new JSONObject(s05PDtoString()));
+            json.put(FormsTable.COLUMN_S06BF, new JSONObject(s06BFtoString()));
+            json.put(FormsTable.COLUMN_S07CV, new JSONObject(s07CVtoString()));
+            json.put(FormsTable.COLUMN_S08SE, new JSONObject(s08SEtoString()));
 
 
             if (this.s01HH != null && !this.s01HH.equals("")) {
-                json.put(FormsContract.FormsTable.COLUMN_S01HH, new JSONObject(this.s01HH));
+                json.put(FormsTable.COLUMN_S01HH, new JSONObject(this.s01HH));
             }
 
             if (this.s05PD != null && !this.s05PD.equals("")) {
-                json.put(FormsContract.FormsTable.COLUMN_S05PD, new JSONObject(this.s05PD));
+                json.put(FormsTable.COLUMN_S05PD, new JSONObject(this.s05PD));
             }
 
             if (this.s06BF != null && !this.s06BF.equals("")) {
-                json.put(FormsContract.FormsTable.COLUMN_S06BF, new JSONObject(this.s06BF));
+                json.put(FormsTable.COLUMN_S06BF, new JSONObject(this.s06BF));
             }
 
             if (this.s07CV != null && !this.s07CV.equals("")) {
-                json.put(FormsContract.FormsTable.COLUMN_S07CV, new JSONObject(this.s07CV));
+                json.put(FormsTable.COLUMN_S07CV, new JSONObject(this.s07CV));
             }
 
             if (this.s08SE != null && !this.s08SE.equals("")) {
-                json.put(FormsContract.FormsTable.COLUMN_S08SE, new JSONObject(this.s08SE));
+                json.put(FormsTable.COLUMN_S08SE, new JSONObject(this.s08SE));
             }
 
             return json;

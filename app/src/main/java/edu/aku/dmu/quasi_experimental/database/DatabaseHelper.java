@@ -46,11 +46,10 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import edu.aku.dmu.quasi_experimental.contracts.FormsContract;
-import edu.aku.dmu.quasi_experimental.contracts.FormsContract.FormsTable;
 import edu.aku.dmu.quasi_experimental.contracts.TableContract.COMPLAINTSTable;
 import edu.aku.dmu.quasi_experimental.contracts.TableContract.DIAGNOSISTable;
 import edu.aku.dmu.quasi_experimental.contracts.TableContract.EntryLogTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract.FormsTable;
 import edu.aku.dmu.quasi_experimental.contracts.TableContract.PDTable;
 import edu.aku.dmu.quasi_experimental.contracts.TableContract.PRESCRIPTIONTable;
 import edu.aku.dmu.quasi_experimental.contracts.TableContract.VACCINATIONTable;
@@ -786,10 +785,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(column, value);
 
-        String selection = FormsContract.FormsTable._ID + " =? ";
+        String selection = FormsTable._ID + " =? ";
         String[] selectionArgs = {String.valueOf(MainApp.form.getId())};
 
-        return db.update(FormsContract.FormsTable.TABLE_NAME,
+        return db.update(FormsTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
@@ -800,16 +799,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // New value for one column
         ContentValues values = new ContentValues();
-        values.put(FormsContract.FormsTable.COLUMN_ISTATUS, MainApp.form.getIStatus());
-        values.put(FormsContract.FormsTable.COLUMN_ISTATUS, MainApp.form.getHh26());
-        values.put(FormsContract.FormsTable.COLUMN_ISTATUS96x, MainApp.form.getIStatus96x());
-        values.put(FormsContract.FormsTable.COLUMN_ENDINGDATETIME, MainApp.form.getEndTime());
+        values.put(FormsTable.COLUMN_ISTATUS, MainApp.form.getIStatus());
+        values.put(FormsTable.COLUMN_ISTATUS, MainApp.form.getHh26());
+        values.put(FormsTable.COLUMN_ISTATUS96x, MainApp.form.getIStatus96x());
+        values.put(FormsTable.COLUMN_ENDINGDATETIME, MainApp.form.getEndTime());
 
         // Which row to update, based on the ID
-        String selection = FormsContract.FormsTable.COLUMN_ID + " =? ";
+        String selection = FormsTable.COLUMN_ID + " =? ";
         String[] selectionArgs = {String.valueOf(MainApp.form.getId())};
 
-        return db.update(FormsContract.FormsTable.TABLE_NAME,
+        return db.update(FormsTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
@@ -1239,15 +1238,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(FormsContract.FormsTable.COLUMN_SYNCED, true);
-        values.put(FormsContract.FormsTable.COLUMN_SYNCED_DATE, new Date().toString());
+        values.put(FormsTable.COLUMN_SYNCED, true);
+        values.put(FormsTable.COLUMN_SYNCED_DATE, new Date().toString());
 
 // Which row to update, based on the title
-        String where = FormsContract.FormsTable.COLUMN_ID + " = ?";
+        String where = FormsTable.COLUMN_ID + " = ?";
         String[] whereArgs = {id};
 
         int count = db.update(
-                FormsContract.FormsTable.TABLE_NAME,
+                FormsTable.TABLE_NAME,
                 values,
                 where,
                 whereArgs);
