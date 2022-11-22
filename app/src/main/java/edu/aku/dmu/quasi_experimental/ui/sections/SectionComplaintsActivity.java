@@ -15,7 +15,7 @@ import com.validatorcrawler.aliazaz.Validator;
 import org.json.JSONException;
 
 import edu.aku.dmu.quasi_experimental.R;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivitySectionComplaintsBinding;
@@ -49,7 +49,7 @@ public class SectionComplaintsActivity extends AppCompatActivity {
         complaints.setId(String.valueOf(rowId));
         if (rowId > 0) {
             complaints.setUid(complaints.getDeviceId() + complaints.getId());
-            db.updatesCOMPColumn(PDContract.COMPLAINTSTable.COLUMN_UID, complaints.getUid());
+            db.updatesCOMPColumn(TableContract.COMPLAINTSTable.COLUMN_UID, complaints.getUid());
             return true;
         } else {
             Toast.makeText(this, R.string.upd_db_error, Toast.LENGTH_SHORT).show();
@@ -75,7 +75,7 @@ public class SectionComplaintsActivity extends AppCompatActivity {
         complaints.setId(String.valueOf(rowId));
         if (rowId > 0) {
             complaints.setUid(complaints.getDeviceId() + complaints.getId());
-            db.updatesCOMPColumn(PDContract.COMPLAINTSTable.COLUMN_UID, complaints.getUid());
+            db.updatesCOMPColumn(TableContract.COMPLAINTSTable.COLUMN_UID, complaints.getUid());
             return true;
         } else {
             Toast.makeText(this, R.string.upd_db_error, Toast.LENGTH_SHORT).show();
@@ -88,7 +88,7 @@ public class SectionComplaintsActivity extends AppCompatActivity {
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
         int updcount = 0;
         try {
-            updcount = db.updatesCOMPColumn(PDContract.COMPLAINTSTable.COLUMN_SCOMP, complaints.sCOMPtoString());
+            updcount = db.updatesCOMPColumn(TableContract.COMPLAINTSTable.COLUMN_SCOMP, complaints.sCOMPtoString());
         } catch (JSONException e) {
             Toast.makeText(this, R.string.upd_db + e.getMessage(), Toast.LENGTH_SHORT).show();
         }

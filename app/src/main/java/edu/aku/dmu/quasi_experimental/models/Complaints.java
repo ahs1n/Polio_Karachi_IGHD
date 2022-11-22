@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import edu.aku.dmu.quasi_experimental.BR;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract.COMPLAINTSTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract.COMPLAINTSTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
 public class Complaints extends BaseObservable implements Observable {

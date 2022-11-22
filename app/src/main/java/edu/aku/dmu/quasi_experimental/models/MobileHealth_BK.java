@@ -13,7 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.aku.dmu.quasi_experimental.BR;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
 
@@ -1446,18 +1446,18 @@ public class MobileHealth_BK extends BaseObservable {
 
 
     public MobileHealth_BK Sync(JSONObject jsonObject) throws JSONException {
-        this.id = jsonObject.getString(PDContract.PDTable.COLUMN_ID);
-        this.uid = jsonObject.getString(PDContract.PDTable.COLUMN_UID);
-        this.userName = jsonObject.getString(PDContract.PDTable.COLUMN_USERNAME);
-        this.sysDate = jsonObject.getString(PDContract.PDTable.COLUMN_SYSDATE);
-        this.deviceId = jsonObject.getString(PDContract.PDTable.COLUMN_DEVICEID);
-        this.deviceTag = jsonObject.getString(PDContract.PDTable.COLUMN_DEVICETAGID);
-        this.appver = jsonObject.getString(PDContract.PDTable.COLUMN_APPVERSION);
-        this.synced = jsonObject.getString(PDContract.PDTable.COLUMN_SYNCED);
-        this.syncDate = jsonObject.getString(PDContract.PDTable.COLUMN_SYNCED_DATE);
-        this.status = jsonObject.getString(PDContract.PDTable.COLUMN_ISTATUS);
+        this.id = jsonObject.getString(TableContract.PDTable.COLUMN_ID);
+        this.uid = jsonObject.getString(TableContract.PDTable.COLUMN_UID);
+        this.userName = jsonObject.getString(TableContract.PDTable.COLUMN_USERNAME);
+        this.sysDate = jsonObject.getString(TableContract.PDTable.COLUMN_SYSDATE);
+        this.deviceId = jsonObject.getString(TableContract.PDTable.COLUMN_DEVICEID);
+        this.deviceTag = jsonObject.getString(TableContract.PDTable.COLUMN_DEVICETAGID);
+        this.appver = jsonObject.getString(TableContract.PDTable.COLUMN_APPVERSION);
+        this.synced = jsonObject.getString(TableContract.PDTable.COLUMN_SYNCED);
+        this.syncDate = jsonObject.getString(TableContract.PDTable.COLUMN_SYNCED_DATE);
+        this.status = jsonObject.getString(TableContract.PDTable.COLUMN_ISTATUS);
 
-        this.sA = jsonObject.getString(PDContract.PDTable.COLUMN_SPD);
+        this.sA = jsonObject.getString(TableContract.PDTable.COLUMN_SPD);
 
         return this;
 
@@ -1465,21 +1465,21 @@ public class MobileHealth_BK extends BaseObservable {
 
 
     public MobileHealth_BK Hydrate(Cursor cursor) {
-        this.id = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_ID));
-        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_UID));
-        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_USERNAME));
-        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_SYSDATE));
-        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_DEVICEID));
-        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_DEVICETAGID));
-        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_APPVERSION));
-        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_SYNCED));
-        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_SYNCED_DATE));
-        this.status = cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_ISTATUS));
+        this.id = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_ID));
+        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_UID));
+        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_USERNAME));
+        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SYSDATE));
+        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_DEVICEID));
+        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_DEVICETAGID));
+        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_APPVERSION));
+        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SYNCED));
+        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SYNCED_DATE));
+        this.status = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_ISTATUS));
 
         //For childCount
         //this.sA = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SA));
 
-        sAHydrate(cursor.getString(cursor.getColumnIndexOrThrow(PDContract.PDTable.COLUMN_SPD)));
+        sAHydrate(cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SPD)));
 
         return this;
     }
@@ -1606,25 +1606,25 @@ public class MobileHealth_BK extends BaseObservable {
         JSONObject json = new JSONObject();
 
         try {
-            json.put(PDContract.PDTable.COLUMN_ID, this.id == null ? JSONObject.NULL : this.id);
-            json.put(PDContract.PDTable.COLUMN_UID, this.uid == null ? JSONObject.NULL : this.uid);
-            json.put(PDContract.PDTable.COLUMN_USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
-            json.put(PDContract.PDTable.COLUMN_SYSDATE, this.sysDate == null ? JSONObject.NULL : this.sysDate);
-            json.put(PDContract.PDTable.COLUMN_DEVICEID, this.deviceId == null ? JSONObject.NULL : this.deviceId);
-            json.put(PDContract.PDTable.COLUMN_DEVICETAGID, this.deviceTag == null ? JSONObject.NULL : this.deviceTag);
-            json.put(PDContract.PDTable.COLUMN_APPVERSION, this.appver == null ? JSONObject.NULL : this.appver);
-            json.put(PDContract.PDTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
-            json.put(PDContract.PDTable.COLUMN_SYNCED_DATE, this.syncDate == null ? JSONObject.NULL : this.syncDate);
-            json.put(PDContract.PDTable.COLUMN_ISTATUS, this.status == null ? JSONObject.NULL : this.status);
+            json.put(TableContract.PDTable.COLUMN_ID, this.id == null ? JSONObject.NULL : this.id);
+            json.put(TableContract.PDTable.COLUMN_UID, this.uid == null ? JSONObject.NULL : this.uid);
+            json.put(TableContract.PDTable.COLUMN_USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
+            json.put(TableContract.PDTable.COLUMN_SYSDATE, this.sysDate == null ? JSONObject.NULL : this.sysDate);
+            json.put(TableContract.PDTable.COLUMN_DEVICEID, this.deviceId == null ? JSONObject.NULL : this.deviceId);
+            json.put(TableContract.PDTable.COLUMN_DEVICETAGID, this.deviceTag == null ? JSONObject.NULL : this.deviceTag);
+            json.put(TableContract.PDTable.COLUMN_APPVERSION, this.appver == null ? JSONObject.NULL : this.appver);
+            json.put(TableContract.PDTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
+            json.put(TableContract.PDTable.COLUMN_SYNCED_DATE, this.syncDate == null ? JSONObject.NULL : this.syncDate);
+            json.put(TableContract.PDTable.COLUMN_ISTATUS, this.status == null ? JSONObject.NULL : this.status);
 
             //For ChildCount
             //json.put(MHContract.MHTable.COLUMN_SA, this.sA == null ? JSONObject.NULL : this.sA);
 
-            json.put(PDContract.PDTable.COLUMN_SPD, new JSONObject(sAtoString()));
+            json.put(TableContract.PDTable.COLUMN_SPD, new JSONObject(sAtoString()));
 
 
             if (this.sA != null && !this.sA.equals("")) {
-                json.put(PDContract.PDTable.COLUMN_SPD, new JSONObject(this.sA));
+                json.put(TableContract.PDTable.COLUMN_SPD, new JSONObject(this.sA));
             }
 
             return json;

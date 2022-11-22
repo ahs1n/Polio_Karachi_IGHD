@@ -14,7 +14,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.google.gson.Gson;
 import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
@@ -23,16 +22,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import edu.aku.dmu.quasi_experimental.R;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivitySectionScreeningBinding;
-import edu.aku.dmu.quasi_experimental.models.Camps;
 import edu.aku.dmu.quasi_experimental.models.Complaints;
 import edu.aku.dmu.quasi_experimental.models.Doctor;
 import edu.aku.dmu.quasi_experimental.models.PatientDetails;
 import edu.aku.dmu.quasi_experimental.utils.DateUtils;
-import edu.aku.dmu.quasi_experimental.utils.shared.SharedStorage;
 
 public class SectionScreeningActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
 
@@ -54,12 +51,12 @@ public class SectionScreeningActivity extends AppCompatActivity implements Compo
 
         bi.tempDegreeSwitch.setOnCheckedChangeListener(this);
         patientDetails.setSs204a("1");
-        Camps camp = new Gson().fromJson(SharedStorage.INSTANCE.getSelectedFacilityData(this), Camps.class);
+        /*Camps camp = new Gson().fromJson(SharedStorage.INSTANCE.getSelectedFacilityData(this), Camps.class);
         String selectedFacilityName = camp.getFacilityName();
         String selectedFacilityCode = camp.getFacilityCode();
         bi.facility.setText(selectedFacilityName);
         patientDetails.facility = selectedFacilityName;
-        patientDetails.setFacilityCode(selectedFacilityCode);
+        patientDetails.setFacilityCode(selectedFacilityCode);*/
     }
 
     private void populateSpinner() {
@@ -121,7 +118,7 @@ public class SectionScreeningActivity extends AppCompatActivity implements Compo
         patientDetails.setId(String.valueOf(rowId));
         if (rowId > 0) {
             patientDetails.setUid(patientDetails.getDeviceId() + patientDetails.getId());
-            db.updatesPDColumn(PDContract.PDTable.COLUMN_UID, patientDetails.getUid());
+            db.updatesPDColumn(TableContract.PDTable.COLUMN_UID, patientDetails.getUid());
             return true;
         } else {
             Toast.makeText(this, R.string.upd_db_error, Toast.LENGTH_SHORT).show();
@@ -134,7 +131,7 @@ public class SectionScreeningActivity extends AppCompatActivity implements Compo
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
         int updcount = 0;
         try {
-            updcount = db.updatesPDColumn(PDContract.PDTable.COLUMN_SPD, patientDetails.sPDtoString());
+            updcount = db.updatesPDColumn(TableContract.PDTable.COLUMN_SPD, patientDetails.sPDtoString());
         } catch (JSONException e) {
             Toast.makeText(this, R.string.upd_db + e.getMessage(), Toast.LENGTH_SHORT).show();
         }

@@ -16,7 +16,7 @@ import com.validatorcrawler.aliazaz.Validator;
 import org.json.JSONException;
 
 import edu.aku.dmu.quasi_experimental.R;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivitySectionExaminationBinding;
@@ -47,7 +47,7 @@ public class SectionExaminationActivity extends AppCompatActivity {
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
         int updcount = 0;
         try {
-            updcount = db.updatesPDColumn(PDContract.PDTable.COLUMN_SEXM, patientDetails.sEXMtoString());
+            updcount = db.updatesPDColumn(TableContract.PDTable.COLUMN_SEXM, patientDetails.sEXMtoString());
         } catch (JSONException e) {
             Toast.makeText(this, R.string.upd_db + e.getMessage(), Toast.LENGTH_SHORT).show();
         }

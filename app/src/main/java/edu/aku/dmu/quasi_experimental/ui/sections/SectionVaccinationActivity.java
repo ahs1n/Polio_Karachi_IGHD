@@ -18,7 +18,7 @@ import com.validatorcrawler.aliazaz.Validator;
 import org.json.JSONException;
 
 import edu.aku.dmu.quasi_experimental.R;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivitySectionVaccinationBinding;
@@ -81,7 +81,7 @@ public class SectionVaccinationActivity extends AppCompatActivity {
         vaccination.setId(String.valueOf(rowId));
         if (rowId > 0) {
             vaccination.setUid(vaccination.getDeviceId() + vaccination.getId());
-            db.updatesVACColumn(PDContract.VACCINATIONTable.COLUMN_UID, vaccination.getUid());
+            db.updatesVACColumn(TableContract.VACCINATIONTable.COLUMN_UID, vaccination.getUid());
             return true;
         } else {
             Toast.makeText(this, R.string.upd_db_error, Toast.LENGTH_SHORT).show();
@@ -94,7 +94,7 @@ public class SectionVaccinationActivity extends AppCompatActivity {
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
         int updcount = 0;
         try {
-            updcount = db.updatesVACColumn(PDContract.VACCINATIONTable.COLUMN_SVAC, vaccination.sVACtoString());
+            updcount = db.updatesVACColumn(TableContract.VACCINATIONTable.COLUMN_SVAC, vaccination.sVACtoString());
         } catch (JSONException e) {
             Toast.makeText(this, R.string.upd_db + e.getMessage(), Toast.LENGTH_SHORT).show();
         }

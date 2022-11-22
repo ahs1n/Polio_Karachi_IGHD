@@ -56,7 +56,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 import edu.aku.dmu.quasi_experimental.R;
-import edu.aku.dmu.quasi_experimental.contracts.EntryLog.EntryLogTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract.EntryLogTable;
 import edu.aku.dmu.quasi_experimental.core.AppInfo;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;

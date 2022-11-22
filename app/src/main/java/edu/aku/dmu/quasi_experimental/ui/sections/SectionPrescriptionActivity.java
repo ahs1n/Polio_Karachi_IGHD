@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.aku.dmu.quasi_experimental.R;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivitySectionPrescriptionBinding;
@@ -61,7 +61,7 @@ public class SectionPrescriptionActivity extends AppCompatActivity {
         prescription.setId(String.valueOf(rowId));
         if (rowId > 0) {
             prescription.setUid(prescription.getDeviceId() + prescription.getId());
-            db.updatesPRESColumn(PDContract.PRESCRIPTIONTable.COLUMN_UID, prescription.getUid());
+            db.updatesPRESColumn(TableContract.PRESCRIPTIONTable.COLUMN_UID, prescription.getUid());
             return true;
         } else {
             Toast.makeText(this, R.string.upd_db_error, Toast.LENGTH_SHORT).show();
@@ -87,7 +87,7 @@ public class SectionPrescriptionActivity extends AppCompatActivity {
         prescription.setId(String.valueOf(rowId));
         if (rowId > 0) {
             prescription.setUid(prescription.getDeviceId() + prescription.getId());
-            db.updatesPRESColumn(PDContract.PRESCRIPTIONTable.COLUMN_UID, prescription.getUid());
+            db.updatesPRESColumn(TableContract.PRESCRIPTIONTable.COLUMN_UID, prescription.getUid());
             return true;
         } else {
             Toast.makeText(this, R.string.upd_db_error, Toast.LENGTH_SHORT).show();
@@ -100,7 +100,7 @@ public class SectionPrescriptionActivity extends AppCompatActivity {
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
         int updcount = 0;
         try {
-            updcount = db.updatesPRESColumn(PDContract.PRESCRIPTIONTable.COLUMN_PRES, prescription.sPREStoString());
+            updcount = db.updatesPRESColumn(TableContract.PRESCRIPTIONTable.COLUMN_PRES, prescription.sPREStoString());
         } catch (JSONException e) {
             Toast.makeText(this, R.string.upd_db + e.getMessage(), Toast.LENGTH_SHORT).show();
         }

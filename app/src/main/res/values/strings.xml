@@ -21,6 +21,8 @@
     <string name="upd_db"> Updating Database...\t </string>
     <string name="db_excp_error"> Database Exception... ERROR! </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="warning" translatable="false">Warning</string>
+    <string name="startinterview" translatable="false">START INTERVIEW</string>
 
 
     <!--New Strings V2-->
@@ -31,7 +33,7 @@
     <string name="section05diagnosis_mainheading">Section 05: Diagnosis: </string>
     <string name="section06vaccination_mainheading">Section 06: Vaccination: </string>
     <string name="section07medicineprescription_mainheading">Section 07: Medicine Prescription: </string>
-    <string name="app_name"> Health Facility Patient Information V2</string>
+    <string name="app_name"> Quasi-experimental Trial</string>
     <string name="btnSync">Download Data</string>
     <string name="btnUpload">Upload Data</string>
     <string name="prompt_email">Email</string>

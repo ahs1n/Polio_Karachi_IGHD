@@ -23,7 +23,7 @@
         android:layout_above="@+id/appTitleTV"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/_minus10sdp"
-        android:background="@drawable/logo_2"
+        android:background="@drawable/app_icon"
         tools:ignore="ContentDescription" />
 
     <TextView

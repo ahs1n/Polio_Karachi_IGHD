@@ -17,8 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import edu.aku.dmu.quasi_experimental.BR;
-import edu.aku.dmu.quasi_experimental.contracts.EntryLog.EntryLogTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract.EntryLogTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
 
@@ -115,7 +114,7 @@ public class EntryLog extends BaseObservable implements Observable {
 
     public void setHhid(String hhid) {
         this.hhid = hhid;
-        notifyPropertyChanged(BR.hhid);
+        notifyPropertyChanged(edu.aku.dmu.quasi_experimental.BR.hhid);
     }
 
 

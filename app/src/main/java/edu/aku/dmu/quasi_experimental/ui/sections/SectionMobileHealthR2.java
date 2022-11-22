@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.Locale;
 
 import edu.aku.dmu.quasi_experimental.R;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivityMobileHealthR2Binding;
@@ -324,9 +324,9 @@ public class SectionMobileHealthR2 extends AppCompatActivity implements EndSecti
         patientDetails.setId(String.valueOf(updcount));
         if (updcount > 0) {
             patientDetails.setUid(patientDetails.getDeviceId() + patientDetails.getId());
-            long count = db.updatesPDColumn(PDContract.PDTable.COLUMN_UID, patientDetails.getUid());
+            long count = db.updatesPDColumn(TableContract.PDTable.COLUMN_UID, patientDetails.getUid());
             if (count > 0)
-                count = db.updatesPDColumn(PDContract.PDTable.COLUMN_SPD, patientDetails.sPDtoString());
+                count = db.updatesPDColumn(TableContract.PDTable.COLUMN_SPD, patientDetails.sPDtoString());
             if (count > 0) return true;
             else {
                 Toast.makeText(this, "SORRY! Failed to update DB", Toast.LENGTH_SHORT).show();

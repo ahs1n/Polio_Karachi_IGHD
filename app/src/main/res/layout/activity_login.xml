@@ -30,7 +30,7 @@
             android:layout_marginTop="@dimen/_minus30sdp"
             android:background="@drawable/bg_circle_white_filled"
             android:padding="@dimen/_2sdp"
-            android:src="@drawable/logo"
+            android:src="@drawable/app_icon"
             tools:ignore="ContentDescription" />
 
         <RelativeLayout

@@ -47,8 +47,10 @@ import java.util.concurrent.TimeUnit;
 
 import edu.aku.dmu.quasi_experimental.R;
 import edu.aku.dmu.quasi_experimental.adapters.SyncListAdapter;
-import edu.aku.dmu.quasi_experimental.contracts.EntryLog;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract.COMPLAINTSTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract.EntryLogTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract.PDTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivitySyncBinding;
@@ -141,7 +143,7 @@ public class SyncActivity extends AppCompatActivity {
                 MainApp.uploadData.clear();
 
                 // PatientDetails
-                uploadTables.add(new SyncModel(PDContract.PDTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(PDTable.TABLE_NAME));
                 try {
                     MainApp.uploadData.add(db.getUnsyncedPD());
                 } catch (JSONException e) {
@@ -151,7 +153,7 @@ public class SyncActivity extends AppCompatActivity {
                 }
 
                 // Complaints
-                uploadTables.add(new SyncModel(PDContract.COMPLAINTSTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(COMPLAINTSTable.TABLE_NAME));
                 try {
                     MainApp.uploadData.add(db.getUnsyncedCOMP());
                 } catch (JSONException e) {
@@ -161,7 +163,7 @@ public class SyncActivity extends AppCompatActivity {
                 }
 
                 // Diagnosis
-                uploadTables.add(new SyncModel(PDContract.DIAGNOSISTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(TableContract.DIAGNOSISTable.TABLE_NAME));
                 try {
                     MainApp.uploadData.add(db.getUnsyncedDIAG());
                 } catch (JSONException e) {
@@ -171,7 +173,7 @@ public class SyncActivity extends AppCompatActivity {
                 }
 
                 // Vaccination
-                uploadTables.add(new SyncModel(PDContract.VACCINATIONTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(TableContract.VACCINATIONTable.TABLE_NAME));
                 try {
                     MainApp.uploadData.add(db.getUnsyncedVAC());
                 } catch (JSONException e) {
@@ -181,7 +183,7 @@ public class SyncActivity extends AppCompatActivity {
                 }
 
                 // Prescription
-                uploadTables.add(new SyncModel(PDContract.PRESCRIPTIONTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(TableContract.PRESCRIPTIONTable.TABLE_NAME));
                 try {
                     MainApp.uploadData.add(db.getUnsyncedPRES());
                 } catch (JSONException e) {
@@ -191,7 +193,7 @@ public class SyncActivity extends AppCompatActivity {
                 }
 
                 //Entry Log
-                uploadTables.add(new SyncModel(EntryLog.EntryLogTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(EntryLogTable.TABLE_NAME));
                 try {
                     MainApp.uploadData.add(db.getUnsyncedEntryLog());
                 } catch (JSONException e) {

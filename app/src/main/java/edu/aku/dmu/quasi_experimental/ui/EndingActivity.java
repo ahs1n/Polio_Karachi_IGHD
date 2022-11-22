@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import edu.aku.dmu.quasi_experimental.R;
-import edu.aku.dmu.quasi_experimental.contracts.PDContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContract;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivityEndingBinding;
@@ -76,7 +76,7 @@ public class EndingActivity extends AppCompatActivity {
 
     private boolean UpdateDB() {
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
-        int updcount = db.updatesPDColumn(PDContract.PDTable.COLUMN_ISTATUS, patientDetails.getiStatus());
+        int updcount = db.updatesPDColumn(TableContract.PDTable.COLUMN_ISTATUS, patientDetails.getiStatus());
         if (updcount > 0) {
             //int count = db.updateEnding();
             return updcount > 0;
