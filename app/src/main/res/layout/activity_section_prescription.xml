@@ -1,0 +1,231 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="form"
+            type="edu.aku.dmu.quasi_experimental.models.Prescription" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg"
+        android:orientation="vertical">
+
+        <!--         CUSTOM TOOLBAR -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@color/orange"
+            android:minHeight="?attr/actionBarSize"
+            android:paddingTop="@dimen/_3sdp"
+            android:paddingBottom="@dimen/_6sdp"
+            android:theme="@style/CustomToolbarTheme"
+            app:popupTheme="@style/CustomPopupTheme"
+            app:subtitle="@string/mp100"
+            app:subtitleTextAppearance="@style/Toolbar.SubtitleText"
+            app:title="@string/mptitle"
+            app:titleTextAppearance="@style/Toolbar.TitleText" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/GrpName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- mp100  CheckBox   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVmp100"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Q_mp100" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@string/mp100" />
+
+                        </LinearLayout>
+
+                        <com.google.android.flexbox.FlexboxLayout
+                            android:id="@+id/mp100check"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:tag="-1"
+                            app:alignContent="stretch"
+                            app:alignItems="stretch"
+                            app:flexDirection="row"
+                            app:flexWrap="wrap"
+                            app:justifyContent="space_evenly">
+
+                            <TextView
+                                android:id="@+id/medName"
+                                style="@style/sub_labels"
+                                android:layout_width="230dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Medicines" />
+
+                            <TextView
+                                android:id="@+id/medDOS"
+                                style="@style/sub_labels"
+                                android:layout_width="65dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Dose" />
+
+                            <TextView
+                                android:id="@+id/medOD"
+                                style="@style/sub_labels"
+                                android:layout_width="52dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="start|center_vertical"
+                                android:text="OD" />
+
+                            <TextView
+                                android:id="@+id/medBD"
+                                style="@style/sub_labels"
+                                android:layout_width="52dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="start|center_vertical"
+                                android:text="BD" />
+
+                            <TextView
+                                android:id="@+id/medTDS"
+                                style="@style/sub_labels"
+                                android:layout_width="52dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="start|center_vertical"
+                                android:text="TDS" />
+
+                            <TextView
+                                android:id="@+id/medQID"
+                                style="@style/sub_labels"
+                                android:layout_width="52dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="start|center_vertical"
+                                android:text="QID" />
+
+                            <TextView
+                                android:id="@+id/medDUR"
+                                style="@style/sub_labels"
+                                android:layout_width="65dp"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Duration" />
+
+                        </com.google.android.flexbox.FlexboxLayout>
+
+                        <include
+                            android:id="@+id/presStub1"
+                            layout="@layout/view_prescription_1"
+                            app:form="@{form}" />
+
+                        <include
+                            android:id="@+id/presStub2"
+                            layout="@layout/view_prescription_2"
+                            app:form="@{form}" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!--EndButton LinearLayout-->
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_gravity="end"-->
+                <!--                    android:layout_marginTop="24dp"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <Button-->
+                <!--                        android:id="@+id/btn_End"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginStart="12dp"-->
+                <!--                        android:background="@color/redOverlay"-->
+                <!--                        android:onClick="BtnEnd"-->
+                <!--                        android:text="Cancel"-->
+                <!--                        android:textColor="@color/white" />-->
+
+                <!--                    <Button-->
+                <!--                        android:id="@+id/btn_Continue"-->
+                <!--                        android:layout_width="wrap_content"-->
+                <!--                        android:layout_height="wrap_content"-->
+                <!--                        android:layout_marginStart="12dp"-->
+                <!--                        android:background="@color/greenLight"-->
+                <!--                        android:onClick="BtnContinue"-->
+                <!--                        android:text="Save"-->
+                <!--                        android:textColor="@color/white" />-->
+                <!--                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_5sdp"
+                    android:weightSum="1">
+
+                    <Button
+                        android:id="@+id/btn_End"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginEnd="@dimen/_3sdp"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/bg_rounded_white"
+                        android:backgroundTint="@color/redOverlay"
+                        android:backgroundTintMode="src_atop"
+                        android:onClick="BtnEnd"
+                        android:text="Cancel"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp"
+                        android:visibility="invisible" />
+
+                    <Button
+                        android:id="@+id/btn_Continue"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:layout_weight="0.5"
+                        android:background="@drawable/bg_rounded_white"
+                        android:backgroundTint="@color/greenOverlay"
+                        android:backgroundTintMode="src_atop"
+                        android:onClick="BtnContinue"
+                        android:text="Save"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10ssp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>
