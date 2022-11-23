@@ -1,7 +1,7 @@
 package edu.aku.dmu.quasi_experimental.Room
 
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
+import net.sqlcipher.database.SQLiteDatabase
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -13,7 +13,7 @@ import edu.aku.dmu.quasi_experimental.core.MainApp
 import edu.aku.dmu.quasi_experimental.models.Form
 import net.sqlcipher.database.SQLiteDatabase.getBytes
 import net.sqlcipher.database.SupportFactory
-import org.apache.commons.lang3.StringUtils.getBytes
+
 
 //
 // Created by gul.sanober on 11/23/2022.
@@ -23,7 +23,7 @@ import org.apache.commons.lang3.StringUtils.getBytes
         version = QuasiRoomDatabase.DATABASE_VERSION,
         entities = [
             // add your models here to create tables in db
-            // Mwra :: class,
+             Form :: class
         ]
 )
 
@@ -49,7 +49,7 @@ abstract class QuasiRoomDatabase : RoomDatabase() {
                 return dbInstance!!
 
             synchronized(this) {
-                val passphrase: ByteArray = SQLiteDatabase.getBytes(password.toCharArray())
+                val passphrase: ByteArray = getBytes(password.toCharArray())
                 val factory = SupportFactory(passphrase)
 
                 dbInstance = Room.databaseBuilder(context, QuasiRoomDatabase::class.java, DATABASE_NAME)

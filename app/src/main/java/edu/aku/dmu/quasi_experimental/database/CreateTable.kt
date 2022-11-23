@@ -1,6 +1,6 @@
 package edu.aku.dmu.quasi_experimental.database
-
 import edu.aku.dmu.quasi_experimental.contracts.TableContracts
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.FormsTable
 import edu.aku.dmu.quasi_experimental.contracts.TableContracts.ClusterTable
 import edu.aku.dmu.quasi_experimental.contracts.TableContracts.EntryLogTable
 import edu.aku.dmu.quasi_experimental.contracts.TableContracts.RandomHHTable
