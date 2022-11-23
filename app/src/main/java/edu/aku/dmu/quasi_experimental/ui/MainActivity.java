@@ -27,10 +27,9 @@ import edu.aku.dmu.quasi_experimental.R;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.AndroidManager;
 import edu.aku.dmu.quasi_experimental.databinding.ActivityMainBinding;
-import edu.aku.dmu.quasi_experimental.models.PatientDetails;
+import edu.aku.dmu.quasi_experimental.models.Form;
 import edu.aku.dmu.quasi_experimental.ui.list_activity.FormsReportCluster;
 import edu.aku.dmu.quasi_experimental.ui.list_activity.FormsReportDate;
-import edu.aku.dmu.quasi_experimental.ui.sections.SectionScreeningActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -122,8 +121,8 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.startInterview:
-                MainApp.patientDetails = new PatientDetails();
-                startActivity(new Intent(this, SectionScreeningActivity.class));
+                MainApp.form = new Form();
+                startActivity(new Intent(this, IdentificationActivity.class));
                 break;
 
             case R.id.dbManager:

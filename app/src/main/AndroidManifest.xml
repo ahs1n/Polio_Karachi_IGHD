@@ -28,7 +28,11 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionScreeningActivity"
+            android:name="edu.aku.dmu.quasi_experimental.ui.sections.ConsentActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeEnglish1" />
+        <activity
+            android:name="edu.aku.dmu.quasi_experimental.ui.IdentificationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1" />
         <activity
