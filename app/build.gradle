@@ -148,7 +148,7 @@ dependencies {
 
 
     //Image Compressor
-    implementation 'id.zelory:compressor:3.0.1'
+    implementation 'id.zelory:compressor:2.1.1'
 
 
 
@@ -229,5 +229,7 @@ dependencies {
 
     // Android Database Browser
     implementation 'com.github.amitshekhariitbhu.Android-Debug-Database:debug-db:v1.0.6'
+
+    implementation 'com.google.guava:guava:29.0-android'
 
 }

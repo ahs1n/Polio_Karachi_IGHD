@@ -39,7 +39,7 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         - activity_camera.xml
 
     GRADLE:
-     implementation 'id.zelory:compressor:2.1.0'
+     implementation 'id.zelory:compressor:2.1.1'
 
     REQUIRE:
         Intent Extra:
@@ -64,11 +64,11 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
 
     private static final String TAG = "Photo Capture";
     Camera camera;
-    //Context context;
+    Context context;
     LinearLayout btnGrp;
     String picID;
     String picView;
-    String childName;
+    String forInfo;
     TextView picInfo;
     private boolean previewFlag;
     private String tmpFile = null;
@@ -81,20 +81,20 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         Intent intent = getIntent();
         picID = intent.getStringExtra("picID");
         picView = intent.getStringExtra("picView");
-        childName = intent.getStringExtra("childName");
+        forInfo = intent.getStringExtra("childName");
 
         picInfo = findViewById(R.id.picInfo);
         btnGrp = findViewById(R.id.btnGrp);
         btnGrp.setVisibility(View.GONE);
-        hideSystemUI();
 
-        picInfo.setText(picView + "\r\n For: " + childName);
+        picInfo.setText(picView + "\r\n For: " + forInfo);
 
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
 
         PowerManager.WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, TAG + ":");
         wl.acquire();
         //
+
 
         previewFlag = false;
 
@@ -110,11 +110,13 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         surfaceView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (previewFlag == false) {
+                if (!previewFlag) {
                     Camera.Parameters parameters = camera.getParameters();
                     //parameters.setJpegQuality(88);
                     parameters.setAutoWhiteBalanceLock(true);
-                    //parameters.setFlashMode(Camera.Parameters.WHITE_BALANCE_AUTO);
+                    if (parameters.getFlashMode() != null) {
+                        parameters.setFlashMode(Camera.Parameters.WHITE_BALANCE_AUTO);
+                    }
                     parameters.set("rotation", 90);
                     parameters.set("iso", "auto");
                     //parameters.setPreviewSize(640, 480);
@@ -166,21 +168,23 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         camera = Camera.open();
         Camera.Parameters parameters = camera.getParameters();
         List<String> focusModes = parameters.getSupportedFocusModes();
-//        for (String p : focusModes) {
-//            Log.d("TAH", "surfaceCreated: " + p + "\r\n");
-//        }
-//
+        for (String p : focusModes) {
+            Log.d(TAG, "focusModes: " + p + "\r\n");
+        }
+
 
         List<Integer> picFormat = parameters.getSupportedPictureFormats();
         for (Integer p : picFormat) {
-            Log.d("picFormat", "surfaceCreated: " + p + "\r\n");
+            Log.d(TAG, "picFormat: " + p + "\r\n");
         }
-//
+
         List<String> colorEffects = parameters.getSupportedColorEffects();
-//        for (String effect : colorEffects) {
-//            Log.d("TAG", effect);
-//        }
-        //parameters.setColorEffect(Camera.Parameters.WHITE_BALANCE_AUTO);
+        for (String effect : colorEffects) {
+            Log.d(TAG, "colorEffects: " + effect + "\r\n");
+        }
+        if (colorEffects.contains(Camera.Parameters.WHITE_BALANCE_AUTO)) {
+            parameters.setColorEffect(Camera.Parameters.WHITE_BALANCE_AUTO);
+        }
         //parameters.setPreviewSize(640, 480);
         //parameters.setPictureSize(640, 480);
         if (focusModes.contains(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE)) {
@@ -202,7 +206,7 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
                 Log.v("TakePhoto", "Orientation = 0");
                 break;
         }
-        //camera.setDisplayOrientation(180);
+        // camera.setDisplayOrientation(180);
 
         List<Camera.Size> previewSize = parameters.getSupportedPreviewSizes();
         List<Camera.Size> picSize = parameters.getSupportedPictureSizes();
@@ -239,9 +243,8 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
 
     @Override
     public void onPictureTaken(byte[] data, Camera camera) {
-        Log.d(TAG, "onPictureTaken: Start");
+
         File pictureFileDir = getDir(0);
-        Log.d(TAG, "onPictureTaken: Directory Created");
         if (!pictureFileDir.exists() && !pictureFileDir.mkdirs()) {
 
             Log.d(TAG, "Can't create directory to save image.");
@@ -258,7 +261,7 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         String date = dateFormat.format(new Date());
 
         //TODO: PhotoID will be sent from calling Activity as StringExtra(). Replace "Cipture"
-        String photoFile = picID + "_" + date + "_" + picView + ".jpg";
+        String photoFile = picID + "_" + date + "_" + picView.replace("/", "_") + ".jpg";
 
         String filename = pictureFileDir.getPath() + File.separator + photoFile;
 
@@ -302,13 +305,13 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
             tmpFile = null;
             Intent intent = new Intent();
             intent.putExtra("FileName", fileName);
-            setResult(1, intent);
+            setResult(RESULT_OK, intent);
             finish();//finishing activity
             //previewFlag = false;
         }
     }
 
-/*    private File getDir(int i) {
+    private File getDir(int i) {
         String appFolder = PROJECT_NAME;
 
         if (i == 1) {
@@ -319,24 +322,6 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
             File sdDir = Environment
                     .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
             return new File(sdDir, appFolder + File.separator + "temp");
-        }
-    }*/
-
-    private File getDir(int i) {
-        String albumName = PROJECT_NAME;
-
-        if (i == 1) {
-            /*File sdDir = Environment
-                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);*/
-            File sdDir = new File(this.getExternalFilesDir(
-                    Environment.DIRECTORY_PICTURES), PROJECT_NAME);
-            return sdDir;
-        } else {
-            /*File sdDir = Environment
-                    .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);*/
-            File sdDir = new File(this.getExternalFilesDir(
-                    Environment.DIRECTORY_PICTURES), PROJECT_NAME + File.separator + "temp");
-            return sdDir;
         }
     }
 
@@ -376,78 +361,52 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         return inputFile;
     }
 
-    /*
-        private void moveFile(String inputFile) {
-            Toast.makeText(this, "Saving Photo...", Toast.LENGTH_LONG).show();
+/*
+    private void moveFile(String inputFile) {
+        Toast.makeText(this, "Saving Photo...", Toast.LENGTH_LONG).show();
 
-            InputStream in = null;
-            OutputStream out = null;
-            File inputPath = getDir(0);
-            File outputPath = getDir(1);
-            try {
+        InputStream in = null;
+        OutputStream out = null;
+        File inputPath = getDir(0);
+        File outputPath = getDir(1);
+        try {
 
-                //create output directory if it doesn't exist (not needed, just a precaution)
-                //File dir = getDir(1);
-                if (!outputPath.exists()) {
-                    outputPath.mkdirs();
-                }
-
-                in = new FileInputStream(inputPath + File.separator + inputFile);
-                File actualImage = new File(inputPath + File.separator + inputFile);
-                File compressedImgFile = new Compressor(this).compressToFile(actualImage);
-                out = new FileOutputStream(outputPath + File.separator + inputFile);
-
-                byte[] buffer = new byte[1024];
-                int read;
-                while ((read = in.read(buffer)) != -1) {
-                    out.write(buffer, 0, read);
-                }
-                in.close();
-                in = null;
-
-                // write the output file
-                out.flush();
-                out.close();
-                out = null;
-
-                // delete the original file
-                new File(inputPath + File.separator + inputFile).delete();
-                Toast.makeText(this, "Photo Saved in " + outputPath + File.separator + inputFile, Toast.LENGTH_SHORT).show();
-
-            } catch (FileNotFoundException fnfe1) {
-                Log.e("tag", fnfe1.getMessage());
-            } catch (Exception e) {
-                Log.e("tag", e.getMessage());
+            //create output directory if it doesn't exist (not needed, just a precaution)
+            //File dir = getDir(1);
+            if (!outputPath.exists()) {
+                outputPath.mkdirs();
             }
 
-        }
-    */
-    private void hideSystemUI() {
-        // Enables regular immersive mode.
-        // For "lean back" mode, remove SYSTEM_UI_FLAG_IMMERSIVE.
-        // Or for "sticky immersive," replace it with SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        // Set the content to appear under the system bars so that the
-                        // content doesn't resize when the system bars hide and show.
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        // Hide the nav bar and status bar
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
-    }
+            in = new FileInputStream(inputPath + File.separator + inputFile);
+            File actualImage = new File(inputPath + File.separator + inputFile);
+            File compressedImgFile = new Compressor(this).compressToFile(actualImage);
+            out = new FileOutputStream(outputPath + File.separator + inputFile);
 
-    // Shows the system bars by removing all the flags
-// except for the ones that make the content appear under the system bars.
-    private void showSystemUI() {
-        View decorView = getWindow().getDecorView();
-        decorView.setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+            byte[] buffer = new byte[1024];
+            int read;
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+            in.close();
+            in = null;
+
+            // write the output file
+            out.flush();
+            out.close();
+            out = null;
+
+            // delete the original file
+            new File(inputPath + File.separator + inputFile).delete();
+            Toast.makeText(this, "Photo Saved in " + outputPath + File.separator + inputFile, Toast.LENGTH_SHORT).show();
+
+        } catch (FileNotFoundException fnfe1) {
+            Log.e("tag", fnfe1.getMessage());
+        } catch (Exception e) {
+            Log.e("tag", e.getMessage());
+        }
+
     }
+*/
 
     @Override
     public void onBackPressed() {
@@ -460,5 +419,4 @@ public class TakePhoto extends Activity implements SurfaceHolder.Callback, Camer
         setResult(0, intent);
         finish();//finishing activity
     }
-
 }
