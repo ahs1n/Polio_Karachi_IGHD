@@ -1,10 +1,12 @@
 package edu.aku.dmu.quasi_experimental.ui.sections;
 
-
 import static edu.aku.dmu.quasi_experimental.core.MainApp.form;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -38,7 +40,7 @@ public class ConsentActivity extends AppCompatActivity {
         setSupportActionBar(bi.toolbar);
         db = MainApp.appInfo.dbHelper;
         bi.setForm(form);
-//        setGPS();
+        setGPS();
 
         String consentText = getString(R.string.hh18t, MainApp.user.getFullname());
         bi.consentTextView.setText(consentText);
@@ -48,20 +50,20 @@ public class ConsentActivity extends AppCompatActivity {
     private boolean insertNewRecord() {
         if (!form.getUid().equals("") || MainApp.superuser) return true;
 
-        form.populateMeta();
+        MainApp.form.populateMeta();
 
         long rowId = 0;
         try {
-            rowId = db.addForm(form);
+            rowId = db.addForm(MainApp.form);
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(this, R.string.db_excp_error + " FORM-add", Toast.LENGTH_SHORT).show();
             return false;
         }
-        form.setId((int) rowId);
+        MainApp.form.setId(String.valueOf(rowId));
         if (rowId > 0) {
-            form.setUid(form.getDeviceId() + form.getId());
-            db.updatesFormColumn(TableContracts.FormsTable.COLUMN_UID, form.getUid());
+            MainApp.form.setUid(MainApp.form.getDeviceId() + MainApp.form.getId());
+            db.updatesFormColumn(TableContracts.FormsTable.COLUMN_UID, MainApp.form.getUid());
             return true;
         } else {
             Toast.makeText(this, R.string.upd_db_error + " FORM-update", Toast.LENGTH_SHORT).show();
@@ -95,7 +97,7 @@ public class ConsentActivity extends AppCompatActivity {
         if (updateDB()) {
             finish();
             if (form.getHh18().equals("1")) {
-//                startActivity(new Intent(this, SectionRIActivity.class));
+                startActivity(new Intent(this, SectionRIActivity.class));
             } else {
                 Intent endingActivityIntent = new Intent(this, EndingActivity.class);
                 endingActivityIntent.putExtra("complete", false);
@@ -119,14 +121,17 @@ public class ConsentActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+
         // Backpressed Allowed
         super.onBackPressed();
+
+        //
         Toast.makeText(this, "Back Press Not Allowed", Toast.LENGTH_SHORT).show();
         setResult(RESULT_CANCELED);
         //finish();
     }
 
-/*    public void setGPS() {
+    public void setGPS() {
         SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
         try {
             String lat = GPSPref.getString("Latitude", "0");
@@ -152,5 +157,5 @@ public class ConsentActivity extends AppCompatActivity {
             Log.e(TAG, "setGPS: " + e.getMessage());
         }
 
-    }*/
+    }
 }

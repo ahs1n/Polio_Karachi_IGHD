@@ -1,6 +1,7 @@
 package edu.aku.dmu.quasi_experimental.models;
 
 import static edu.aku.dmu.quasi_experimental.core.MainApp.PROJECT_NAME;
+import static edu.aku.dmu.quasi_experimental.core.MainApp._EMPTY_;
 
 import android.database.Cursor;
 
@@ -9,7 +10,6 @@ import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import edu.aku.dmu.quasi_experimental.BR;
 import edu.aku.dmu.quasi_experimental.contracts.TableContracts.EntryLogTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
@@ -26,22 +27,23 @@ public class EntryLog extends BaseObservable implements Observable {
     private final String TAG = "Form";
     private final transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
 
-    private String id = StringUtils.EMPTY;
-    private String uid = StringUtils.EMPTY;
+    private String id = _EMPTY_;
+    private String uid = _EMPTY_;
     // APP VARIABLES
     private String projectName = PROJECT_NAME;
-    private String uuid = StringUtils.EMPTY;
-    private String userName = StringUtils.EMPTY;
-    private String sysDate = StringUtils.EMPTY;
-    private String entryDate = StringUtils.EMPTY;
-    private String hhid = StringUtils.EMPTY;
-    private String appver = StringUtils.EMPTY;            //
-    private String iStatus = StringUtils.EMPTY;
-    private String iStatus96x = StringUtils.EMPTY;        //
-    private String entryType = StringUtils.EMPTY;
-    private String deviceId = StringUtils.EMPTY;
-    private String synced = StringUtils.EMPTY;
-    private String syncDate = StringUtils.EMPTY;
+    private String uuid = _EMPTY_;
+    private String userName = _EMPTY_;
+    private String sysDate = _EMPTY_;
+    private String entryDate = _EMPTY_;         //
+    private String ebCode = _EMPTY_;
+    private String hhid = _EMPTY_;
+    private String appver = _EMPTY_;            //
+    private String iStatus = _EMPTY_;
+    private String iStatus96x = _EMPTY_;        //
+    private String entryType = _EMPTY_;
+    private String deviceId = _EMPTY_;
+    private String synced = _EMPTY_;
+    private String syncDate = _EMPTY_;
 
     public EntryLog() {
 
@@ -56,12 +58,12 @@ public class EntryLog extends BaseObservable implements Observable {
         setUserName(MainApp.user.getUserName());
         setSysDate(MainApp.form.getSysDate());
         setEntryDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH).format(new Date().getTime()));
-//        setPsuCode(MainApp.form.getPsuCode());
-//        setHhid(MainApp.form.getHhid());
-        setiStatus(MainApp.form.getIStatus());
-        setiStatus96x(MainApp.form.getIStatus96x());
+        setEbCode(MainApp.form.getEbCode());
+        setHhid(MainApp.form.getHhid());
+        setiStatus(MainApp.form.getiStatus());
+        setiStatus96x(MainApp.form.getiStatus96x());
         setAppver(MainApp.appInfo.getAppVersion());
-//        setEntryType(MainApp.form.getEntryType());
+        setEntryType(MainApp.form.getEntryType());
         setDeviceId(MainApp.deviceid);
 
     }
@@ -107,6 +109,15 @@ public class EntryLog extends BaseObservable implements Observable {
         this.deviceId = deviceId;
     }
 
+    public String getEbCode() {
+        return ebCode;
+    }
+
+    public void setEbCode(String ebCode) {
+        this.ebCode = ebCode;
+    }
+
+
     @Bindable
     public String getHhid() {
         return hhid;
@@ -114,7 +125,7 @@ public class EntryLog extends BaseObservable implements Observable {
 
     public void setHhid(String hhid) {
         this.hhid = hhid;
-        notifyPropertyChanged(edu.aku.dmu.quasi_experimental.BR.hhid);
+        notifyPropertyChanged(BR.hhid);
     }
 
 
@@ -205,6 +216,7 @@ public class EntryLog extends BaseObservable implements Observable {
         this.uid = cursor.getString(cursor.getColumnIndexOrThrow(EntryLogTable.COLUMN_UID));
         this.uuid = cursor.getString(cursor.getColumnIndexOrThrow(EntryLogTable.COLUMN_UUID));
         this.projectName = cursor.getString(cursor.getColumnIndexOrThrow(EntryLogTable.COLUMN_PROJECT_NAME));
+        this.ebCode = cursor.getString(cursor.getColumnIndexOrThrow(EntryLogTable.COLUMN_EB_CODE));
         this.hhid = cursor.getString(cursor.getColumnIndexOrThrow(EntryLogTable.COLUMN_HHID));
         this.userName = cursor.getString(cursor.getColumnIndexOrThrow(EntryLogTable.COLUMN_USERNAME));
         this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(EntryLogTable.COLUMN_SYSDATE));
@@ -228,6 +240,7 @@ public class EntryLog extends BaseObservable implements Observable {
         json.put(EntryLogTable.COLUMN_UID, this.uid);
         json.put(EntryLogTable.COLUMN_UUID, this.uuid);
         json.put(EntryLogTable.COLUMN_PROJECT_NAME, this.projectName);
+        json.put(EntryLogTable.COLUMN_EB_CODE, this.ebCode);
         json.put(EntryLogTable.COLUMN_HHID, this.hhid);
         json.put(EntryLogTable.COLUMN_USERNAME, this.userName);
         json.put(EntryLogTable.COLUMN_SYSDATE, this.sysDate);

@@ -2,11 +2,8 @@ package edu.aku.dmu.quasi_experimental.contracts;
 
 import android.provider.BaseColumns;
 
-/**
- * Created by hussain.siddiqui on 22/11/2022.
- */
-
 public class TableContracts {
+
 
     public static abstract class FormsTable implements BaseColumns {
         public static final String TABLE_NAME = "Forms";
@@ -35,121 +32,6 @@ public class TableContracts {
         public static final String COLUMN_ISTATUS = "istatus";
     }
 
-
-    public static abstract class PDTable implements BaseColumns {
-        public static final String TABLE_NAME = "patientdetailsV2";
-        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String COLUMN_PROJECT_NAME = "projectName";
-        public static final String COLUMN_ID = "_id";
-        public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_USERNAME = "username";
-        public static final String COLUMN_FACILITY = "facility";
-        public static final String COLUMN_FACILITY_CODE = "facilityCode";
-        public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_SPD = "sPD";
-        public static final String COLUMN_SHIS = "sHIS";
-        public static final String COLUMN_SEXM = "sEXM";
-        public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String COLUMN_DEVICETAGID = "devicetagid";
-        public static final String COLUMN_SYNCED = "synced";
-        public static final String COLUMN_SYNCED_DATE = "synced_date";
-        public static final String COLUMN_APPVERSION = "appversion";
-        public static final String COLUMN_ISTATUS = "istatus";
-        public static final String COLUMN_ISTATUS96x = "istatus96x";
-    }
-
-    public static abstract class VACCINATIONTable implements BaseColumns {
-        public static final String TABLE_NAME = "vaccination";
-        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String COLUMN_PROJECT_NAME = "projectName";
-        public static final String COLUMN_ID = "_id";
-        public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_UUID = "_uuid";
-        public static final String COLUMN_PRNO = "prno";
-        public static final String COLUMN_USERNAME = "username";
-        public static final String COLUMN_FACILITY = "facility";
-        public static final String COLUMN_FACILITY_CODE = "facilityCode";
-        public static final String COLUMN_VDATE = "vdate";
-        public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_SVAC = "sVAC";
-        public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String COLUMN_DEVICETAGID = "devicetagid";
-        public static final String COLUMN_SYNCED = "synced";
-        public static final String COLUMN_SYNCED_DATE = "synced_date";
-        public static final String COLUMN_APPVERSION = "appversion";
-    }
-
-    public static abstract class DIAGNOSISTable implements BaseColumns {
-        public static final String TABLE_NAME = "diagnosis";
-        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String COLUMN_PROJECT_NAME = "projectName";
-        public static final String COLUMN_ID = "_id";
-        public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_UUID = "_uuid";
-        public static final String COLUMN_PRNO = "prno";
-        public static final String COLUMN_USERNAME = "username";
-        public static final String COLUMN_FACILITY = "facility";
-        public static final String COLUMN_FACILITY_CODE = "facilityCode";
-        public static final String COLUMN_VDATE = "vdate";
-        public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_SDIAG = "sDIAG";
-        public static final String COLUMN_DIAG_CODE = "diagnosis";
-        public static final String COLUMN_DIAG_OTHER = "other";
-        public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String COLUMN_DEVICETAGID = "devicetagid";
-        public static final String COLUMN_SYNCED = "synced";
-        public static final String COLUMN_SYNCED_DATE = "synced_date";
-        public static final String COLUMN_APPVERSION = "appversion";
-    }
-
-    public static abstract class COMPLAINTSTable implements BaseColumns {
-        public static final String TABLE_NAME = "complaints";
-        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String COLUMN_PROJECT_NAME = "projectName";
-        public static final String COLUMN_ID = "_id";
-        public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_UUID = "_uuid";
-        public static final String COLUMN_PRNO = "prno";
-        public static final String COLUMN_USERNAME = "username";
-        public static final String COLUMN_FACILITY = "facility";
-        public static final String COLUMN_FACILITY_CODE = "facilityCode";
-        public static final String COLUMN_VDATE = "vdate";
-        public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_SCOMP = "sCOMP";
-        public static final String COLUMN_COMP_CODE = "complaints";
-        public static final String COLUMN_COMP_OTHER = "other";
-        public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String COLUMN_DEVICETAGID = "devicetagid";
-        public static final String COLUMN_SYNCED = "synced";
-        public static final String COLUMN_SYNCED_DATE = "synced_date";
-        public static final String COLUMN_APPVERSION = "appversion";
-    }
-
-    public static abstract class PRESCRIPTIONTable implements BaseColumns {
-        public static final String TABLE_NAME = "prescription";
-        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
-        public static final String COLUMN_PROJECT_NAME = "projectName";
-        public static final String COLUMN_ID = "_id";
-        public static final String COLUMN_UID = "_uid";
-        public static final String COLUMN_UUID = "_uuid";
-        public static final String COLUMN_PRNO = "prno";
-        public static final String COLUMN_USERNAME = "username";
-        public static final String COLUMN_FACILITY = "facility";
-        public static final String COLUMN_FACILITY_CODE = "facilityCode";
-        public static final String COLUMN_VDATE = "vdate";
-        public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_PRES = "sPRES";
-        public static final String COLUMN_DEVICEID = "deviceid";
-        public static final String COLUMN_DEVICETAGID = "devicetagid";
-        public static final String COLUMN_SYNCED = "synced";
-        public static final String COLUMN_SYNCED_DATE = "synced_date";
-        public static final String COLUMN_APPVERSION = "appversion";
-        public static final String COLUMN_MED_CODE = "medCode";
-        public static final String COLUMN_DOSE = "dose";
-        public static final String COLUMN_FREQUENCY = "frequency";
-        public static final String COLUMN_DURATION = "duration";
-    }
-
     public static abstract class EntryLogTable implements BaseColumns {
         public static final String TABLE_NAME = "EntryLog";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
@@ -157,10 +39,12 @@ public class TableContracts {
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN_UUID = "_uuid";
+        public static final String COLUMN_EB_CODE = "ebCode";
         public static final String COLUMN_HHID = "hhid";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_SYSDATE = "sysdate";
         public static final String COLUMN_ENTRY_DATE = "entryDate";
+
         public static final String COLUMN_DEVICEID = "deviceid";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNC_DATE = "sync_date";
@@ -169,6 +53,41 @@ public class TableContracts {
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS96x = "istatus96x";
     }
+
+
+    public static abstract class UsersTable implements BaseColumns {
+        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
+        public static final String TABLE_NAME = "AppUser";
+        public static final String COLUMN_ID = "_id";
+        public static final String COLUMN_UID = "_uid";
+        public static final String COLUMN_USERNAME = "username";
+        public static final String COLUMN_PASSWORD = "passwordEnc";
+        public static final String COLUMN_FULLNAME = "full_name";
+        public static final String COLUMN_DESIGNATION = "designation";
+        public static final String COLUMN_ENABLED = "enabled";
+        public static final String COLUMN_ISNEW_USER = "isNewUser";
+        public static final String COLUMN_PWD_EXPIRY = "pwdExpiry";
+        public static final String COLUMN_DIST_ID = "dist_id";
+    }
+
+/*    public static abstract class VillagesTable implements BaseColumns {
+        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
+        public static final String TABLE_NAME = "villages";
+        public static final String COLUMN_ID = "_id";
+        public static final String COLUMN_COUNTRY = "clusterNo";
+        public static final String COLUMN_CCODE = "geoarea";
+        public static final String COLUMN_PROVINCE = "distId";
+        public static final String COLUMN_PROVCODE = "provcode";
+        public static final String COLUMN_DISTRICT_NAME = "districtName";
+        public static final String COLUMN_DCODE = "dcode";
+        public static final String COLUMN_TEHSIL_NAME = "tehsilName";
+        public static final String COLUMN_TCODE = "tcode";
+        public static final String COLUMN_UC_NAME = "ucName";
+        public static final String COLUMN_UC_CODE = "uccode";
+        public static final String COLUMN_VILLAGE = "village";
+        public static final String COLUMN_VCODE = "vcode";
+        public static final String COLUMN_PSUCODE = "psucode";
+    }*/
 
     public static abstract class ClusterTable implements BaseColumns {
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
@@ -197,4 +116,35 @@ public class TableContracts {
         public static final String COLUMN_TAB_NO = "tabNo";
         public static String COLUMN_DIST_CODE = "dist_id";
     }
+
+
+    public static abstract class ChildTable implements BaseColumns {
+        public static final String TABLE_NAME = "Children";
+        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
+        public static final String COLUMN_PROJECT_NAME = "projectName";
+        public static final String COLUMN_ID = "_id";
+        public static final String COLUMN_UID = "_uid";
+        public static final String COLUMN_UUID = "_uuid";
+        public static final String COLUMN_EB_CODE = "ebCode";
+        public static final String COLUMN_HHID = "hhid";
+        public static final String COLUMN_USERNAME = "username";
+        public static final String COLUMN_CSTATUS = "cstatus";
+        public static final String COLUMN_SYSDATE = "sysdate";
+        public static final String COLUMN_GPSLAT = "xlt";
+        public static final String COLUMN_GPSLNG = "xlg";
+        public static final String COLUMN_GPSDATE = "xdt";
+        public static final String COLUMN_GPSACC = "xac";
+        public static final String COLUMN_SNO = "sno";
+        public static final String COLUMN_SCH = "sch";
+        public static final String COLUMN_SCB = "scb";
+        public static final String COLUMN_SIM = "sim";
+
+        public static final String COLUMN_DEVICEID = "deviceid";
+        public static final String COLUMN_DEVICETAGID = "devicetagid";
+        public static final String COLUMN_SYNCED = "synced";
+        public static final String COLUMN_SYNC_DATE = "sync_date";
+        public static final String COLUMN_APPVERSION = "appversion";
+    }
+
+
 }

@@ -1,23 +1,24 @@
 package edu.aku.dmu.quasi_experimental.models
 
 import android.database.Cursor
-import org.apache.commons.lang3.StringUtils
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.UsersTable
+import edu.aku.dmu.quasi_experimental.core.MainApp._EMPTY_
 import org.json.JSONException
 import org.json.JSONObject
 
 /**
- * Created by hussain.siddiqui on 22/11/2022.
+ * Created by hassan.naqvi on 11/30/2016.
  */
 class Users {
+    var newUser: String = _EMPTY_
     var userID: Long = 0
-    var userName: String = StringUtils.EMPTY
-    var password: String = StringUtils.EMPTY
-    var fullname: String = StringUtils.EMPTY
-    var dist_id: String = StringUtils.EMPTY
-    var enabled: String = StringUtils.EMPTY
-    var pwdExpiry: String = StringUtils.EMPTY
-    var newUser: String = StringUtils.EMPTY
-    var ucCode: String = StringUtils.EMPTY
+    var userName: String = _EMPTY_
+    var password: String = _EMPTY_
+    var fullname: String = _EMPTY_
+    var designation: String = _EMPTY_
+    var enabled: String = _EMPTY_
+    var pwdExpiry: String = _EMPTY_
+    var dist_id: String = _EMPTY_
 
     constructor() {
         // Default Constructor
@@ -33,11 +34,11 @@ class Users {
         userName = jsonObject.getString(UsersTable.COLUMN_USERNAME)
         password = jsonObject.getString(UsersTable.COLUMN_PASSWORD)
         fullname = jsonObject.getString(UsersTable.COLUMN_FULLNAME)
-        dist_id = jsonObject.getString(UsersTable.COLUMN_DIST_ID)
-        enabled = jsonObject.getString(UsersTable.COLUMN_ENABLED)
-        pwdExpiry = jsonObject.getString(UsersTable.COLUMN_PWD_EXPIRY)
+        designation = jsonObject.getString(UsersTable.COLUMN_DESIGNATION)
         newUser = jsonObject.getString(UsersTable.COLUMN_ISNEW_USER)
-        ucCode = jsonObject.getString(UsersTable.COLUMN_UC_CODE)
+        pwdExpiry = jsonObject.getString(UsersTable.COLUMN_PWD_EXPIRY)
+        enabled = jsonObject.getString(UsersTable.COLUMN_ENABLED)
+        dist_id = jsonObject.getString(UsersTable.COLUMN_DIST_ID)
         return this
     }
 
@@ -46,24 +47,13 @@ class Users {
         userName = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_USERNAME))
         password = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_PASSWORD))
         fullname = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_FULLNAME))
-        dist_id = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_DIST_ID))
+        designation = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_DESIGNATION))
         enabled = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_ENABLED))
         pwdExpiry = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_PWD_EXPIRY))
         newUser = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_ISNEW_USER))
-        ucCode = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_UC_CODE))
+        dist_id = cursor.getString(cursor.getColumnIndexOrThrow(UsersTable.COLUMN_DIST_ID))
         return this
     }
 
-    object UsersTable {
-        const val TABLE_NAME = "Users"
-        const val COLUMN_ID = "_id"
-        const val COLUMN_USERNAME = "username"
-        const val COLUMN_PASSWORD = "passwordEnc"
-        const val COLUMN_FULLNAME = "full_name"
-        const val COLUMN_DIST_ID = "dist_id"
-        const val COLUMN_ENABLED = "enabled"
-        const val COLUMN_ISNEW_USER = "isNewUser"
-        const val COLUMN_UC_CODE = "uccode"
-        const val COLUMN_PWD_EXPIRY = "pwdExpiry"
-    }
+
 }

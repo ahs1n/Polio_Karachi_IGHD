@@ -1,8 +1,10 @@
 package edu.aku.dmu.quasi_experimental.models;
 
-import org.apache.commons.lang3.StringUtils;
+
+import static edu.aku.dmu.quasi_experimental.core.MainApp._EMPTY_;
 
 public class SyncModel {
+    Boolean isUnlocked = false;
     String tableTitle;
     String tableName;
     String status;
@@ -16,9 +18,9 @@ public class SyncModel {
 
         this.tableName = tableName;
         this.tableTitle = tableName.replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1 $2");
-        this.status = StringUtils.EMPTY;
+        this.status = _EMPTY_;
         this.statusID = 0;
-        this.message = StringUtils.EMPTY;
+        this.message = _EMPTY_;
 
 
     }
@@ -27,9 +29,9 @@ public class SyncModel {
 
         this.tableName = tableName;
         this.tableTitle = tableName.replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1 $2");
-        this.status = StringUtils.EMPTY;
+        this.status = _EMPTY_;
         this.statusID = 0;
-        this.message = StringUtils.EMPTY;
+        this.message = _EMPTY_;
         this.select = select;
     }
 
@@ -37,12 +39,22 @@ public class SyncModel {
 
         this.tableName = tableName;
         this.tableTitle = tableName.replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1 $2");
-        this.status = StringUtils.EMPTY;
+        this.status = _EMPTY_;
         this.statusID = 0;
-        this.message = StringUtils.EMPTY;
+        this.message = _EMPTY_;
         this.select = select;
         this.filter = filter;
 
+    }
+
+    public SyncModel(String tableName, Boolean isUnlocked) {
+
+        this.tableName = tableName;
+        this.tableTitle = tableName.replaceAll("\\d+", "").replaceAll("(.)([A-Z])", "$1 $2");
+        this.status = _EMPTY_;
+        this.statusID = 0;
+        this.message = _EMPTY_;
+        this.isUnlocked = isUnlocked;
     }
 
     public String getTableTitle() {

@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.provider.Settings
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper
-import org.apache.commons.lang3.StringUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -13,16 +12,17 @@ import java.util.*
  * @update Ali Azaz Alam dt. 12.16.20
  * */
 class AppInfo {
-    var versionName: String = StringUtils.EMPTY
+    var versionName: String = ""
     var installedOn: Long = 0
     var versionCode = 0
     var tagName: String? = null
-    var deviceID: String = StringUtils.EMPTY
-    var appVersion: String = StringUtils.EMPTY
+    var deviceID: String = ""
+    var appVersion: String = ""
     val dtToday: String
         get() = SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(Date().time)
     val isTestingApp: Boolean
-        get() = versionName.split("\\.".toRegex())[0].toInt() > 0
+        // get() = versionName.split("\\.".toRegex())[0].toInt() > 0
+        get() = versionName.split(".").first().toInt() > 0
 
 
     lateinit var dbHelper: DatabaseHelper

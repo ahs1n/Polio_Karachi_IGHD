@@ -1,5 +1,6 @@
 package edu.aku.dmu.quasi_experimental.workers;
 
+
 import static edu.aku.dmu.quasi_experimental.core.CipherSecure.buildSslSocketFactory;
 import static edu.aku.dmu.quasi_experimental.core.CipherSecure.certIsValid;
 
@@ -67,7 +68,6 @@ public class DataUpWorkerALL extends Worker {
     private long startTime;
     private int responseLength = 0, requestLength = 0;
 
-
     public DataUpWorkerALL(@NonNull Context context, @NonNull WorkerParameters workerParams) {
         super(context, workerParams);
         mContext = context;
@@ -94,7 +94,7 @@ public class DataUpWorkerALL extends Worker {
      * It will display a notification
      * So that we will understand the work is executed
      * */
-    /*private static SSLSocketFactory buildSslSocketFactory(Context context) {
+  /*  private static SSLSocketFactory buildSslSocketFactory(Context context) {
         try {
 
 
@@ -148,13 +148,13 @@ public class DataUpWorkerALL extends Worker {
         return null;
     }*/
 
-//    public static void longInfo(String str) {
-//        if (str.length() > 4000) {
-//            Log.i(TAG, str.substring(0, 4000));
-//            longInfo(str.substring(4000));
-//        } else
-//            Log.i(TAG, str);
-//    }
+    public static void longInfo(String str) {
+        if (str.length() > 4000) {
+            Log.i(TAG, str.substring(0, 4000));
+            longInfo(str.substring(4000));
+        } else
+            Log.i(TAG, str);
+    }
 
     /*
      * The method is doing nothing but only generating
@@ -182,7 +182,7 @@ public class DataUpWorkerALL extends Worker {
         notificationManager.notify(1, notification.build());
     }
 
-    /*private boolean certIsValid(Certificate[] certs, Certificate ca) {
+   /* private boolean certIsValid(Certificate[] certs, Certificate ca) {
         for (Certificate cert : certs) {
             System.out.println("Certificate is: " + cert);
             if (cert instanceof X509Certificate) {
@@ -237,7 +237,7 @@ public class DataUpWorkerALL extends Worker {
 
 
             ca = cf.generateCertificate(caInput);
-//            System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
+            //     System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
         } catch (CertificateException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -304,7 +304,7 @@ public class DataUpWorkerALL extends Worker {
 
                 Log.d(TAG, "Upload Begins Length: " + jsonParam.length());
                 Log.d(TAG, "Upload Begins: " + jsonParam);
-                //longInfo(String.valueOf(jsonParam));
+                longInfo(String.valueOf(jsonParam));
 
                 String cipheredRequest = CipherSecure.encryptGCM(jsonParam.toString());
                 requestLength = cipheredRequest.length();
@@ -312,7 +312,7 @@ public class DataUpWorkerALL extends Worker {
 
                 String writeEnc = CipherSecure.encryptGCM(jsonParam.toString());
 
-                //longInfo("Encrypted: " + writeEnc);
+                longInfo("Encrypted: " + writeEnc);
 
                 //     wr.writeBytes(jsonParam.toString());
 
@@ -339,7 +339,7 @@ public class DataUpWorkerALL extends Worker {
 
                     }
                     displayNotification(nTitle, "Received Data");
-//                    longInfo("result-server: " + writeEnc);
+                    longInfo("result-server: " + writeEnc);
 
                 } else {
 
@@ -347,30 +347,30 @@ public class DataUpWorkerALL extends Worker {
 
                     data = new Data.Builder()
                             .putString("error", String.valueOf(urlConnection.getResponseCode()))
-                            .putInt("position", this.position)
                             .putString("time", getTime())
                             .putString("size", getSize(requestLength) + "/" + getSize(responseLength))
+                            .putInt("position", this.position)
                             .build();
                     return Result.failure(data);
                 }
             } else {
                 data = new Data.Builder()
                         .putString("error", "Invalid Certificate")
-                        .putInt("position", this.position)
                         .putString("time", getTime())
                         .putString("size", getSize(requestLength) + "/" + getSize(responseLength))
+                        .putInt("position", this.position)
                         .build();
 
                 return Result.failure(data);
             }
-        } catch (java.net.SocketTimeoutException | OutOfMemoryError e) {
+        } catch (java.net.SocketTimeoutException e) {
             Log.d(TAG, "doWork (Timeout): " + e.getMessage());
             displayNotification(nTitle, "Timeout Error: " + e.getMessage());
             data = new Data.Builder()
                     .putString("error", e.getMessage())
-                    .putInt("position", this.position)
                     .putString("time", getTime())
                     .putString("size", getSize(requestLength) + "/" + getSize(responseLength))
+                    .putInt("position", this.position)
                     .build();
             return Result.failure(data);
 
@@ -379,9 +379,9 @@ public class DataUpWorkerALL extends Worker {
             displayNotification(nTitle, "IO Error: " + e.getMessage());
             data = new Data.Builder()
                     .putString("error", e.getMessage())
-                    .putInt("position", this.position)
                     .putString("time", getTime())
                     .putString("size", getSize(requestLength) + "/" + getSize(responseLength))
+                    .putInt("position", this.position)
                     .build();
 
             return Result.failure(data);
@@ -391,14 +391,14 @@ public class DataUpWorkerALL extends Worker {
         }
         try {
             result = new StringBuilder(CipherSecure.decryptGCM(result.toString()));
-        } catch (NoSuchPaddingException | IllegalArgumentException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException | InvalidKeyException | UnsupportedEncodingException e) {
+        } catch (NoSuchPaddingException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException | InvalidKeyException | UnsupportedEncodingException e) {
             Log.d(TAG, "doWork (Encryption Error): " + e.getMessage());
             displayNotification(nTitle, "Encryption Error: " + e.getMessage());
             data = new Data.Builder()
                     .putString("error", e.getMessage())
-                    .putInt("position", this.position)
                     .putString("time", getTime())
                     .putString("size", getSize(requestLength) + "/" + getSize(responseLength))
+                    .putInt("position", this.position)
                     .build();
 
             return Result.failure(data);
@@ -442,9 +442,9 @@ public class DataUpWorkerALL extends Worker {
         } else {
             data = new Data.Builder()
                     .putString("error", String.valueOf(result))
-                    .putInt("position", this.position)
                     .putString("time", getTime())
                     .putString("size", getSize(requestLength) + "/" + getSize(responseLength))
+                    .putInt("position", this.position)
                     .build();
             displayNotification(nTitle, "Error Received");
             return Result.failure(data);

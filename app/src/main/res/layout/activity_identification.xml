@@ -34,7 +34,7 @@
             android:theme="@style/CustomToolbarTheme"
             app:popupTheme="@style/CustomPopupTheme"
             app:subtitleTextAppearance="@style/Toolbar.SubtitleText"
-            app:title="@string/householdidentification_mainheading"
+            app:title="@string/householdidentificationmainheading"
             app:titleTextAppearance="@style/Toolbar.TitleText" />
 
 
@@ -81,15 +81,15 @@
                             <EditText
                                 android:id="@+id/hh05"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:layout_height="wrap_content"
                                 android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789,. "
                                 android:hint="@string/hh05" />
 
                             <ImageButton
                                 android:layout_width="48dp"
-                                android:layout_height="match_parent"
                                 android:backgroundTint="@color/colorAccent"
+                                android:layout_height="match_parent"
                                 android:onClick="checkEBNumber"
                                 android:src="@drawable/search" />
 
@@ -117,11 +117,11 @@
                                     android:text="@string/hh06" />
 
                                 <TextView
+                                    android:layout_weight="1"
+                                    android:background="@null"
                                     android:id="@+id/hh06"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:background="@null"
                                     android:gravity="center_horizontal|center_vertical"
                                     android:textColor="@color/colorPrimary" />
 
@@ -213,9 +213,9 @@
                                     android:id="@+id/hh09"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
+                                    android:gravity="center_horizontal|center_vertical"
                                     android:layout_weight="1"
                                     android:background="@null"
-                                    android:gravity="center_horizontal|center_vertical"
                                     android:textColor="@color/colorPrimary" />
 
                                 <CheckBox
@@ -274,8 +274,8 @@
 
                             <ImageButton
                                 android:layout_width="48dp"
-                                android:layout_height="match_parent"
                                 android:backgroundTint="@color/colorAccent"
+                                android:layout_height="match_parent"
                                 android:onClick="checkHH"
                                 android:src="@drawable/search" />
 
@@ -300,16 +300,16 @@
                                 android:id="@+id/hh16a"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:gravity="center_vertical"
                                 android:layout_weight="1"
                                 android:background="@null"
-                                android:gravity="center_vertical"
                                 android:textColor="@color/colorPrimary" />
 
                             <CheckBox
                                 android:id="@+id/checkHh16a"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
                                 android:gravity="center_horizontal|center_vertical"
+                                android:layout_height="match_parent"
                                 android:text="@string/confirm" />
 
                         </LinearLayout>

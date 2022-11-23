@@ -1,28 +1,15 @@
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
-    id 'kotlin-kapt'
 }
-
-// Added by Omar - Start
-//apply plugin: 'com.google.gms.google-services'
-//apply plugin: 'com.google.firebase.crashlytics'
-// Added by Omar - End
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 32
-    compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
-    }
     buildFeatures {
         dataBinding true
         viewBinding true
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
+        compose true
 
+    }
     Properties versionProps = new Properties()
     def versionPropsFile = file('version.properties')
 
@@ -52,7 +39,7 @@ android {
             versionType = "R"
         }
 
-        def versionNumber = 1
+        def versionNumber = 2
         //  def versionMinor = 0
         def versionPatch = versionProps['VERSION_PATCH'].toInteger() + value
         def versionBuild = versionProps['VERSION_BUILD'].toInteger() + 1
@@ -68,14 +55,15 @@ android {
             applicationId "edu.aku.dmu.quasi_experimental"
             versionCode versionBuild
             versionName "${versionNumber}.${versionPatch}${versionType}"
-            minSdkVersion 22
-            targetSdkVersion 31
+            minSdk 22
+            targetSdk 30
+            compileSdkVersion 31
         }
 
         applicationVariants.all { variant ->
             variant.outputs.each { output ->
 
-                def appName = "Quasi_Experimental"
+                def appName = rootProject.name
                 def date = new Date()
                 def formattedDate = date.format('yyyy_MM_dd')
 
@@ -89,6 +77,7 @@ android {
                       //output.outputFileName = outputFileName
                       output.outputFileName = new File("${project.buildDir.absolutePath}/outputs/apk/", "${outputDir}-${versionMajor}.${versionMinor}.${versionPatch}-${outputFileName}")
                   }*/
+
             }
         }
 
@@ -98,8 +87,21 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // Enables code shrinking, obfuscation, and optimization for only
+            // your project's release build type.
+            minifyEnabled true
+
+            // Enables resource shrinking, which is performed by the
+            // Android Gradle plugin.
+            shrinkResources true
+
+            // Includes the default ProGuard rules files that are packaged with
+            // the Android Gradle plugin. To learn more, go to the section about
+            // R8 configuration files.
+            proguardFiles getDefaultProguardFile(
+                    'proguard-android-optimize.txt'),
+                    'proguard-rules.pro',
+                    'proguard-rules-new.pro'
         }
 
         debug {
@@ -110,126 +112,75 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    dependenciesInfo {
-        includeInApk false
-        includeInBundle false
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
-    buildToolsVersion '31.0.0'
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.1.1'
+    }
 }
 
-
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.6.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    //noinspection LifecycleAnnotationProcessorWithJava8
-    implementation 'androidx.lifecycle:lifecycle-compiler:2.5.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.0'
 
     testImplementation 'junit:junit:4.13.2'
+    implementation "androidx.core:core-ktx:1.7.0"
+
+
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.9.0'
+/*    implementation 'androidx.databinding:compilerCommon:3.2.0-alpha11'
+    implementation 'androidx.databinding:databinding-compiler-common:7.0.3'*/
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'androidx.room:room-ktx:2.4.3'
 
-//    // Added by Omar - Start
-//    // Import the Firebase BoM
-//    implementation platform('com.google.firebase:firebase-bom:31.0.1')
-//
-//    // When using the BoM, you don't specify versions in Firebase library dependencies
-//
-//    // Add the dependency for the Firebase SDK for Google Analytics
-//    // For Analytics
-//    implementation 'com.google.firebase:firebase-analytics'
-//
-//    // For Crashlytics
-//    implementation 'com.google.firebase:firebase-crashlytics'
-    // Added by Omar - End
+    // Datepicker
+    implementation 'com.github.BlackBoxVision:datetimepicker-edittext:v0.4.0'
 
+    def work_version = '2.6.0'
+
+    // WorkManager(Java only)
+    implementation("androidx.work:work-runtime:$work_version") {
+        force = true
+    }
+
+    // Permissions Handeling
+    implementation 'com.karumi:dexter:6.2.3'
+
+    // EditText Picker (Ali)
+    implementation 'com.github.AliAzaz:Edittext-Library:2.0.0'
+
+    implementation 'com.github.AliAzaz:AndroidValidatorCrawler:1.0.3'
 
     //Image Compressor
     implementation 'id.zelory:compressor:2.1.1'
 
-
-
-    // Room
-    def room_version = "2.4.3"
-    implementation "androidx.room:room-runtime:$room_version"
-    kapt "androidx.room:room-compiler:$room_version"
-    implementation 'com.wajahatkarim:roomexplorer:1.0.1'
-
-    // RecyclerView
-    implementation "androidx.recyclerview:recyclerview:1.2.1"
-
-    /*// ShowCaseView
-    implementation 'androidx.core:core-ktx:1.5.0'
-*/
-    //GSON
-    implementation 'com.google.code.gson:gson:2.8.7'
-
-    //Ali mask
-    implementation 'com.github.AliAzaz:Edittext-Library:2.0.0'
-    implementation 'com.github.AliAzaz:AndroidValidatorCrawler:1.0.3'
-
-    //Date
-    implementation 'com.github.BlackBoxVision:datetimepicker-edittext:v0.4.0'
-    implementation 'com.jakewharton.threetenabp:t' +
-            'hreetenabp:1.3.1'
-
-    // WorkManager
-    def work_version = '2.4.0'
-    implementation "androidx.work:work-runtime:$work_version"// WorkManager (Java only)
-
-
-
-    //ViewModel
-    def androidx_lifecycle_version = '2.3.1'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
-    testImplementation 'android.arch.core:core-testing:1.1.1'
-
-    //Glide
-    implementation 'com.github.bumptech.glide:glide:4.12.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
-
-    //MultiStateView
-    implementation  'com.github.Kennyc1012:MultiStateView:2.1.2'
-
-    //SDP
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'com.intuit.ssp:ssp-android:1.0.6'
-
-
-    //Permissions
-    implementation 'com.guolindev.permissionx:permissionx:1.7.1'
-
-
-    //Apache
-    api 'org.apache.commons:commons-lang3:3.12.0'
-
-
     // Sqlcipher
-    implementation "net.zetetic:android-database-sqlcipher:4.5.0"
-    implementation "androidx.sqlite:sqlite-ktx:2.2.0"
+    implementation "net.zetetic:android-database-sqlcipher:4.5.1"
     implementation "androidx.sqlite:sqlite:2.2.0"
 
     //Rooted
     implementation 'com.scottyab:rootbeer-lib:0.1.0'
 
-
-    // Permissions Handeling
-    implementation 'com.karumi:dexter:6.2.3'
-
-    // Android Runtime Permissions
-    implementation "com.github.permissions-dispatcher:permissionsdispatcher:4.9.1"
-    annotationProcessor "com.github.permissions-dispatcher:permissionsdispatcher-processor:4.9.1"
-
     // Android Database Browser
-    implementation 'com.github.amitshekhariitbhu.Android-Debug-Database:debug-db:v1.0.6'
+    debugImplementation 'com.amitshekhar.android:debug-db-encrypt:1.0.6'
 
-    implementation 'com.google.guava:guava:29.0-android'
+    // COMPOSE
+    // Integration with activities
+    implementation 'androidx.activity:activity-compose:1.4.0'
+    // Compose Material Design
+    implementation 'androidx.compose.material:material:1.1.1'
+    // Animations
+    implementation 'androidx.compose.animation:animation:1.1.1'
+    // Tooling support (Previews, etc.)
+    implementation 'androidx.compose.ui:ui-tooling:1.1.1'
+    // Integration with ViewModels
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.4.1'
+    // UI Tests
+    androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.1.1'
 
 }

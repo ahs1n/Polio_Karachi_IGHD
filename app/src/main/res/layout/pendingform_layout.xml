@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/parentLayout"
@@ -21,78 +22,58 @@
                 android:id="@+id/status"
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
                 android:padding="12dp"
-                android:src="@drawable/male" />
+                android:background="@color/colorPrimary"
+                android:src="@drawable/ic_home" />
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical"
-                    android:paddingStart="12dp"
-                    android:paddingTop="8dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/pName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="0dp"
-                            android:text="Patient Name:"
-                            android:textColor="@color/colorPrimary"
-                            android:textSize="20sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/fathername"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="12dp"
-                            android:padding="0dp"
-                            android:text="CLUSTER NO:"
-                            android:textColor="@color/gray"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/prno"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:padding="0dp"
-                        android:text="PR NO:"
-                        android:textAlignment="center"
-                        android:textColor="@color/gray"
-                        android:textSize="16sp"
-                        android:textStyle="normal" />
-
-
-                </LinearLayout>
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingStart="12dp"
+                android:paddingTop="8dp">
 
                 <TextView
-                    android:id="@+id/visit"
-                    android:layout_width="match_parent"
+                    android:id="@+id/ebCode"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/grayLight"
+                    android:padding="0dp"
+                    android:text="CLUSTER NO:"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorSecondary"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:lineHeight="4sp" />
+
+                <TextView
+                    android:id="@+id/hhid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:padding="0dp"
+                    android:text="HHNO NO:"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+
+                    />
+
+                <TextView
+                    android:id="@+id/sysdate"
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray_material"
                     android:fontFamily="sans-serif-condensed"
-                    android:paddingStart="12dp"
-                    android:paddingEnd="12dp"
-                    android:text="Purpose of visit"
-                    android:textColor="@color/colorAccent"
+                    android:padding="0dp"
+                    android:text=""
+                    android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:textStyle="normal" />
+                    android:textStyle="normal"
+
+                    />
             </LinearLayout>
 
             <TextView
@@ -102,8 +83,8 @@
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center_vertical|center_horizontal"
                 android:padding="12dp"
-                android:text="heee"
-                android:textColor="@color/gray"
+                android:text=""
+                android:textColor="@color/gray_material"
                 android:textSize="20sp"
                 android:textStyle="bold"
 

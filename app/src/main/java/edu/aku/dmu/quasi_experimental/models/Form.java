@@ -8,14 +8,10 @@ import static edu.aku.dmu.quasi_experimental.core.MainApp.selectedHousehold;
 import android.database.Cursor;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,25 +24,21 @@ import edu.aku.dmu.quasi_experimental.BR;
 import edu.aku.dmu.quasi_experimental.contracts.TableContracts.FormsTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
-@Entity(tableName = FormsTable.TABLE_NAME)
+
 public class Form extends BaseObservable implements Observable {
 
-    private String TAG = "Form";
+    private final String TAG = "Form";
     private final transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
     // FORM SECTIONS
-    private  String sHH = _EMPTY_;
-    private  String sCH = _EMPTY_;
-    private  String sSS = _EMPTY_;
-    private  String sCB = _EMPTY_;
-    private  String sIM = _EMPTY_;
+    private final String sHH = _EMPTY_;
+    private final String sCH = _EMPTY_;
+    private final String sSS = _EMPTY_;
+    private final String sCB = _EMPTY_;
+    private final String sIM = _EMPTY_;
     // APP VARIABLES
     private String projectName = PROJECT_NAME;
     // APP VARIABLES
-
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = FormsTable.COLUMN_ID)
-    private long id = 0;
+    private String id = _EMPTY_;
     private String uid = _EMPTY_;
     private String userName = _EMPTY_;
     private String sysDate = _EMPTY_;
@@ -202,13 +194,13 @@ public class Form extends BaseObservable implements Observable {
         //   setUuid(MainApp.form.getUid());  // not applicable in Form table
         setAppver(MainApp.appInfo.getAppVersion());
         setProjectName(PROJECT_NAME);
-        setEbCode(selectedHousehold.getEbCode());
-        setHhid(selectedHousehold.getHhid());
-        setSno(selectedHousehold.getSno());
+        setEbCode(MainApp.selectedHousehold.getEbCode());
+        setHhid(MainApp.selectedHousehold.getHhid());
+        setSno(MainApp.selectedHousehold.getSno());
         // setEntryType(String.valueOf(MainApp.entryType));
 
         //SECTION VARIABLES
-        setHh05(selectedHousehold.getEbCode());
+        setHh05(MainApp.selectedHousehold.getEbCode());
         setHh06(selectedCluster.getGeoarea().split("\\|")[0]);
         setHh07(selectedCluster.getGeoarea().split("\\|")[1]);
         setHh08(selectedCluster.getGeoarea().split("\\|")[2]);
@@ -219,14 +211,6 @@ public class Form extends BaseObservable implements Observable {
     }
 
 
-    public void setTAG(String tag) {
-        this.TAG = tag;
-    }
-
-    public String getTAG() {
-        return TAG;
-    }
-
     public String getProjectName() {
         return projectName;
     }
@@ -235,11 +219,11 @@ public class Form extends BaseObservable implements Observable {
         this.projectName = projectName;
     }
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -337,20 +321,20 @@ public class Form extends BaseObservable implements Observable {
         this.endTime = endTime;
     }
 
-    public String getIStatus() {
+    public String getiStatus() {
         return iStatus;
     }
 
-    public void setIStatus(String iStatus) {
+    public void setiStatus(String iStatus) {
         this.iStatus = iStatus;
         // this.o108 = iStatus;
     }
 
-    public String getIStatus96x() {
+    public String getiStatus96x() {
         return iStatus96x;
     }
 
-    public void setIStatus96x(String iStatus96x) {
+    public void setiStatus96x(String iStatus96x) {
         this.iStatus96x = iStatus96x;
     }
 
@@ -409,8 +393,6 @@ public class Form extends BaseObservable implements Observable {
         this.gpsAcc = gpsAcc;
         notifyPropertyChanged(BR.gpsAcc);
     }
-
-
 /*
 
 
@@ -849,48 +831,29 @@ public class Form extends BaseObservable implements Observable {
         notifyPropertyChanged(BR.hh21xx);
     }
 
-    public String getSHH() {
+    @Bindable
+    public String getsHH() {
         return sHH;
     }
 
-
-    public String getSCH() {
+    @Bindable
+    public String getsCH() {
         return sCH;
     }
 
-
-    public String getSSS() {
+    @Bindable
+    public String getsSS() {
         return sSS;
     }
 
-
-    public String getSCB() {
+    @Bindable
+    public String getsCB() {
         return sCB;
     }
 
-
-    public String getSIM() {
+    @Bindable
+    public String getsIM() {
         return sIM;
-    }
-
-    public void setSHH(String sHH) {
-        this.sHH = sHH;
-    }
-
-    public void setSCH(String sCH) {
-        this.sCH = sCH;
-    }
-
-    public void setSSS(String sSS) {
-        this.sSS = sSS;
-    }
-
-    public void setSCB(String sCB) {
-        this.sCB = sCB;
-    }
-
-    public void setSIM(String sIM) {
-        this.sIM = sIM;
     }
 
     @Bindable
@@ -1747,7 +1710,7 @@ public class Form extends BaseObservable implements Observable {
 
 
     public Form Hydrate(Cursor cursor) throws JSONException {
-        this.id = cursor.getInt(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ID));
+        this.id = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ID));
         this.uid = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_UID));
         this.projectName = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_PROJECT_NAME));
         this.ebCode = cursor.getString(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_EB_CODE));

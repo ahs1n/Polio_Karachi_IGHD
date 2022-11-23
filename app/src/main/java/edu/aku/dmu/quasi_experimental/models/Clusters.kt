@@ -7,7 +7,7 @@ import org.json.JSONException
 import org.json.JSONObject
 
 /**
- * Created by hussain.siddiqui on 23/11/2022.
+ * Created by hassan.naqvi on 11/30/2016.
  */
 class Clusters {
     var ID: Long = 0

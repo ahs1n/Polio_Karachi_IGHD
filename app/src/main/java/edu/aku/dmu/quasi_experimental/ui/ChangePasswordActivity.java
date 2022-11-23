@@ -1,6 +1,5 @@
 package edu.aku.dmu.quasi_experimental.ui;
 
-
 import static edu.aku.dmu.quasi_experimental.core.UserAuth.checkPassword;
 import static edu.aku.dmu.quasi_experimental.core.UserAuth.generatePassword;
 
@@ -38,6 +37,7 @@ import javax.crypto.NoSuchPaddingException;
 import edu.aku.dmu.quasi_experimental.R;
 import edu.aku.dmu.quasi_experimental.core.CipherSecure;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
+import edu.aku.dmu.quasi_experimental.core.UserAuth;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivityChangePasswordBinding;
 import edu.aku.dmu.quasi_experimental.workers.UserWorker;
@@ -72,7 +72,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 break;
 
         }
-        /*if (view.getId() == bi.showPassword1.getId()) {
+
+/*        if (view.getId() == bi.showPassword1.getId()) {
             p = bi.password1;
         } else {
             p = bi.password2;
@@ -86,6 +87,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
             p.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_lock_open, 0, 0, 0);
         }
     }
+
 
     public void attemptReset(View view) {
 
@@ -208,6 +210,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                         }
                     });
 
+
             Log.d(TAG, "attemptReset: " + CipherSecure.encryptGCM(bi.password2.getText().toString()));
 
         } catch (NoSuchAlgorithmException e) {
@@ -245,7 +248,9 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     private boolean formValidation() {
         // return Validator.emptyCheckingContainer(this, bi.GrpName);
-        /*String hashedPasswordOld = "";
+
+
+/*        String hashedPasswordOld = "";
         try {
             hashedPasswordOld = generatePassword(bi.passwordOld.getText().toString(), null);
         } catch (NoSuchAlgorithmException e) {
@@ -254,6 +259,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        Log.d(TAG, "formValidation(oldHash): "+MainApp.user.getPassword());
+        Log.d(TAG, "formValidation(newHash): "+hashedPasswordOld);
         if (!MainApp.user.getPassword().equals(hashedPasswordOld)) {
             bi.passwordOld.setError("Old password do not match.");
             Toast.makeText(this, "Old password do not match.", Toast.LENGTH_SHORT).show();
@@ -290,6 +297,8 @@ public class ChangePasswordActivity extends AppCompatActivity {
             bi.password1.setError(null);
 
         }
+
+
         if (!bi.password2.getText().toString().equals(bi.password1.getText().toString())) {
             bi.password2.setError("Passwords do not match.");
             Toast.makeText(this, "Passwords do not match.", Toast.LENGTH_SHORT).show();
@@ -316,7 +325,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
         // Check not same as previous
         try {
-            if (checkPassword(password, MainApp.user.getPassword())) {
+            if (UserAuth.checkPassword(password, MainApp.user.getPassword())) {
                 System.out.println("Password is same as previous.");
                 bi.password1.setError("Password must not be same as previous.");
                 isValid = false;

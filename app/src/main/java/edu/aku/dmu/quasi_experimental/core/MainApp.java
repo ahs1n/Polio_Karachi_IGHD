@@ -1,20 +1,28 @@
 package edu.aku.dmu.quasi_experimental.core;
 
-import android.app.Activity;
+import static edu.aku.dmu.quasi_experimental.database.DatabaseHelper.DATABASE_NAME;
+import static edu.aku.dmu.quasi_experimental.database.DatabaseHelper.DATABASE_PASSWORD;
+
+import android.Manifest;
 import android.app.Application;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
-import android.media.ToneGenerator;
+import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
-import com.jakewharton.threetenabp.AndroidThreeTen;
+import androidx.core.app.ActivityCompat;
+
+import com.scottyab.rootbeer.RootBeer;
 
 import net.sqlcipher.database.SQLiteDatabase;
 
@@ -23,64 +31,85 @@ import org.json.JSONArray;
 import java.io.File;
 import java.util.List;
 
-import edu.aku.dmu.quasi_experimental.Room.QuasiRoomDatabase;
+import edu.aku.dmu.quasi_experimental.R;
+import edu.aku.dmu.quasi_experimental.models.Child;
 import edu.aku.dmu.quasi_experimental.models.Clusters;
-import edu.aku.dmu.quasi_experimental.models.Complaints;
-import edu.aku.dmu.quasi_experimental.models.Diagnosis;
 import edu.aku.dmu.quasi_experimental.models.Form;
-import edu.aku.dmu.quasi_experimental.models.PatientDetails;
-import edu.aku.dmu.quasi_experimental.models.Prescription;
 import edu.aku.dmu.quasi_experimental.models.RandomHH;
 import edu.aku.dmu.quasi_experimental.models.Users;
-import edu.aku.dmu.quasi_experimental.models.Vaccination;
-import edu.aku.dmu.quasi_experimental.ui.LockActivity;
+
 
 public class MainApp extends Application {
 
-    public static final String PROJECT_NAME = "HF Patient_V2";
+    public static final String PROJECT_NAME = "Quasi_Experimental_Trial";
+    public static final String DIST_ID = null;
     public static final String SYNC_LOGIN = "sync_login";
     public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
-    public static final String _HOST_URL = MainApp._IP + "/hfp/api/";// .TEST server;
-    public static final String _SERVER_URL = "syncGCM.php";
-    public static final String _SERVER_GET_URL = "getDataGCM.php";
+    // public static final String _IP = "https://cls-pae-fp51764";// .TEST server
+    // public static final String _IP = "http://f49461:8080/prosystem";// .TEST server
+    //public static final String _IP = "http://43.245.131.159:8080";// .TEST server
+    public static final String _HOST_URL = MainApp._IP + "/tpvics_r2/api/";// .TEST server;
+    public static final String _SERVER_URL = "syncgcm.php";
+    public static final String _USER_URL = "resetpassword.php";
+    public static final String _SERVER_GET_URL = "getDatagcm.php";
     public static final String _PHOTO_UPLOAD_URL = _HOST_URL + "uploads.php";
-    public static final String _APP_FOLDER = "../app/";
-    public static final String _UPDATE_URL = MainApp._IP + "/app/";
-    public static final String _USER_URL = "resetpasswordgcm.php";
+    public static final String _UPDATE_URL = MainApp._IP + "/tpvics_r2/app/survey";
+    public static final String _APP_FOLDER = "../app/survey";
     public static final String _EMPTY_ = "";
     private static final String TAG = "MainApp";
+    private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
+    private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
+    public static int TRATS = 8;
+
     public static File sdDir;
     public static String[] downloadData;
+    public static String IBAHC = "";
+    //COUNTRIES
+    public static int URDU = 1;
+
+
+    //public static Samples samples;
+
     public static String DeviceURL = "devices.php";
     public static AppInfo appInfo;
     public static Users user;
     public static Boolean admin = false;
     public static List<JSONArray> uploadData;
-    public static String deviceid;
     public static SharedPreferences.Editor editor;
     public static SharedPreferences sharedPref;
-    public static String IBAHC = "";
-    public static int TRATS = 8;
-    public static String selectedDoctorCode;
-    public static String selectedDoctorName;
-
-    public static boolean permissionCheck = false;
-    public static int entryType = 0;
-
-
-    public static PatientDetails patientDetails;
     public static Form form;
-    public static Complaints complaints;
-    public static Diagnosis diagnosis;
-    public static Prescription prescription;
-    public static Vaccination vaccination;
-    public static CountDownTimer timer;
-    static ToneGenerator toneGen1;
+    // public static Pregnancy pregnancy;
+    public static Child child;
+    public static String deviceid;
+    public static boolean permissionCheck = false;
+    public static int versionCode = edu.aku.dmu.quasi_experimental.BuildConfig.VERSION_CODE;
+    public static String versionName = edu.aku.dmu.quasi_experimental.BuildConfig.VERSION_NAME;
+    public static List<Child> childList;
+    public static int entryType = 0;
+    public static List<Integer> mwraList;
+    public static int childCount = 0;
+    public static String selectedMWRA;
+    public static int selectedChild;
+    public static String selectedChildName = "";
+    public static int memberCountComplete;
+    public static boolean memberComplete;
+    public static boolean hhheadSelected = false;
+    public static boolean superuser;
+    public static String selectedDistrict = "";
+    public static String selectedTehsil = "";
+    public static String selectedUC = "";
+    public static RandomHH selectedHousehold;
+    public static int ageOfIndexChild;
     public static int selectedLanguage = 0;
     public static boolean langRTL = false;
-    public static boolean superuser;
+    public static List<Integer> childCompleted;
+
     public static Clusters selectedCluster;
-    public static RandomHH selectedHousehold;
+    public static boolean householdChecked = false;
+    public static long preAgeInMonths;
+    public static NoMenuEditText noMenuEditText;
+    protected static LocationManager locationManager;
+
 
     public static void hideSystemUI(View decorView) {
         // Enables regular immersive mode.
@@ -98,62 +127,111 @@ public class MainApp extends Application {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
 
-    public static void lockScreen(Context c) {
-
-        if (timer != null) {
-            timer.cancel();
+    public static String getDeviceId(Context context) {
+        String deviceId;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            deviceId = Settings.Secure.getString(
+                    context.getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
+        } else {
+           /* final TelephonyManager mTelephony = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            if (mTelephony.getDeviceId() != null) {
+                deviceId = mTelephony.getDeviceId();
+            } else {
+                deviceId = Settings.Secure.getString(
+                        context.getContentResolver(),
+                        Settings.Secure.ANDROID_ID);
+            }*/
         }
+        return "deviceId";
+    }
 
-        //   Context mContext = c;
-        Activity activity = (Activity) c;
+    public static String kishGrid(int Hh_Sno, int totalMwra) {
 
+        // GENERATE RANDOM
+        // int household  = 1 + (int)(Math.random() * ((10 - 1) + 1));
+        // int eligibles = 1 + (int)(Math.random() * ((8 - 1) + 1));
 
-        timer = new CountDownTimer(15 * 60 * 1000, 1000) {
-            //timer = new CountDownTimer(30 * 1000, 1000) {
+        int household = Math.min(Hh_Sno, 9);
+        int eligibles = Math.min(totalMwra, 8);
 
-            public void onTick(long millisUntilFinished) {
-                //Some code
-                //bi.timeLeft.setText((millisUntilFinished / 1000) + " secs left");
-                if ((millisUntilFinished / 1000) < 14) {
-                    toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP, 150);
-                }
-
-            }
-
-            public void onFinish() {
-                //Logout
-                //
-                //   finish();
-                // lockScreen();
-                Intent intent = new Intent();
-                intent.setClass(c, LockActivity.class);
-                c.startActivity(intent);
-                timer.cancel();
-                //  startActivity(new Intent(((Activity) c).getLocalClassName(), LockActivity.class));
-            }
+        int[][] grid = {
+                // Eligible People ===>>
+                //1- 2- 3- 4- 5- 6- 7- 8
+                {1, 2, 1, 2, 5, 4, 3, 2},  // 0 - Household (10th)
+                {1, 1, 1, 1, 1, 1, 1, 1},  // 1 - Household (1st)
+                {1, 2, 2, 2, 2, 2, 2, 2},  //         ||
+                {1, 1, 3, 3, 3, 3, 3, 3},  //         ||
+                {1, 2, 1, 4, 4, 4, 4, 4},  //         ||
+                {1, 1, 2, 1, 5, 5, 5, 5},  //        \\//
+                {1, 2, 3, 2, 1, 6, 6, 6},  //         \/
+                {1, 1, 1, 3, 2, 1, 7, 7},  //
+                {1, 2, 2, 4, 3, 2, 1, 8},  // 8 - Household (8th)
+                {1, 1, 3, 1, 4, 3, 2, 1},  // 9 - Household (9th)
         };
-        timer.start();
 
+
+        // System.out.println(household+"-"+eligibles);
+        // System.out.println(grid[household-1][eligibles-1]);
+
+        /**
+         *  0 household mean 0 index
+         *  1 eligibles means eligibles-1 index
+         *
+         *  return Index of MWRAList (SNO-1)
+         */
+        return String.valueOf((grid[household][eligibles - 1]) - 1);
+    }
+
+    public static Boolean isNetworkAvailable(Context c) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Network nw = connectivityManager.getActiveNetwork();
+            if (nw == null) return false;
+            NetworkCapabilities actNw = connectivityManager.getNetworkCapabilities(nw);
+            return actNw != null && (actNw.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) || actNw.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH));
+        } else {
+            NetworkInfo nwInfo = connectivityManager.getActiveNetworkInfo();
+            return nwInfo != null && nwInfo.isConnected();
+        }
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-                /*
         RootBeer rootBeer = new RootBeer(this);
         if (rootBeer.isRooted()) {
             android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(1);
-        }*/
+            throw new RuntimeException("This is a crash");
 
+            //System.exit(1);
+        }
         //Initiate DateTime
-        AndroidThreeTen.init(this);
         //Initializ App info
         appInfo = new AppInfo(this);
-        sharedPref = getSharedPreferences(PROJECT_NAME, MODE_PRIVATE);
+        sharedPref = getSharedPreferences(getString(R.string.app_name), MODE_PRIVATE);
         editor = sharedPref.edit();
         deviceid = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                MINIMUM_TIME_BETWEEN_UPDATES,
+                MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
+                new GPSLocationListener(this) // Implement this class from code
+
+        );
 
         initSecure();
 
@@ -162,10 +240,10 @@ public class MainApp extends Application {
     private void initSecure() {
         // Initialize SQLCipher library
         SQLiteDatabase.loadLibs(this);
-        //File databaseFile = getDatabasePath(DATABASE_NAME);
+        File databaseFile = getDatabasePath(DATABASE_NAME);
        /* databaseFile.mkdirs();
         databaseFile.delete();*/
-        //SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(databaseFile, DATABASE_PASSWORD, null);
+        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(databaseFile, DATABASE_PASSWORD, null);
         // Prepare encryption KEY
         ApplicationInfo ai = null;
         try {
@@ -175,12 +253,9 @@ public class MainApp extends Application {
             //IBAHC = bundle.getString("YEK_REVRES").substring(TRATS, TRATS + 16);
             IBAHC = bundle.getString("YEK_REVRES");
             Log.d(TAG, "onCreate: YEK_REVRES = " + IBAHC);
-
-            // Room DB
-            QuasiRoomDatabase.init(this, IBAHC);
-
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
     }
+
 }

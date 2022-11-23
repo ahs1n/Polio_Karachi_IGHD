@@ -25,7 +25,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
@@ -165,7 +164,7 @@ public class UserWorker extends Worker {
         notificationManager.notify(1, notification.build());
     }
 
-/*    private boolean certIsValid(Certificate[] certs, Certificate ca) {
+   /* private boolean certIsValid(Certificate[] certs, Certificate ca) {
         for (Certificate cert : certs) {
             System.out.println("Certificate is: " + cert);
             if (cert instanceof X509Certificate) {
@@ -208,7 +207,7 @@ public class UserWorker extends Worker {
 
 
             ca = cf.generateCertificate(caInput);
-//            System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
+            //    System.out.println("ca=" + ((X509Certificate) ca).getSubjectDN());
         } catch (CertificateException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -339,7 +338,7 @@ public class UserWorker extends Worker {
             Log.d(TAG, "doWork (IO Error): " + e.getMessage());
             displayNotification(nTitle, "IO Error: " + e.getMessage());
             data = new Data.Builder()
-                    .putString("error", "IO Error: " + e.getMessage())
+                    .putString("error", e.getClass().getSimpleName() + ": " + e.getMessage())
                     .build();
 
             return Result.failure(data);
@@ -349,15 +348,13 @@ public class UserWorker extends Worker {
         }
         try {
             result = new StringBuilder(CipherSecure.decryptGCM(result.toString()));
-        } catch (NoSuchPaddingException | NoSuchAlgorithmException | BadPaddingException | IllegalBlockSizeException | InvalidAlgorithmParameterException | InvalidKeyException | UnsupportedEncodingException e) {
-            Log.d(TAG, "doWork (Encryption Error): " + e.getMessage());
-            displayNotification(nTitle, "Encryption Error: " + e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
             data = new Data.Builder()
-                    .putString("error", "Encryption Error: " + e.getMessage())
+                    .putString("error", e.getClass().getSimpleName() + ": " + e.getMessage())
                     .build();
 
             return Result.failure(data);
-
         }
         longInfo("result-server(Decrypted): " + result);
 

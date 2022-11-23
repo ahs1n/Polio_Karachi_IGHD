@@ -2,22 +2,27 @@ package edu.aku.dmu.quasi_experimental.ui;
 
 import static edu.aku.dmu.quasi_experimental.core.MainApp.PROJECT_NAME;
 import static edu.aku.dmu.quasi_experimental.core.MainApp.sdDir;
-import static edu.aku.dmu.quasi_experimental.utils.AndroidUtilityKt.isNetworkConnected;
-import static edu.aku.dmu.quasi_experimental.utils.AppUtilsKt.dbBackup;
+import static edu.aku.dmu.quasi_experimental.core.MainApp.uploadData;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -48,18 +53,16 @@ import java.util.concurrent.TimeUnit;
 import edu.aku.dmu.quasi_experimental.R;
 import edu.aku.dmu.quasi_experimental.adapters.SyncListAdapter;
 import edu.aku.dmu.quasi_experimental.contracts.TableContracts;
-import edu.aku.dmu.quasi_experimental.contracts.TableContracts.COMPLAINTSTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.ChildTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.ClusterTable;
 import edu.aku.dmu.quasi_experimental.contracts.TableContracts.EntryLogTable;
-import edu.aku.dmu.quasi_experimental.contracts.TableContracts.PDTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.FormsTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.RandomHHTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.UsersTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivitySyncBinding;
-import edu.aku.dmu.quasi_experimental.models.Doctor;
-import edu.aku.dmu.quasi_experimental.models.HealthFacilities;
 import edu.aku.dmu.quasi_experimental.models.SyncModel;
-import edu.aku.dmu.quasi_experimental.models.UCs;
-import edu.aku.dmu.quasi_experimental.models.Users;
-import edu.aku.dmu.quasi_experimental.models.VersionApp;
 import edu.aku.dmu.quasi_experimental.workers.DataDownWorkerALL;
 import edu.aku.dmu.quasi_experimental.workers.DataUpWorkerALL;
 import edu.aku.dmu.quasi_experimental.workers.PhotoUploadWorker2;
@@ -80,29 +83,35 @@ public class SyncActivity extends AppCompatActivity {
     private long tStart;
     private String progress;
     private long startTime;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_sync);
-//        bi.setCallback(this);
-        //setSupportActionBar(bi.toolbar);
+        setSupportActionBar(bi.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         db = MainApp.appInfo.getDbHelper();
         uploadTables = new ArrayList<>();
         downloadTables = new ArrayList<>();
         MainApp.uploadData = new ArrayList<>();
-        sdDir = new File(this.getExternalFilesDir(
-                Environment.DIRECTORY_PICTURES), PROJECT_NAME);
+        /*sdDir = new File(this.getExternalFilesDir(
+                Environment.DIRECTORY_PICTURES), PROJECT_NAME);*/
+
+        sdDir = Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        sdDir = new File(sdDir, PROJECT_NAME);
 
         //bi.noItem.setVisibility(View.VISIBLE);
         bi.noDataItem.setVisibility(View.VISIBLE);
         listActivityCreated = true;
         uploadlistActivityCreated = true;
 
-        db = new DatabaseHelper(this);
-        dbBackup(this);
-//        toKeepUnusedFunctions();
-
+        db = MainApp.appInfo.dbHelper;
+        //dbBackup(this);
+/*        OneTimeWorkRequest JSONWorker =
+                new OneTimeWorkRequest.Builder(ReadJSONWorker.class)
+                        .build();
+        WorkManager.getInstance(this).enqueue(JSONWorker);*/
     }
 
     void setAdapter(List<SyncModel> tables) {
@@ -129,12 +138,15 @@ public class SyncActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     public void ProcessStart(View view) {
 
-        if (!isNetworkConnected(this))
+        if (!MainApp.isNetworkAvailable(this))
             return;
 
         switch (view.getId()) {
 
             case R.id.btnUpload:
+
+                bi.activityTitle.setText("Upload Data");
+
                 bi.dataLayout.setVisibility(View.VISIBLE);
                 bi.photoLayout.setVisibility(View.GONE);
                 bi.mTextViewS.setVisibility(View.GONE);
@@ -142,55 +154,28 @@ public class SyncActivity extends AppCompatActivity {
                 uploadTables.clear();
                 MainApp.uploadData.clear();
 
-                // PatientDetails
-                uploadTables.add(new SyncModel(PDTable.TABLE_NAME));
+                // Forms
+                uploadTables.add(new SyncModel(FormsTable.TABLE_NAME));
                 try {
-                    MainApp.uploadData.add(db.getUnsyncedPD());
+                    MainApp.uploadData.add(db.getUnsyncedFormHH());
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.d(TAG, "ProcessStart(PDTable): " + e.getMessage());
-                    Toast.makeText(this, "ProcessStart(PDTable): " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "ProcessStart: JSONException(Forms): " + e.getMessage());
+                    Toast.makeText(this, "JSONException(Forms): " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
-                // Complaints
-                uploadTables.add(new SyncModel(COMPLAINTSTable.TABLE_NAME));
+
+                //Child
+                uploadTables.add(new SyncModel(ChildTable.TABLE_NAME));
                 try {
-                    MainApp.uploadData.add(db.getUnsyncedCOMP());
+                    MainApp.uploadData.add(db.getUnsyncedChild());
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Log.d(TAG, "ProcessStart(COMPLAINTSTable): " + e.getMessage());
-                    Toast.makeText(this, "ProcessStart(COMPLAINTSTable): " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "ProcessStart: JSONException(Child): " + e.getMessage());
+                    Toast.makeText(SyncActivity.this, "JSONException(Child)" + e.getMessage(), Toast.LENGTH_LONG).show();
+
                 }
 
-                // Diagnosis
-                uploadTables.add(new SyncModel(TableContracts.DIAGNOSISTable.TABLE_NAME));
-                try {
-                    MainApp.uploadData.add(db.getUnsyncedDIAG());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Log.d(TAG, "ProcessStart(DIAGNOSISTable): " + e.getMessage());
-                    Toast.makeText(this, "ProcessStart(DIAGNOSISTable): " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-
-                // Vaccination
-                uploadTables.add(new SyncModel(TableContracts.VACCINATIONTable.TABLE_NAME));
-                try {
-                    MainApp.uploadData.add(db.getUnsyncedVAC());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Log.d(TAG, "ProcessStart(VACCINATIONTable): " + e.getMessage());
-                    Toast.makeText(this, "ProcessStart(VACCINATIONTable): " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-
-                // Prescription
-                uploadTables.add(new SyncModel(TableContracts.PRESCRIPTIONTable.TABLE_NAME));
-                try {
-                    MainApp.uploadData.add(db.getUnsyncedPRES());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Log.d(TAG, "ProcessStart(PRESCRIPTIONTable): " + e.getMessage());
-                    Toast.makeText(this, "ProcessStart(PRESCRIPTIONTable): " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
 
                 //Entry Log
                 uploadTables.add(new SyncModel(EntryLogTable.TABLE_NAME));
@@ -198,14 +183,43 @@ public class SyncActivity extends AppCompatActivity {
                     MainApp.uploadData.add(db.getUnsyncedEntryLog());
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Log.d(TAG, "ProcessStart: JSONException(Forms): " + e.getMessage());
                     Toast.makeText(SyncActivity.this, "JSONException(EntryLog)" + e.getMessage(), Toast.LENGTH_LONG).show();
                 }
 
-                MainApp.downloadData = new String[uploadTables.size()];
+                // INCLUDE DATA FOR UNLOCKED RECORDS
+                if (bi.uploadUnlocked.isChecked()) {
+                    // Forms - unlocked
+                    uploadTables.add(new SyncModel(FormsTable.TABLE_NAME, true));
+                    try {
+                        MainApp.uploadData.add(db.getUnlockedUnsyncedFormHH());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.d(TAG, "ProcessStart: JSONException(Forms): " + e.getMessage());
+                        Toast.makeText(this, "JSONException(Forms): " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+                    //Child - unlocked
+                    uploadTables.add(new SyncModel(TableContracts.ChildTable.TABLE_NAME, true));
+                    try {
+                        MainApp.uploadData.add(db.getUnlockedUnsyncedChild());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Log.d(TAG, "ProcessStart: JSONException(Child): " + e.getMessage());
+                        Toast.makeText(SyncActivity.this, "JSONException(Child)" + e.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+                }
+
+                MainApp.downloadData = new String[uploadData.size()];
+
                 setAdapter(uploadTables);
                 BeginUpload();
                 break;
             case R.id.btnSync:
+
+                bi.activityTitle.setText("Download Data");
 
                 MainApp.downloadData = new String[0];
                 bi.dataLayout.setVisibility(View.VISIBLE);
@@ -214,26 +228,26 @@ public class SyncActivity extends AppCompatActivity {
                 bi.pBar.setVisibility(View.GONE);
                 downloadTables.clear();
                 boolean sync_flag = getIntent().getBooleanExtra("login", false);
+
+                // set select and filter to default, set again with the table in case of special requirements
                 String select = " * ";
                 String filter = " colflag is null ";
 
                 if (sync_flag) {
-                    //campCode = getIntent().getStringExtra(CONSTANTS.SYNC_CAMPID_LOGIN);
-                    downloadTables.add(new SyncModel(Users.UsersTable.TABLE_NAME));
-                    downloadTables.add(new SyncModel(UCs.TableUCs.TABLE_NAME));
-                    downloadTables.add(new SyncModel(VersionApp.VersionAppTable.TABLE_NAME));
+                    select = " * ";
+                    filter = " enabled = '1' ";
+
+                    downloadTables.add(new SyncModel(UsersTable.TABLE_NAME));
+                    downloadTables.add(new SyncModel("versionApp"));
                 } else {
-                    // Set tables to DOWNLOAD
-//                    downloadTables.add(new SyncModel(Users.UsersTable.TABLE_NAME));
 
                     select = " * ";
-                    filter = " (colflag is null or colflag=0) AND uccode = '" + MainApp.user.getUcCode() + "' ";
-//                    downloadTables.add(new SyncModel(Camps.TableCamp.TABLE_NAME, select, filter));
-/*                    downloadTables.add(new SyncModel(UCs.TableUCs.TABLE_NAME));
-                    downloadTables.add(new SyncModel(Doctor.TableDoctor.TABLE_NAME));
-                    downloadTables.add(new SyncModel(VersionApp.VersionAppTable.TABLE_NAME));*/
-                    downloadTables.add(new SyncModel(HealthFacilities.TableHealthFacilities.TABLE_NAME, select, filter));
-                    downloadTables.add(new SyncModel(Doctor.TableDoctor.TABLE_NAME));
+                    filter = " (colflag != '1' or colflag is null) AND dist_id = '" + MainApp.user.getDist_id() + "' ";
+                    downloadTables.add(new SyncModel(ClusterTable.TABLE_NAME, select, filter));
+                    downloadTables.add(new SyncModel(RandomHHTable.TABLE_NAME, select, filter));
+                    select = " * ";
+                    filter = " deviceid = '" + MainApp.deviceid + "_x' ";
+                    downloadTables.add(new SyncModel("Unlocked", select, filter));
                 }
                 MainApp.downloadData = new String[downloadTables.size()];
                 setAdapter(downloadTables);
@@ -258,9 +272,6 @@ public class SyncActivity extends AppCompatActivity {
                     .putInt("position", i)
                     .putString("select", downloadTables.get(i).getSelect() != null ? downloadTables.get(i).getSelect() : " * ")
                     .putString("filter", downloadTables.get(i).getFilter() != null ? downloadTables.get(i).getFilter() : " 1=1 ");
-            /*if (downloadTables.get(i).gettableName().equals(Doctor.TableDoctor.TABLE_NAME)) {
-                data.putString("where", Doctor.TableDoctor.COLUMN_ID_CAMP + "='" + campCode + "'");
-            }*/
 
             OneTimeWorkRequest workRequest = new OneTimeWorkRequest.Builder(DataDownWorkerALL.class)
                     .addTag(String.valueOf(i))
@@ -270,7 +281,7 @@ public class SyncActivity extends AppCompatActivity {
         }
 
         // FOR SIMULTANEOUS WORKREQUESTS (ALL TABLES DOWNLOAD AT THE SAME TIME)
-        WorkManager wm = WorkManager.getInstance();
+        WorkManager wm = WorkManager.getInstance(this);
         WorkContinuation wc = wm.beginWith(workRequests);
         wc.enqueue();
 
@@ -282,7 +293,6 @@ public class SyncActivity extends AppCompatActivity {
                 int position = workInfo.getOutputData().getInt("position", 0);
                 String time = workInfo.getOutputData().getString("time");
                 String size = workInfo.getOutputData().getString("size");
-
                /* Log.d(TAG, "workInfo(getState): " + workInfo.getState());
                 Log.d(TAG, "workInfo(data): " + MainApp.downloadData[position]);
                 Log.d(TAG, "workInfo(error): " + workInfo.getOutputData().getString("error"));
@@ -302,12 +312,12 @@ public class SyncActivity extends AppCompatActivity {
                             System.out.println("SYSTEM onChanged: result" + result);
                             db = MainApp.appInfo.dbHelper;
                             JSONArray jsonArray = new JSONArray();
-//                            int insertCount = 0;
+                            //int insertCount = 0;
 
                             Method method = null;
                             for (Method method1 : db.getClass().getDeclaredMethods()) {
 
-//                                Log.d(TAG, "onChanged Methods: " + method1.getName());
+                                // Log.d(TAG, "onChanged Methods: " + method1.getName());
                                 /**
                                  * MAKE SURE TABLE_NAME = <table> IS SAME AS sync<table> :
                                  *
@@ -317,8 +327,8 @@ public class SyncActivity extends AppCompatActivity {
                                  *      e.g: Forms and syncForms
                                  *
                                  */
-                                /*Log.d(TAG, "onChanged Names: sync" + tableName);
-                                Log.d(TAG, "onChanged Compare: " + method1.getName().equals("sync" + tableName));*/
+                                //Log.d(TAG, "onChanged Names: sync" + tableName);
+                                //  Log.d(TAG, "onChanged Compare: " + method1.getName().equals("sync" + tableName));
                                 if (method1.getName().equals("sync" + tableName)) {
                                     method = method1;
                                     //Toast.makeText(SyncActivity.this, "updateSynced not found: updateSynced" + tableName, Toast.LENGTH_SHORT).show();
@@ -352,6 +362,7 @@ public class SyncActivity extends AppCompatActivity {
 
                                         SyncModel downloadTable = downloadTables.get(position);
                                         new Thread(new Runnable() {
+
                                             @Override
                                             public void run() {
 
@@ -393,7 +404,6 @@ public class SyncActivity extends AppCompatActivity {
                                             }
                                         }).start();
                                     }
-
 
                                 } catch (JSONException ite) {
                                     ite.printStackTrace();
@@ -500,9 +510,16 @@ public class SyncActivity extends AppCompatActivity {
                     downloadTables.get(position).setstatus("Process Failed7");
                     downloadTables.get(position).setstatusID(1);
                     downloadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
-                    downloadTables.get(position).setmessage(message.contains("No such file or directory") ? "Testing" : message);
+                    downloadTables.get(position).setmessage(message);
                     syncListAdapter.updatesyncList(downloadTables);
 
+                    if (position == 0 && workInfo.getOutputData().getString("deviceTime") != null) {
+
+                        String serverTime = workInfo.getOutputData().getString("serverTime");
+                        String deviceTime = workInfo.getOutputData().getString("deviceTime");
+                        Log.d(TAG, "BeginDownload: p=" + position + "sT=" + serverTime + " dT=" + deviceTime);
+                        showDateError(serverTime, deviceTime);
+                    }
                 }
             }
         });
@@ -532,7 +549,7 @@ public class SyncActivity extends AppCompatActivity {
         }
 
         // FOR SIMULTANEOUS WORKREQUESTS (ALL TABLES DOWNLOAD AT THE SAME TIME)
-        WorkManager wm = WorkManager.getInstance();
+        WorkManager wm = WorkManager.getInstance(this);
         WorkContinuation wc = wm.beginWith(workRequests);
         wc.enqueue();
 
@@ -551,18 +568,16 @@ public class SyncActivity extends AppCompatActivity {
 
                 int position = workInfo.getOutputData().getInt("position", 0);
 
-                Log.d(TAG, "workInfo: getState " + workInfo.getState());
-                Log.d(TAG, "workInfo: data " + workInfo.getTags());
-                Log.d(TAG, "workInfo: data " + workInfo.getOutputData().getString("message"));
-                Log.d(TAG, "workInfo: error " + workInfo.getOutputData().getString("error"));
-                Log.d(TAG, "workInfo: position " + workInfo.getOutputData().getInt("position", 0));
+                Log.d(TAG, "workInfo(getState): " + workInfo.getState());
+                Log.d(TAG, "workInfo(data): " + MainApp.downloadData[position]);
+                Log.d(TAG, "workInfo(error): " + workInfo.getOutputData().getString("error"));
+                Log.d(TAG, "workInfo(position): " + workInfo.getOutputData().getInt("position", 0));
 
                 String tableName = uploadTables.get(position).gettableName();
                 String result = MainApp.downloadData[position];
                 startTime = System.currentTimeMillis();
                 String time = workInfo.getOutputData().getString("time");
                 String size = workInfo.getOutputData().getString("size");
-
                         /*String progress = workInfo.getProgress().getString("progress");
                         bi.wmError.setText("Progress: " + progress);*/
 
@@ -587,7 +602,7 @@ public class SyncActivity extends AppCompatActivity {
                                 Method method = null;
                                 for (Method method1 : db.getClass().getDeclaredMethods()) {
 
-//                                    Log.d(TAG, "onChanged Methods: " + method1.getName());
+                                    // Log.d(TAG, "onChanged Methods: " + method1.getName());
                                     /**
                                      * MAKE SURE TABLE_NAME = <table> IS SAME AS updateSynced<table> :
                                      *
@@ -597,8 +612,8 @@ public class SyncActivity extends AppCompatActivity {
                                      *      e.g: Forms and updateSyncedForms
                                      *
                                      */
-                                    /*Log.d(TAG, "onChanged Names: updateSynced" + tableName);
-                                    Log.d(TAG, "onChanged Compare: " + method1.getName().equals("updateSynced" + tableName));*/
+                                    //   Log.d(TAG, "onChanged Names: updateSynced" + tableName);
+                                    //   Log.d(TAG, "onChanged Compare: " + method1.getName().equals("updateSynced" + tableName));
                                     if (method1.getName().equals("updateSynced" + tableName)) {
                                         method = method1;
                                         //Toast.makeText(SyncActivity.this, "updateSynced not found: updateSynced" + tableName, Toast.LENGTH_SHORT).show();
@@ -630,15 +645,15 @@ public class SyncActivity extends AppCompatActivity {
                                     } else {
                                         uploadTables.get(position).setmessage(" Synced: " + sSynced + "  •  Duplicates: " + sDuplicate + "  •  Errors: " + sSyncedError);
                                         uploadTables.get(position).setstatus("Process Failed6");
-                                        uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                                         uploadTables.get(position).setstatusID(1);
+                                        uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                                         syncListAdapter.updatesyncList(uploadTables);
                                     }
                                 } else {
                                     uploadTables.get(position).setmessage("Method not found: updateSynced" + tableName);
                                     uploadTables.get(position).setstatus("Process Failed5");
-                                    uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                                     uploadTables.get(position).setstatusID(1);
+                                    uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                                     syncListAdapter.updatesyncList(uploadTables);
                                 }
                             } catch (JSONException e) {
@@ -647,31 +662,31 @@ public class SyncActivity extends AppCompatActivity {
 
                                 uploadTables.get(position).setmessage(result);
                                 uploadTables.get(position).setstatus("Process Failed4");
-                                uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                                 uploadTables.get(position).setstatusID(1);
+                                uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                                 syncListAdapter.updatesyncList(uploadTables);
 
                             } catch (IllegalAccessException | InvocationTargetException e) {
                                 e.printStackTrace();
                                 uploadTables.get(position).setstatus("Process Failed3");
                                 uploadTables.get(position).setstatusID(1);
-                                uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                                 uploadTables.get(position).setmessage(e.getMessage());
+                                uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                                 syncListAdapter.updatesyncList(uploadTables);
                             }
                         } else {
                             uploadTables.get(position).setmessage("Received: " + result.length() + "");
                             uploadTables.get(position).setstatus("Successful");
-                            uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                             uploadTables.get(position).setstatusID(3);
+                            uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                             syncListAdapter.updatesyncList(uploadTables);
 //                pd.show();
                         }
                     } else {
                         uploadTables.get(position).setstatus("Process Failed2");
                         uploadTables.get(position).setstatusID(1);
-                        uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                         uploadTables.get(position).setmessage("Server not found!");
+                        uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                         syncListAdapter.updatesyncList(uploadTables);
 //            pd.show();
                     }
@@ -683,14 +698,14 @@ public class SyncActivity extends AppCompatActivity {
                     if (message.equals("No new records to upload")) {
                         uploadTables.get(position).setmessage(message);
                         uploadTables.get(position).setstatus("Not processed");
-                        uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                         uploadTables.get(position).setstatusID(4);
+                        uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                         syncListAdapter.updatesyncList(uploadTables);
                     } else {
                         uploadTables.get(position).setstatus("Process Failed1");
                         uploadTables.get(position).setstatusID(1);
-                        uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                         uploadTables.get(position).setmessage(message);
+                        uploadTables.get(position).setInfo("Time: " + time + "/" + getTime() + "\t Size: " + size);
                         syncListAdapter.updatesyncList(uploadTables);
                     }
                 }
@@ -753,11 +768,11 @@ public class SyncActivity extends AppCompatActivity {
                             OneTimeWorkRequest photoUpload = new OneTimeWorkRequest.Builder(PhotoUploadWorker2.class).setInputData(data).setConstraints(constraints).build();
 
 
-                            WorkManager.getInstance().enqueue(photoUpload);
+                            WorkManager.getInstance(SyncActivity.this).enqueue(photoUpload);
                             //Listening to the work status
                             final TextView[] mTextView1 = new TextView[1];
 
-                            WorkManager.getInstance().getWorkInfoByIdLiveData(photoUpload.getId())
+                            WorkManager.getInstance(SyncActivity.this).getWorkInfoByIdLiveData(photoUpload.getId())
                                     .observe(SyncActivity.this, new Observer<WorkInfo>() {
 
                                         @Override
@@ -892,16 +907,63 @@ public class SyncActivity extends AppCompatActivity {
         });
     }
 
-    public void toKeepUnusedFunctions() {
-        JSONArray dummylist = new JSONArray();
 
-        try {
-            db.syncUsers(dummylist);
-            db.syncVersionApp(dummylist);
-        } catch (JSONException e) {
-            e.printStackTrace();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                //NavUtils.navigateUpFromSameTask(this);
+                //onBackPressed();
+                finish();
+                //   downloadApp();
+                return true;
         }
+        return super.onOptionsItemSelected(item);
     }
+
+/*    private void downloadApp() throws MalformedURLException {
+
+        URL url = new URL(MainApp._HOST_URL + _UPDATE_URL);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        intentFilter.addAction(Intent.ACTION_PACKAGE_INSTALL);
+        intentFilter.addDataScheme("package");
+        registerReceiver(br, intentFilter);
+
+    }*/
+
+    private void showDateError(String serverTime, String deviceTime) {
+
+        View alertCustomdialog = LayoutInflater.from(SyncActivity.this).inflate(R.layout.date_error_dialog, null);
+
+        AlertDialog.Builder dateErrorAlert = new AlertDialog.Builder(this);
+        dateErrorAlert.setView(alertCustomdialog);
+        TextView txtDia = alertCustomdialog.findViewById(R.id.txtDia);
+        Button btnYes = alertCustomdialog.findViewById(R.id.btnYes);
+        txtDia.setText("Your device date & time is \n" + deviceTime + "\n\nServer date & time is \n" + serverTime);
+
+        AlertDialog dateErrorDialog = dateErrorAlert.create();
+
+        dateErrorDialog.show();
+        dateErrorDialog.setCanceledOnTouchOutside(false);
+
+        btnYes.setOnClickListener(new View.OnClickListener(
+
+        ) {
+            @Override
+            public void onClick(View view) {
+                dateErrorDialog.dismiss();
+                startActivityForResult(new Intent(Settings.ACTION_DATE_SETTINGS), 0);
+                downloadTables = new ArrayList<>();
+                syncListAdapter.updatesyncList(downloadTables);
+                //finish();
+            }
+        });
+    }
+
 
     private String getTime() {
 
