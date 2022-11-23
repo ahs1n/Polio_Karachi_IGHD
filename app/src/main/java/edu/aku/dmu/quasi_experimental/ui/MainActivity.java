@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.wajahatkarim3.roomexplorer.RoomExplorer;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,6 +26,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import edu.aku.dmu.quasi_experimental.R;
+import edu.aku.dmu.quasi_experimental.Room.QuasiRoomDatabase;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.AndroidManager;
 import edu.aku.dmu.quasi_experimental.databinding.ActivityMainBinding;
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.dbManager:
-                startActivity(new Intent(this, AndroidManager.class));
+                RoomExplorer.show(this, QuasiRoomDatabase.class, QuasiRoomDatabase.DATABASE_NAME);
                 break;
         }
     }

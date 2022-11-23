@@ -34,6 +34,7 @@ public class Form extends BaseObservable implements Observable {
     private String TAG = "Form";
     private final transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
     // FORM SECTIONS
+    @ColumnInfo(name = FormsTable.COLUMN_SHH)
     private  String sHH = _EMPTY_;
     private  String sCH = _EMPTY_;
     private  String sSS = _EMPTY_;

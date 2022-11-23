@@ -14,6 +14,13 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
+import com.facebook.flipper.android.AndroidFlipperClient;
+import com.facebook.flipper.android.utils.FlipperUtils;
+import com.facebook.flipper.core.FlipperClient;
+import com.facebook.flipper.plugins.databases.DatabasesFlipperPlugin;
+import com.facebook.flipper.plugins.inspector.DescriptorMapping;
+import com.facebook.flipper.plugins.inspector.InspectorFlipperPlugin;
+import com.facebook.soloader.SoLoader;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import net.sqlcipher.database.SQLiteDatabase;
@@ -23,6 +30,7 @@ import org.json.JSONArray;
 import java.io.File;
 import java.util.List;
 
+import edu.aku.dmu.quasi_experimental.BuildConfig;
 import edu.aku.dmu.quasi_experimental.Room.QuasiRoomDatabase;
 import edu.aku.dmu.quasi_experimental.models.Clusters;
 import edu.aku.dmu.quasi_experimental.models.Complaints;
@@ -37,7 +45,7 @@ import edu.aku.dmu.quasi_experimental.ui.LockActivity;
 
 public class MainApp extends Application {
 
-    public static final String PROJECT_NAME = "HF Patient_V2";
+    public static final String PROJECT_NAME = "Quasi_Experimental";
     public static final String SYNC_LOGIN = "sync_login";
     public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
     public static final String _HOST_URL = MainApp._IP + "/hfp/api/";// .TEST server;
@@ -156,6 +164,16 @@ public class MainApp extends Application {
         deviceid = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
 
         initSecure();
+
+        SoLoader.init(this, false);
+
+        if (BuildConfig.DEBUG && FlipperUtils.shouldEnableFlipper(this)) {
+            final FlipperClient client = AndroidFlipperClient.getInstance(this);
+            client.addPlugin(new InspectorFlipperPlugin(this, DescriptorMapping.withDefaults()));
+            client.addPlugin(new DatabasesFlipperPlugin(this));
+
+            client.start();
+        }
 
     }
 

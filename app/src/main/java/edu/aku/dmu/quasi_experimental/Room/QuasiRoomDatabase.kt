@@ -37,7 +37,7 @@ abstract class QuasiRoomDatabase : RoomDatabase() {
 
     companion object {
         const val DATABASE_VERSION = 1
-        const val DATABASE_NAME = MainApp.PROJECT_NAME + ".db"
+        const val DATABASE_NAME = MainApp.PROJECT_NAME + "1.db"
 
         @Volatile
         @JvmStatic
@@ -54,7 +54,7 @@ abstract class QuasiRoomDatabase : RoomDatabase() {
 
                 dbInstance = Room.databaseBuilder(context, QuasiRoomDatabase::class.java, DATABASE_NAME)
                         .openHelperFactory(factory)
-                        .addMigrations()        // call migration inside addMigrations function in case of any change in DB.
+                        //.addMigrations(MIGRATION_1_2)        // call migration inside addMigrations function in case of any change in DB.
                         .fallbackToDestructiveMigration()
                         .allowMainThreadQueries()
                         .build()
@@ -62,7 +62,7 @@ abstract class QuasiRoomDatabase : RoomDatabase() {
             }
         }
 
-        private val MIGRATION_1_2 = object : Migration(1, 2) {
+        private val MIGRATION_1_2 = object : Migration(1,2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 // Since we didn’t alter the table, there’s nothing else
                 // to do here.
