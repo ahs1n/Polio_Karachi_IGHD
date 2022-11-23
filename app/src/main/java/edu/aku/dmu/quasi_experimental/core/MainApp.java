@@ -26,6 +26,7 @@ import org.json.JSONArray;
 import java.io.File;
 import java.util.List;
 
+import edu.aku.dmu.quasi_experimental.Room.QuasiRoomDatabase;
 import edu.aku.dmu.quasi_experimental.models.Complaints;
 import edu.aku.dmu.quasi_experimental.models.Diagnosis;
 import edu.aku.dmu.quasi_experimental.models.Form;
@@ -158,10 +159,10 @@ public class MainApp extends Application {
     private void initSecure() {
         // Initialize SQLCipher library
         SQLiteDatabase.loadLibs(this);
-        File databaseFile = getDatabasePath(DATABASE_NAME);
+        //File databaseFile = getDatabasePath(DATABASE_NAME);
        /* databaseFile.mkdirs();
         databaseFile.delete();*/
-        SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(databaseFile, DATABASE_PASSWORD, null);
+        //SQLiteDatabase database = SQLiteDatabase.openOrCreateDatabase(databaseFile, DATABASE_PASSWORD, null);
         // Prepare encryption KEY
         ApplicationInfo ai = null;
         try {
@@ -171,6 +172,10 @@ public class MainApp extends Application {
             //IBAHC = bundle.getString("YEK_REVRES").substring(TRATS, TRATS + 16);
             IBAHC = bundle.getString("YEK_REVRES");
             Log.d(TAG, "onCreate: YEK_REVRES = " + IBAHC);
+
+            // Room DB
+            QuasiRoomDatabase.init(this, IBAHC);
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
