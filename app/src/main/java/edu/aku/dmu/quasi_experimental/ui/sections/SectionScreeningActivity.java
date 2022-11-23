@@ -3,7 +3,6 @@ package edu.aku.dmu.quasi_experimental.ui.sections;
 import static edu.aku.dmu.quasi_experimental.core.MainApp.complaints;
 import static edu.aku.dmu.quasi_experimental.core.MainApp.patientDetails;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import edu.aku.dmu.quasi_experimental.R;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivitySectionScreeningBinding;
@@ -118,7 +117,7 @@ public class SectionScreeningActivity extends AppCompatActivity implements Compo
         patientDetails.setId(String.valueOf(rowId));
         if (rowId > 0) {
             patientDetails.setUid(patientDetails.getDeviceId() + patientDetails.getId());
-            db.updatesPDColumn(TableContract.PDTable.COLUMN_UID, patientDetails.getUid());
+            db.updatesPDColumn(TableContracts.PDTable.COLUMN_UID, patientDetails.getUid());
             return true;
         } else {
             Toast.makeText(this, R.string.upd_db_error, Toast.LENGTH_SHORT).show();
@@ -131,7 +130,7 @@ public class SectionScreeningActivity extends AppCompatActivity implements Compo
         DatabaseHelper db = MainApp.appInfo.getDbHelper();
         int updcount = 0;
         try {
-            updcount = db.updatesPDColumn(TableContract.PDTable.COLUMN_SPD, patientDetails.sPDtoString());
+            updcount = db.updatesPDColumn(TableContracts.PDTable.COLUMN_SPD, patientDetails.sPDtoString());
         } catch (JSONException e) {
             Toast.makeText(this, R.string.upd_db + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -162,7 +161,7 @@ public class SectionScreeningActivity extends AppCompatActivity implements Compo
         if (updateDB()) {
             finish();
             complaints = new Complaints();
-            startActivity(new Intent(this, SectionComplaintsActivity.class));
+//            startActivity(new Intent(this, SectionComplaintsActivity.class));
         } else Toast.makeText(this, R.string.fail_db_upd, Toast.LENGTH_SHORT).show();
     }
 

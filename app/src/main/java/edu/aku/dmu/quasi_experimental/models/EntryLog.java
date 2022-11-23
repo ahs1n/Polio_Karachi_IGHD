@@ -17,7 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.EntryLogTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.EntryLogTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
 

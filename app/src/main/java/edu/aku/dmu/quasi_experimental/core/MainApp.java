@@ -1,8 +1,5 @@
 package edu.aku.dmu.quasi_experimental.core;
 
-import static edu.aku.dmu.quasi_experimental.database.DatabaseHelper.DATABASE_NAME;
-import static edu.aku.dmu.quasi_experimental.database.DatabaseHelper.DATABASE_PASSWORD;
-
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -27,11 +24,13 @@ import java.io.File;
 import java.util.List;
 
 import edu.aku.dmu.quasi_experimental.Room.QuasiRoomDatabase;
+import edu.aku.dmu.quasi_experimental.models.Clusters;
 import edu.aku.dmu.quasi_experimental.models.Complaints;
 import edu.aku.dmu.quasi_experimental.models.Diagnosis;
 import edu.aku.dmu.quasi_experimental.models.Form;
 import edu.aku.dmu.quasi_experimental.models.PatientDetails;
 import edu.aku.dmu.quasi_experimental.models.Prescription;
+import edu.aku.dmu.quasi_experimental.models.RandomHH;
 import edu.aku.dmu.quasi_experimental.models.Users;
 import edu.aku.dmu.quasi_experimental.models.Vaccination;
 import edu.aku.dmu.quasi_experimental.ui.LockActivity;
@@ -52,7 +51,6 @@ public class MainApp extends Application {
     private static final String TAG = "MainApp";
     public static File sdDir;
     public static String[] downloadData;
-    public static Form form;
     public static String DeviceURL = "devices.php";
     public static AppInfo appInfo;
     public static Users user;
@@ -71,13 +69,18 @@ public class MainApp extends Application {
 
 
     public static PatientDetails patientDetails;
-    public static PatientDetails pd;
+    public static Form form;
     public static Complaints complaints;
     public static Diagnosis diagnosis;
     public static Prescription prescription;
     public static Vaccination vaccination;
     public static CountDownTimer timer;
     static ToneGenerator toneGen1;
+    public static int selectedLanguage = 0;
+    public static boolean langRTL = false;
+    public static boolean superuser;
+    public static Clusters selectedCluster;
+    public static RandomHH selectedHousehold;
 
     public static void hideSystemUI(View decorView) {
         // Enables regular immersive mode.

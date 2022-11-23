@@ -47,10 +47,10 @@ import java.util.concurrent.TimeUnit;
 
 import edu.aku.dmu.quasi_experimental.R;
 import edu.aku.dmu.quasi_experimental.adapters.SyncListAdapter;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.COMPLAINTSTable;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.EntryLogTable;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.PDTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.COMPLAINTSTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.EntryLogTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.PDTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.database.DatabaseHelper;
 import edu.aku.dmu.quasi_experimental.databinding.ActivitySyncBinding;
@@ -163,7 +163,7 @@ public class SyncActivity extends AppCompatActivity {
                 }
 
                 // Diagnosis
-                uploadTables.add(new SyncModel(TableContract.DIAGNOSISTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(TableContracts.DIAGNOSISTable.TABLE_NAME));
                 try {
                     MainApp.uploadData.add(db.getUnsyncedDIAG());
                 } catch (JSONException e) {
@@ -173,7 +173,7 @@ public class SyncActivity extends AppCompatActivity {
                 }
 
                 // Vaccination
-                uploadTables.add(new SyncModel(TableContract.VACCINATIONTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(TableContracts.VACCINATIONTable.TABLE_NAME));
                 try {
                     MainApp.uploadData.add(db.getUnsyncedVAC());
                 } catch (JSONException e) {
@@ -183,7 +183,7 @@ public class SyncActivity extends AppCompatActivity {
                 }
 
                 // Prescription
-                uploadTables.add(new SyncModel(TableContract.PRESCRIPTIONTable.TABLE_NAME));
+                uploadTables.add(new SyncModel(TableContracts.PRESCRIPTIONTable.TABLE_NAME));
                 try {
                     MainApp.uploadData.add(db.getUnsyncedPRES());
                 } catch (JSONException e) {

@@ -790,7 +790,7 @@
                             android:checked="@{form.ss10899.equals(`999`)}"
                             android:onClick="@{()->form.setSs10899(form.ss10899.equals(`999`)?``:`999`)}"
                             android:tag="-1"
-                            android:text="@string/sh204nr"
+                            android:text="@string/nr"
                             android:textColor="@color/redDark" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

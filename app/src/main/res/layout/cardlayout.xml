@@ -40,7 +40,7 @@
                 android:background="@drawable/bg_rounded_right_top_app_color_filled"
                 android:backgroundTint="@android:color/white"
                 android:gravity="center"
-                android:text="@string/mh02"
+                android:text="Facility Information"
                 android:textColor="@color/grayDark"
                 android:textSize="@dimen/_9ssp"
                 android:textStyle="bold" />
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_3sdp"
-                android:text="@string/mh05"
+                android:text="Facility Code"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/gray" />
 
@@ -118,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_3sdp"
-                android:text="@string/mh04"
+                android:text="UC Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/gray" />
 
@@ -142,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_3sdp"
-                android:text="@string/mh04"
+                android:text="UC Code"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/gray" />
 

@@ -28,31 +28,6 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionPrescriptionActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeEnglish1"
-            android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionVaccinationActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeEnglish1" />
-        <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionDiagnosisActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeEnglish1" />
-        <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionExaminationActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeEnglish1" />
-        <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionHistoryActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeEnglish1" />
-        <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionComplaintsActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeEnglish1" />
-        <activity
             android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionScreeningActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1" />
@@ -67,20 +42,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionMobileHealthR2"
-            android:label="@string/mobilehealthserviceform_heading"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeEnglish1">
-
-            <!--
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            -->
         </activity>
         <activity
             android:name="edu.aku.dmu.quasi_experimental.ui.LoginActivity"

@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import edu.aku.dmu.quasi_experimental.BR;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.PRESCRIPTIONTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.PRESCRIPTIONTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
 public class Prescription extends BaseObservable implements Observable {

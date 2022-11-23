@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
  * Created by hussain.siddiqui on 22/11/2022.
  */
 
-public class TableContract {
+public class TableContracts {
 
     public static abstract class FormsTable implements BaseColumns {
         public static final String TABLE_NAME = "Forms";
@@ -14,27 +14,25 @@ public class TableContract {
         public static final String COLUMN_PROJECT_NAME = "projectName";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "_uid";
+        public static final String COLUMN_EB_CODE = "ebCode";
+        public static final String COLUMN_HHID = "hhid";
+        public static final String COLUMN_SNO = "sno";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_DCODE = "districtCode";
-        public static final String COLUMN_UCODE = "ucCode";
-        public static final String COLUMN_CLUSTER = "clusterno";
-        public static final String COLUMN_HHNO = "hhno";
-        public static final String COLUMN_S01HH = "s01HH";
-        public static final String COLUMN_S05PD = "s05PD";
-        public static final String COLUMN_S06BF = "s06BF";
-        public static final String COLUMN_S07CV = "s07CV";
-        public static final String COLUMN_S08SE = "s08SE";
-        public static final String COLUMN_G5FLAG = "g5FLAG";
-        public static final String COLUMN_HHFLAG = "hhFLAG";
-        public static final String COLUMN_ISTATUS = "istatus";
-        public static final String COLUMN_ISTATUS96x = "istatus96x";
-        public static final String COLUMN_ENDINGDATETIME = "endingdatetime";
+        public static final String COLUMN_GPSLAT = "xlt";
+        public static final String COLUMN_GPSLNG = "xlg";
+        public static final String COLUMN_GPSDATE = "xdt";
+        public static final String COLUMN_GPSACC = "xac";
+
+        public static final String COLUMN_SHH = "sHH";
+        public static final String COLUMN_SSS = "sSS";
         public static final String COLUMN_DEVICEID = "deviceid";
         public static final String COLUMN_DEVICETAGID = "devicetagid";
         public static final String COLUMN_SYNCED = "synced";
-        public static final String COLUMN_SYNCED_DATE = "synced_date";
+        public static final String COLUMN_SYNC_DATE = "sync_date";
+        //  public static final String COLUMN_ENTRY_TYPE = "entry_type";
         public static final String COLUMN_APPVERSION = "appversion";
+        public static final String COLUMN_ISTATUS = "istatus";
     }
 
 
@@ -170,5 +168,33 @@ public class TableContract {
         public static final String COLUMN_APPVERSION = "appversion";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_ISTATUS96x = "istatus96x";
+    }
+
+    public static abstract class ClusterTable implements BaseColumns {
+        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
+        public static final String TABLE_NAME = "Clusters";
+        public static final String COLUMN_ID = "_id";
+        public static final String COLUMN_DIST_ID = "dist_id";
+        public static final String COLUMN_GEOAREA = "geoarea";
+        public static final String COLUMN_EB_CODE = "ebcode";
+
+    }
+
+    public static abstract class RandomHHTable implements BaseColumns {
+        public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
+        public static final String TABLE_NAME = "Randomised";
+        public static final String COLUMN_ID = "_id";
+        public static final String COLUMN_RANDOMDT = "randDT";
+        public static final String COLUMN_LUID = "UID";
+        public static final String COLUMN_EB_CODE = "hh02";
+        public static final String COLUMN_STRUCTURE_NO = "hh03";
+        public static final String COLUMN_FAMILY_EXT_CODE = "hh07";
+        public static final String COLUMN_HH_NO = "hh";
+        public static final String COLUMN_HH_HEAD = "hh08";
+        public static final String COLUMN_CONTACT = "hh09";
+        public static final String COLUMN_HH_SELECTED_STRUCT = "hhss";
+        public static final String COLUMN_SNO = "sno";
+        public static final String COLUMN_TAB_NO = "tabNo";
+        public static String COLUMN_DIST_CODE = "dist_id";
     }
 }

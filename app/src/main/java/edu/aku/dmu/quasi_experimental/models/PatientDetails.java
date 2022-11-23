@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import edu.aku.dmu.quasi_experimental.BR;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
 public class PatientDetails extends BaseObservable implements Observable {
@@ -1574,27 +1574,27 @@ public class PatientDetails extends BaseObservable implements Observable {
 
 
     public PatientDetails Hydrate(Cursor cursor) throws JSONException {
-        this.id = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_ID));
-        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_UID));
-        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_USERNAME));
-        this.projectName = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_PROJECT_NAME));
-        this.facility = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_FACILITY));
-        this.facilityCode = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_FACILITY_CODE));
-        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SYSDATE));
-        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_DEVICEID));
-        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_DEVICETAGID));
-        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_APPVERSION));
-        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SYNCED));
-        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SYNCED_DATE));
-        this.iStatus = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_ISTATUS));
-        this.iStatus96x = cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_ISTATUS96x));
+        this.id = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_ID));
+        this.uid = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_UID));
+        this.userName = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_USERNAME));
+        this.projectName = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_PROJECT_NAME));
+        this.facility = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_FACILITY));
+        this.facilityCode = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_FACILITY_CODE));
+        this.sysDate = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_SYSDATE));
+        this.deviceId = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_DEVICEID));
+        this.deviceTag = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_DEVICETAGID));
+        this.appver = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_APPVERSION));
+        this.synced = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_SYNCED));
+        this.syncDate = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_SYNCED_DATE));
+        this.iStatus = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_ISTATUS));
+        this.iStatus96x = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_ISTATUS96x));
 
         //For childCount
         //this.sA = cursor.getString(cursor.getColumnIndexOrThrow(MHContract.MHTable.COLUMN_SA));
 
-        sPDHydrate(cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SPD)));
-        sHISHydrate(cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SHIS)));
-        sEXMHydrate(cursor.getString(cursor.getColumnIndexOrThrow(TableContract.PDTable.COLUMN_SEXM)));
+        sPDHydrate(cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_SPD)));
+        sHISHydrate(cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_SHIS)));
+        sEXMHydrate(cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.PDTable.COLUMN_SEXM)));
 
         return this;
     }
@@ -1743,24 +1743,24 @@ public class PatientDetails extends BaseObservable implements Observable {
     public JSONObject toJSONObject() throws JSONException {
 
         JSONObject json = new JSONObject();
-        json.put(TableContract.PDTable.COLUMN_ID, this.id);
-        json.put(TableContract.PDTable.COLUMN_UID, this.uid);
-        json.put(TableContract.PDTable.COLUMN_USERNAME, this.userName);
-        json.put(TableContract.PDTable.COLUMN_PROJECT_NAME, this.projectName);
-        json.put(TableContract.PDTable.COLUMN_FACILITY, this.facility);
-        json.put(TableContract.PDTable.COLUMN_FACILITY_CODE, this.facilityCode);
-        json.put(TableContract.PDTable.COLUMN_SYSDATE, this.sysDate);
-        json.put(TableContract.PDTable.COLUMN_DEVICEID, this.deviceId);
-        json.put(TableContract.PDTable.COLUMN_DEVICETAGID, this.deviceTag);
-        json.put(TableContract.PDTable.COLUMN_APPVERSION, this.appver);
-        json.put(TableContract.PDTable.COLUMN_SYNCED, this.synced);
-        json.put(TableContract.PDTable.COLUMN_SYNCED_DATE, this.syncDate);
-        json.put(TableContract.PDTable.COLUMN_ISTATUS, this.iStatus);
-        json.put(TableContract.PDTable.COLUMN_ISTATUS96x, this.iStatus96x);
+        json.put(TableContracts.PDTable.COLUMN_ID, this.id);
+        json.put(TableContracts.PDTable.COLUMN_UID, this.uid);
+        json.put(TableContracts.PDTable.COLUMN_USERNAME, this.userName);
+        json.put(TableContracts.PDTable.COLUMN_PROJECT_NAME, this.projectName);
+        json.put(TableContracts.PDTable.COLUMN_FACILITY, this.facility);
+        json.put(TableContracts.PDTable.COLUMN_FACILITY_CODE, this.facilityCode);
+        json.put(TableContracts.PDTable.COLUMN_SYSDATE, this.sysDate);
+        json.put(TableContracts.PDTable.COLUMN_DEVICEID, this.deviceId);
+        json.put(TableContracts.PDTable.COLUMN_DEVICETAGID, this.deviceTag);
+        json.put(TableContracts.PDTable.COLUMN_APPVERSION, this.appver);
+        json.put(TableContracts.PDTable.COLUMN_SYNCED, this.synced);
+        json.put(TableContracts.PDTable.COLUMN_SYNCED_DATE, this.syncDate);
+        json.put(TableContracts.PDTable.COLUMN_ISTATUS, this.iStatus);
+        json.put(TableContracts.PDTable.COLUMN_ISTATUS96x, this.iStatus96x);
 
-        json.put(TableContract.PDTable.COLUMN_SPD, new JSONObject(sPDtoString()));
-        json.put(TableContract.PDTable.COLUMN_SHIS, new JSONObject(sHIStoString()));
-        json.put(TableContract.PDTable.COLUMN_SEXM, new JSONObject(sEXMtoString()));
+        json.put(TableContracts.PDTable.COLUMN_SPD, new JSONObject(sPDtoString()));
+        json.put(TableContracts.PDTable.COLUMN_SHIS, new JSONObject(sHIStoString()));
+        json.put(TableContracts.PDTable.COLUMN_SEXM, new JSONObject(sEXMtoString()));
         return json;
     }
 

@@ -6,11 +6,14 @@ import static edu.aku.dmu.quasi_experimental.core.MainApp.complaints;
 import static edu.aku.dmu.quasi_experimental.core.MainApp.diagnosis;
 import static edu.aku.dmu.quasi_experimental.core.MainApp.patientDetails;
 import static edu.aku.dmu.quasi_experimental.core.MainApp.prescription;
+import static edu.aku.dmu.quasi_experimental.core.MainApp.selectedCluster;
+import static edu.aku.dmu.quasi_experimental.core.MainApp.selectedHousehold;
 import static edu.aku.dmu.quasi_experimental.core.MainApp.vaccination;
 import static edu.aku.dmu.quasi_experimental.core.UserAuth.checkPassword;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_ALTER_USERS_ENABLED;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_ALTER_USERS_ISNEW_USER;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_ALTER_USERS_PWD_EXPIRY;
+import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_CLUSTERS;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_COMPLAINTS;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_DIAGNOSIS;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_DOCTOR;
@@ -18,6 +21,7 @@ import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_ENT
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_FACILITIES;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_PATIENT_DETAILS;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_PRESCRIPTION;
+import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_RANDOM_HH;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_UCS;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_USERS;
 import static edu.aku.dmu.quasi_experimental.database.CreateTable.SQL_CREATE_VACCINATION;
@@ -46,15 +50,18 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.COMPLAINTSTable;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.DIAGNOSISTable;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.EntryLogTable;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.FormsTable;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.PDTable;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.PRESCRIPTIONTable;
-import edu.aku.dmu.quasi_experimental.contracts.TableContract.VACCINATIONTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.COMPLAINTSTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.ClusterTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.DIAGNOSISTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.EntryLogTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.FormsTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.PDTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.PRESCRIPTIONTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.RandomHHTable;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.VACCINATIONTable;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 import edu.aku.dmu.quasi_experimental.models.Camps;
+import edu.aku.dmu.quasi_experimental.models.Clusters;
 import edu.aku.dmu.quasi_experimental.models.Complaints;
 import edu.aku.dmu.quasi_experimental.models.Diagnosis;
 import edu.aku.dmu.quasi_experimental.models.Doctor;
@@ -64,6 +71,7 @@ import edu.aku.dmu.quasi_experimental.models.FormIndicatorsModel;
 import edu.aku.dmu.quasi_experimental.models.HealthFacilities;
 import edu.aku.dmu.quasi_experimental.models.PatientDetails;
 import edu.aku.dmu.quasi_experimental.models.Prescription;
+import edu.aku.dmu.quasi_experimental.models.RandomHH;
 import edu.aku.dmu.quasi_experimental.models.UCs;
 import edu.aku.dmu.quasi_experimental.models.UCs.TableUCs;
 import edu.aku.dmu.quasi_experimental.models.Users;
@@ -90,6 +98,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_USERS);
+        db.execSQL(SQL_CREATE_CLUSTERS);
+        db.execSQL(SQL_CREATE_RANDOM_HH);
         db.execSQL(SQL_CREATE_FACILITIES);
         db.execSQL(SQL_CREATE_UCS);
         db.execSQL(SQL_CREATE_PATIENT_DETAILS);
@@ -116,6 +126,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /*
      * Addition in DB
      * */
+    public Long addForm(Form form) throws JSONException {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        ContentValues values = new ContentValues();
+        values.put(FormsTable.COLUMN_PROJECT_NAME, form.getProjectName());
+        values.put(FormsTable.COLUMN_UID, form.getUid());
+        values.put(FormsTable.COLUMN_EB_CODE, form.getEbCode());
+        values.put(FormsTable.COLUMN_HHID, form.getHhid());
+        values.put(FormsTable.COLUMN_SNO, form.getSno());
+        values.put(FormsTable.COLUMN_USERNAME, form.getUserName());
+        values.put(FormsTable.COLUMN_SYSDATE, form.getSysDate());
+        values.put(FormsTable.COLUMN_GPSLAT, form.getGpsLat());
+        values.put(FormsTable.COLUMN_GPSLNG, form.getGpsLng());
+        values.put(FormsTable.COLUMN_GPSDATE, form.getGpsDT());
+        values.put(FormsTable.COLUMN_GPSACC, form.getGpsAcc());
+
+        values.put(FormsTable.COLUMN_SHH, form.sHHtoString());
+
+     /*   values.put(FormsTable.COLUMN_SSS, form.sMtoString());
+        values.put(FormsTable.COLUMN_SCB, form.sNtoString());
+        values.put(FormsTable.COLUMN_IM, form.sOtoString());*/
+
+        values.put(FormsTable.COLUMN_ISTATUS, form.getiStatus());
+        values.put(FormsTable.COLUMN_DEVICETAGID, form.getDeviceTag());
+/*
+        values.put(FormsTable.COLUMN_ENTRY_TYPE, form.getEntryType());
+*/
+        values.put(FormsTable.COLUMN_DEVICEID, form.getDeviceId());
+        values.put(FormsTable.COLUMN_APPVERSION, form.getAppver());
+        values.put(FormsTable.COLUMN_SYNCED, form.getSynced());
+        values.put(FormsTable.COLUMN_SYNC_DATE, form.getSyncDate());
+
+        long newRowId;
+        newRowId = db.insertOrThrow(
+                FormsTable.TABLE_NAME,
+                FormsTable.COLUMN_NAME_NULLABLE,
+                values);
+        return newRowId;
+    }
 
 
     public Long addEntryLog(EntryLog entryLog) throws SQLiteException {
@@ -397,8 +445,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_SYSDATE,
                 FormsTable.COLUMN_USERNAME,
                 FormsTable.COLUMN_ISTATUS,
-                FormsTable.COLUMN_ISTATUS96x,
-                FormsTable.COLUMN_ENDINGDATETIME,
                 FormsTable.COLUMN_SYNCED,
 
         };
@@ -573,17 +619,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allDC;
     }
 
-    public Form getFormByClusterHH(String distCode, String subAreaCode, String hh) {
+    public Form getFormByClusterHH(String distCode, String subAreaCode, String hh) throws JSONException {
         SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
         Cursor c = null;
         String[] columns = null;
 
         String whereClause;
-        whereClause = FormsTable.COLUMN_DCODE + "=? AND " +
-                FormsTable.COLUMN_CLUSTER + "=? AND " +
-                FormsTable.COLUMN_HHNO + "=? AND " +
+        whereClause =
                 FormsTable.COLUMN_SYNCED + " is null AND " +
-                FormsTable.COLUMN_ISTATUS + "=?";
+                        FormsTable.COLUMN_ISTATUS + "=?";
 
         String[] whereArgs = {distCode, subAreaCode, hh, "2"};
 
@@ -799,10 +843,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // New value for one column
         ContentValues values = new ContentValues();
-        values.put(FormsTable.COLUMN_ISTATUS, MainApp.form.getIStatus());
-        values.put(FormsTable.COLUMN_ISTATUS, MainApp.form.getHh26());
-        values.put(FormsTable.COLUMN_ISTATUS96x, MainApp.form.getIStatus96x());
-        values.put(FormsTable.COLUMN_ENDINGDATETIME, MainApp.form.getEndTime());
+        values.put(FormsTable.COLUMN_ISTATUS, MainApp.form.getiStatus());
+        values.put(FormsTable.COLUMN_ISTATUS, MainApp.form.getHhid());
 
         // Which row to update, based on the ID
         String selection = FormsTable.COLUMN_ID + " =? ";
@@ -880,6 +922,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             long rowID = db.insert(TableUCs.TABLE_NAME, null, values);
             if (rowID != -1) insertCount++;
         }
+        return insertCount;
+    }
+
+    public int syncClusters(JSONArray clusterList) throws JSONException {
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.delete(ClusterTable.TABLE_NAME, null, null);
+        int insertCount = 0;
+        for (int i = 0; i < clusterList.length(); i++) {
+
+            JSONObject json = clusterList.getJSONObject(i);
+
+            Clusters clusters = new Clusters();
+            clusters.sync(json);
+            ContentValues values = new ContentValues();
+
+            values.put(ClusterTable.COLUMN_GEOAREA, clusters.getGeoarea());
+            values.put(ClusterTable.COLUMN_DIST_ID, clusters.getDistId());
+            values.put(ClusterTable.COLUMN_EB_CODE, clusters.getEbcode());
+
+            long rowID = db.insertOrThrow(ClusterTable.TABLE_NAME, null, values);
+            if (rowID != -1) insertCount++;
+        }
+
+
+        return insertCount;
+    }
+
+    public int syncRandomised(JSONArray list) throws JSONException {
+//        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase(DATABASE_PASSWORD);
+        db.delete(RandomHHTable.TABLE_NAME, null, null);
+        int insertCount = 0;
+        for (int i = 0; i < list.length(); i++) {
+
+            JSONObject json = list.getJSONObject(i);
+
+            RandomHH randomHH = new RandomHH();
+            randomHH.sync(json);
+            ContentValues values = new ContentValues();
+/*
+                values.put(RandomHHTable.COLUMN_ID, randomHH.getID());
+*/
+            values.put(RandomHHTable.COLUMN_LUID, randomHH.getLUID());
+            values.put(RandomHHTable.COLUMN_STRUCTURE_NO, randomHH.getStructure());
+            values.put(RandomHHTable.COLUMN_FAMILY_EXT_CODE, randomHH.getExtension());
+            values.put(RandomHHTable.COLUMN_HH_NO, randomHH.getHhid());
+            values.put(RandomHHTable.COLUMN_EB_CODE, randomHH.getEbCode());
+            values.put(RandomHHTable.COLUMN_RANDOMDT, randomHH.getRandomDT());
+            values.put(RandomHHTable.COLUMN_HH_HEAD, randomHH.getHhhead());
+            values.put(RandomHHTable.COLUMN_CONTACT, randomHH.getContact());
+            values.put(RandomHHTable.COLUMN_HH_SELECTED_STRUCT, randomHH.getSelStructure());
+            values.put(RandomHHTable.COLUMN_SNO, randomHH.getSno());
+
+            long rowID = db.insertOrThrow(RandomHHTable.TABLE_NAME, null, values);
+            if (rowID != -1) insertCount++;
+        }
+
         return insertCount;
     }
 
@@ -1027,6 +1126,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
         } finally {
             if (c != null) {
                 c.close();
@@ -1239,7 +1340,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(FormsTable.COLUMN_SYNCED, true);
-        values.put(FormsTable.COLUMN_SYNCED_DATE, new Date().toString());
+        values.put(FormsTable.COLUMN_SYNC_DATE, new Date().toString());
 
 // Which row to update, based on the title
         String where = FormsTable.COLUMN_ID + " = ?";
@@ -1437,8 +1538,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_SYSDATE,
-                FormsTable.COLUMN_CLUSTER,
-                FormsTable.COLUMN_HHNO,
+                FormsTable.COLUMN_EB_CODE,
+                FormsTable.COLUMN_HHID,
                 FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_SYNCED,
         };
@@ -1464,9 +1565,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 fc.setId(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_ID)));
                 fc.setUid(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_UID)));
                 fc.setSysDate(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_SYSDATE)));
-                fc.setCluster(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_CLUSTER)));
-                fc.setHhno(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_HHNO)));
-                fc.setIStatus(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_ISTATUS)));
+                fc.setEbCode(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_EB_CODE)));
+                fc.setHhid(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_HHID)));
+                fc.setiStatus(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_ISTATUS)));
                 fc.setSynced(c.getString(c.getColumnIndexOrThrow(FormsTable.COLUMN_SYNCED)));
                 allFC.add(fc);
             }
@@ -1719,5 +1820,112 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             doctors.add(new Doctor().hydrate(c));
         }
         return doctors;
+    }
+
+
+    public Form getFormByhhid() throws JSONException {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+
+        Boolean distinct = false;
+        String tableName = FormsTable.TABLE_NAME;
+        String[] columns = null;
+        String whereClause = FormsTable.COLUMN_EB_CODE + "= ? AND " +
+                FormsTable.COLUMN_HHID + "= ? ";
+        String[] whereArgs = {selectedCluster.getEbcode(), selectedHousehold.getHhid()};
+        String groupBy = null;
+        String having = null;
+        String orderBy = FormsTable.COLUMN_SYSDATE + " ASC";
+        String limitRows = "1";
+
+        c = db.query(
+                distinct,       // Distinct values
+                tableName,      // The table to query
+                columns,        // The columns to return
+                whereClause,    // The columns for the WHERE clause
+                whereArgs,      // The values for the WHERE clause
+                groupBy,        // don't group the rows
+                having,         // don't filter by row groups
+                orderBy,
+                limitRows
+        );
+
+        Form form = new Form();
+        while (c.moveToNext()) {
+            form = (new Form().Hydrate(c));
+        }
+
+        if (c != null && !c.isClosed()) {
+            c.close();
+        }
+        return form;
+
+    }
+
+    public Clusters getClusterByEBNum(String ebCode) {
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+
+        String whereClause = ClusterTable.COLUMN_EB_CODE + " = ? ";
+
+        String[] whereArgs = {ebCode};
+
+        String groupBy = null;
+        String having = null;
+
+        String orderBy = null;
+
+        Clusters cluster = null;
+        c = db.query(
+                ClusterTable.TABLE_NAME,   // The table to query
+                columns,                    // The columns to return
+                whereClause,                // The columns for the WHERE clause
+                whereArgs,                  // The values for the WHERE clause
+                groupBy,                    // don't group the rows
+                having,                     // don't filter by row groups
+                orderBy                     // The sort order
+        );
+        while (c.moveToNext()) {
+            cluster = new Clusters().hydrate(c);
+        }
+
+        if (c != null && !c.isClosed()) {
+            c.close();
+        }
+        return cluster;
+    }
+
+    public RandomHH getRandomByhhid(String hhid) {
+
+        SQLiteDatabase db = this.getReadableDatabase(DATABASE_PASSWORD);
+        Cursor c = null;
+        String[] columns = null;
+        String whereClause = RandomHHTable.COLUMN_EB_CODE + " = ? AND " +
+                RandomHHTable.COLUMN_HH_NO + " = ? ";
+
+        String[] whereArgs = {selectedCluster.getEbcode(), hhid};
+        String groupBy = null;
+        String having = null;
+        String orderBy = null;
+
+        RandomHH randomHH = null;
+        c = db.query(
+                RandomHHTable.TABLE_NAME,   // The table to query
+                columns,                    // The columns to return
+                whereClause,                // The columns for the WHERE clause
+                whereArgs,                  // The values for the WHERE clause
+                groupBy,                    // don't group the rows
+                having,                     // don't filter by row groups
+                orderBy                     // The sort order
+        );
+        while (c.moveToNext()) {
+            randomHH = new RandomHH().hydrate(c);
+        }
+        if (c != null && !c.isClosed()) {
+            c.close();
+        }
+        return randomHH;
     }
 }
