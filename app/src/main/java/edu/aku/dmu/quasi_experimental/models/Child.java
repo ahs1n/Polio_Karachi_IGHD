@@ -3,14 +3,21 @@ package edu.aku.dmu.quasi_experimental.models;
 import static edu.aku.dmu.quasi_experimental.core.MainApp.PROJECT_NAME;
 import static edu.aku.dmu.quasi_experimental.core.MainApp._EMPTY_;
 import static edu.aku.dmu.quasi_experimental.core.MainApp.form;
+import static edu.aku.dmu.quasi_experimental.contracts.TableContracts.ChildTable;
+
 
 import android.database.Cursor;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,232 +31,435 @@ import edu.aku.dmu.quasi_experimental.BR;
 import edu.aku.dmu.quasi_experimental.contracts.TableContracts;
 import edu.aku.dmu.quasi_experimental.core.MainApp;
 
+@Entity(tableName = ChildTable.TABLE_NAME)
 public class Child extends BaseObservable implements Observable {
 
+    @Ignore
     private final String TAG = "Form";
+    @Ignore
     private final transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
     // APP VARIABLES
+    @ColumnInfo(name = ChildTable.COLUMN_PROJECT_NAME)
     private String projectName = PROJECT_NAME;
     // APP VARIABLES
-    private String id = _EMPTY_;
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = ChildTable.COLUMN_ID)
+    private long id = 0;
+    @ColumnInfo(name = ChildTable.COLUMN_UID)
     private String uid = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_UUID)
     private String uuid = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_USERNAME)
     private String userName = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_SYSDATE)
     private String sysDate = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_CSTATUS)
     private String cstatus = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_EB_CODE)
     private String ebCode = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_HHID)
     private String hhid = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_SNO)
     private String sno = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_DEVICEID)
     private String deviceId = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_DEVICETAGID)
     private String deviceTag = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_APPVERSION)
     private String appver = _EMPTY_;
+    @Ignore
     private String endTime = _EMPTY_;
-
+    @ColumnInfo(name = ChildTable.COLUMN_SYNCED)
     private String synced = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_SYNC_DATE)
     private String syncDate = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_GPSLAT)
     private String gpsLat = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_GPSLNG)
     private String gpsLng = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_GPSDATE)
     private String gpsDT = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_GPSACC)
     private String gpsAcc = _EMPTY_;
-
 
     // Field Variables
     // CH
+    @Ignore
     private String ec13 = _EMPTY_;
+    @Ignore
     private String ec14 = _EMPTY_;
+    @Ignore
     private String ec15 = _EMPTY_;
+    @Ignore
     private String ec16 = _EMPTY_;
+    @Ignore
     private String ec17 = _EMPTY_;
+    @Ignore
     private String cb03dd = _EMPTY_;
+    @Ignore
     private String cb03mm = _EMPTY_;
+    @Ignore
     private String cb03yy = _EMPTY_;
+    @Ignore
     private String cb03dk = _EMPTY_;
+    @Ignore
     private String cb04mm = _EMPTY_;
+    @Ignore
     private String cb04yy = _EMPTY_;
 
     // CB
+    @Ignore
     private String ec01 = _EMPTY_;
+    @Ignore
     private String ec02 = _EMPTY_;
+    @Ignore
     private String ec03 = _EMPTY_;
+    @Ignore
     private String ec04 = _EMPTY_;
+    @Ignore
     private String ec04a = _EMPTY_;
+    @Ignore
     private String ec05 = _EMPTY_;
+    @Ignore
     private String ec06 = _EMPTY_;
+    @Ignore
     private String ec07 = _EMPTY_;
+    @Ignore
     private String ec09 = _EMPTY_;
+    @Ignore
     private String ec11 = _EMPTY_;
+    @Ignore
     private String ec12 = _EMPTY_;
+    @Ignore
     private String ec13cline = _EMPTY_;
+    @Ignore
     private String ec14cname = _EMPTY_;
+    @Ignore
     private String ec18 = _EMPTY_;
+    @Ignore
     private String ec19 = _EMPTY_;
+    @Ignore
     private String ec21 = _EMPTY_;
+    @Ignore
     private String ec22 = _EMPTY_;
+    @Ignore
     private String ec2206x = _EMPTY_;
+    @Ignore
     private String ec2296x = _EMPTY_;
+    @Ignore
     private String cb01a = _EMPTY_;
+    @Ignore
     private String cb01b = _EMPTY_;
+    @Ignore
     private String cb02a = _EMPTY_;
+    @Ignore
     private String cb02b = _EMPTY_;
 
     // IM
+    @Ignore
     private String im01 = _EMPTY_;
+    @Ignore
     private String im02 = _EMPTY_;
+    @Ignore
     private String im02a = _EMPTY_;
+    @Ignore
     private String im02a96x = _EMPTY_;
+    @Ignore
     private String im03 = _EMPTY_;
+    @Ignore
     private String im0396x = _EMPTY_;
+    @Ignore
     private String im04dd = _EMPTY_;
+    @Ignore
     private String im04mm = _EMPTY_;
+    @Ignore
     private String im04yy = _EMPTY_;
+    @Ignore
     private String im0497 = _EMPTY_;
+    @Ignore
     private String backfilename = _EMPTY_;
+    @Ignore
     private String frontfilename = _EMPTY_;
+    @Ignore
     private String im0501dd = _EMPTY_;
+    @Ignore
     private String im0501mm = _EMPTY_;
+    @Ignore
     private String im0501yy = _EMPTY_;
+    @Ignore
     private String im0502dd = _EMPTY_;
+    @Ignore
     private String im0502mm = _EMPTY_;
+    @Ignore
     private String im0502yy = _EMPTY_;
+    @Ignore
     private String im0503dd = _EMPTY_;
+    @Ignore
     private String im0503mm = _EMPTY_;
+    @Ignore
     private String im0503yy = _EMPTY_;
+    @Ignore
     private String im0504dd = _EMPTY_;
+    @Ignore
     private String im0504mm = _EMPTY_;
+    @Ignore
     private String im0504yy = _EMPTY_;
+    @Ignore
     private String im0505dd = _EMPTY_;
+    @Ignore
     private String im0505mm = _EMPTY_;
+    @Ignore
     private String im0505yy = _EMPTY_;
+    @Ignore
     private String im0506dd = _EMPTY_;
+    @Ignore
     private String im0506mm = _EMPTY_;
+    @Ignore
     private String im0506yy = _EMPTY_;
+    @Ignore
     private String im0507dd = _EMPTY_;
+    @Ignore
     private String im0507mm = _EMPTY_;
+    @Ignore
     private String im0507yy = _EMPTY_;
+    @Ignore
     private String im0508dd = _EMPTY_;
+    @Ignore
     private String im0508mm = _EMPTY_;
+    @Ignore
     private String im0508yy = _EMPTY_;
+    @Ignore
     private String im0509dd = _EMPTY_;
+    @Ignore
     private String im0509mm = _EMPTY_;
+    @Ignore
     private String im0509yy = _EMPTY_;
+    @Ignore
     private String im0510dd = _EMPTY_;
+    @Ignore
     private String im0510mm = _EMPTY_;
+    @Ignore
     private String im0510yy = _EMPTY_;
+    @Ignore
     private String im0510add = _EMPTY_;
+    @Ignore
     private String im0510amm = _EMPTY_;
+    @Ignore
     private String im0510ayy = _EMPTY_;
+    @Ignore
     private String im0511dd = _EMPTY_;
+    @Ignore
     private String im0511mm = _EMPTY_;
+    @Ignore
     private String im0511yy = _EMPTY_;
+    @Ignore
     private String im0512dd = _EMPTY_;
+    @Ignore
     private String im0512mm = _EMPTY_;
+    @Ignore
     private String im0512yy = _EMPTY_;
+    @Ignore
     private String im0513dd = _EMPTY_;
+    @Ignore
     private String im0513mm = _EMPTY_;
+    @Ignore
     private String im0513yy = _EMPTY_;
+    @Ignore
     private String im0514dd = _EMPTY_;
+    @Ignore
     private String im0514mm = _EMPTY_;
+    @Ignore
     private String im0514yy = _EMPTY_;
+    @Ignore
     private String im0515dd = _EMPTY_;
+    @Ignore
     private String im0515mm = _EMPTY_;
+    @Ignore
     private String im0515yy = _EMPTY_;
+    @Ignore
     private String im0515bdd = _EMPTY_;
+    @Ignore
     private String im0515bmm = _EMPTY_;
+    @Ignore
     private String im0515byy = _EMPTY_;
+    @Ignore
     private String im0516dd = _EMPTY_;
+    @Ignore
     private String im0516mm = _EMPTY_;
+    @Ignore
     private String im0516yy = _EMPTY_;
+    @Ignore
     private String im0517dd = _EMPTY_;
+    @Ignore
     private String im0517mm = _EMPTY_;
+    @Ignore
     private String im0517yy = _EMPTY_;
     //private String im07 = _EMPTY_;
+    @Ignore
     private String im08 = _EMPTY_;
+    @Ignore
     private String im09 = _EMPTY_;
+    @Ignore
     private String im10 = _EMPTY_;
+    @Ignore
     private String im10a = _EMPTY_;
+    @Ignore
     private String im11 = _EMPTY_;
+    @Ignore
     private String im12 = _EMPTY_;
+    @Ignore
     private String im12a = _EMPTY_;
+    @Ignore
     private String im12a98 = _EMPTY_;
+    @Ignore
     private String im14 = _EMPTY_;
+    @Ignore
     private String im15 = _EMPTY_;
+    @Ignore
     private String im16 = _EMPTY_;
+    @Ignore
     private String im17 = _EMPTY_;
+    @Ignore
     private String im18 = _EMPTY_;
+    @Ignore
     private String im19 = _EMPTY_;
+    @Ignore
     private String im20 = _EMPTY_;
+    @Ignore
     private String im20a = _EMPTY_;
-
+    @Ignore
     private String im21 = _EMPTY_;
+    @Ignore
     private String im22 = _EMPTY_;
+    @Ignore
     private String im22a = _EMPTY_;
+    @Ignore
     private String im23 = _EMPTY_;
+    @Ignore
     private String im236x = _EMPTY_;
+    @Ignore
     private String im23a = _EMPTY_;
+    @Ignore
     private String im2401 = _EMPTY_;
+    @Ignore
     private String im2402 = _EMPTY_;
+    @Ignore
     private String im2403 = _EMPTY_;
+    @Ignore
     private String im2404 = _EMPTY_;
+    @Ignore
     private String im2405 = _EMPTY_;
+    @Ignore
     private String im2406 = _EMPTY_;
+    @Ignore
     private String im2407 = _EMPTY_;
+    @Ignore
     private String im2408 = _EMPTY_;
+    @Ignore
     private String im2409 = _EMPTY_;
+    @Ignore
     private String im2410 = _EMPTY_;
+    @Ignore
     private String im2411 = _EMPTY_;
+    @Ignore
     private String im2412 = _EMPTY_;
+    @Ignore
     private String im2413 = _EMPTY_;
+    @Ignore
     private String im2414 = _EMPTY_;
+    @Ignore
     private String im2415 = _EMPTY_;
+    @Ignore
     private String im2416 = _EMPTY_;
+    @Ignore
     private String im2498 = _EMPTY_;
+    @Ignore
     private String im2496 = _EMPTY_;
+    @Ignore
     private String im2496x = _EMPTY_;
+    @Ignore
     private String im24a = _EMPTY_;
+    @Ignore
     private String im24b = _EMPTY_;
+    @Ignore
     private String im24b98 = _EMPTY_;
+    @Ignore
     private String im24c = _EMPTY_;
     // private String im24d = _EMPTY_;
+    @Ignore
     private String im25 = _EMPTY_;
+    @Ignore
     private String im26 = _EMPTY_;
-
+    @Ignore
     private String im050198 = _EMPTY_;
+    @Ignore
     private String im050298 = _EMPTY_;
+    @Ignore
     private String im050398 = _EMPTY_;
+    @Ignore
     private String im050498 = _EMPTY_;
+    @Ignore
     private String im050598 = _EMPTY_;
+    @Ignore
     private String im050698 = _EMPTY_;
+    @Ignore
     private String im050798 = _EMPTY_;
+    @Ignore
     private String im050898 = _EMPTY_;
+    @Ignore
     private String im050998 = _EMPTY_;
+    @Ignore
     private String im051098 = _EMPTY_;
+    @Ignore
     private String im0510a98 = _EMPTY_;
+    @Ignore
     private String im051198 = _EMPTY_;
+    @Ignore
     private String im051298 = _EMPTY_;
+    @Ignore
     private String im051398 = _EMPTY_;
+    @Ignore
     private String im051498 = _EMPTY_;
+    @Ignore
     private String im051598 = _EMPTY_;
+    @Ignore
     private String im0515b98 = _EMPTY_;
+    @Ignore
     private String im051698 = _EMPTY_;
+    @Ignore
     private String im051798 = _EMPTY_;
-
+    @Ignore
     private String im050295 = _EMPTY_;
+    @Ignore
     private String im050495 = _EMPTY_;
+    @Ignore
     private String im050595 = _EMPTY_;
+    @Ignore
     private String im050695 = _EMPTY_;
+    @Ignore
     private String im050895 = _EMPTY_;
+    @Ignore
     private String im050995 = _EMPTY_;
+    @Ignore
     private String im051095 = _EMPTY_;
+    @Ignore
     private String im0510a95 = _EMPTY_;
+    @Ignore
     private String im051295 = _EMPTY_;
+    @Ignore
     private String im051395 = _EMPTY_;
+    @Ignore
     private String im051495 = _EMPTY_;
+    @Ignore
     private String im0515b95 = _EMPTY_;
+    @Ignore
     private String im051795 = _EMPTY_;
-
-
+    @Ignore
     private long ageInMonths = -1;
+    @Ignore
     private long trueAgeInMonths = -1;
+    @Ignore
     private boolean ageCheck;
 
 
@@ -282,11 +492,11 @@ public class Child extends BaseObservable implements Observable {
         this.projectName = projectName;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -2998,7 +3208,7 @@ public class Child extends BaseObservable implements Observable {
 
 
     public Child Hydrate(Cursor cursor) throws JSONException {
-        this.id = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildTable.COLUMN_ID));
+        this.id = cursor.getLong(cursor.getColumnIndexOrThrow(TableContracts.ChildTable.COLUMN_ID));
         this.uid = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildTable.COLUMN_UID));
         this.uuid = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildTable.COLUMN_UUID));
 /*

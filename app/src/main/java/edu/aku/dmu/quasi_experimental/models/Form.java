@@ -15,6 +15,7 @@ import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.json.JSONException;
@@ -30,16 +31,21 @@ import edu.aku.dmu.quasi_experimental.core.MainApp;
 
 @Entity(tableName = FormsTable.TABLE_NAME)
 public class Form extends BaseObservable implements Observable {
-
+    @Ignore
     private String TAG = "Form";
+    @Ignore
     private final transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
     // FORM SECTIONS
+    @ColumnInfo(name = FormsTable.COLUMN_SHH)
     private String sHH = _EMPTY_;
+
     private String sCH = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SSS)
     private String sSS = _EMPTY_;
     private String sCB = _EMPTY_;
     private String sIM = _EMPTY_;
     // APP VARIABLES
+    @ColumnInfo(name = FormsTable.COLUMN_PROJECT_NAME)
     private String projectName = PROJECT_NAME;
 
     // APP VARIABLES
@@ -47,91 +53,169 @@ public class Form extends BaseObservable implements Observable {
     @NonNull
     @ColumnInfo(name = FormsTable.COLUMN_ID)
     private long id = 0;
+    @ColumnInfo(name = FormsTable.COLUMN_UID)
     private String uid = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_USERNAME)
     private String userName = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SYSDATE)
     private String sysDate = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_EB_CODE)
     private String ebCode = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_HHID)
     private String hhid = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SNO)
     private String sno = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_DEVICEID)
     private String deviceId = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_DEVICETAGID)
     private String deviceTag = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_APPVERSION)
     private String appver = _EMPTY_;
+    @Ignore
     private String endTime = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_ISTATUS)
     private String iStatus = _EMPTY_;
     private String iStatus96x = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SYNCED)
     private String synced = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SYNC_DATE)
     private String syncDate = _EMPTY_;
+    @Ignore
     private String entryType = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_GPSLAT)
     private String gpsLat = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_GPSLNG)
     private String gpsLng = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_GPSDATE)
     private String gpsDT = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_GPSACC)
     private String gpsAcc = _EMPTY_;
 
 
     // FIELD VARIABLES
+    @Ignore
     private String hh01 = _EMPTY_;
+    @Ignore
     private String hh02 = _EMPTY_;
+    @Ignore
     private String hh03 = _EMPTY_;
+    @Ignore
     private String hh03a = _EMPTY_;
+    @Ignore
     private String hh04 = _EMPTY_;
+    @Ignore
     private String hh04a = _EMPTY_;
+    @Ignore
     private String hh05 = _EMPTY_;
+    @Ignore
     private String hh06 = _EMPTY_;
+    @Ignore
     private String hh07 = _EMPTY_;
+    @Ignore
     private String hh08 = _EMPTY_;
+    @Ignore
     private String hh09 = _EMPTY_;
+    @Ignore
     private String hh10 = _EMPTY_;
+    @Ignore
     private String hh11 = _EMPTY_;
+    @Ignore
     private String hh12 = _EMPTY_;
+    @Ignore
     private String hh13 = _EMPTY_;
+    @Ignore
     private String hh18 = _EMPTY_;
+    @Ignore
     private String hh13a = _EMPTY_;
+    @Ignore
     private String hh14 = _EMPTY_;
+    @Ignore
     private String hh15 = _EMPTY_;
+    @Ignore
     private String hh16a = _EMPTY_;
+    @Ignore
     private String hh16b = _EMPTY_;
+    @Ignore
     private String hh19 = _EMPTY_;
+    @Ignore
     private String hh19a = _EMPTY_;
+    @Ignore
     private String hh19b = _EMPTY_;
+    @Ignore
     private String hh20 = _EMPTY_;
+    @Ignore
     private String hh20a = _EMPTY_;
+    @Ignore
     private String hh21 = _EMPTY_;
+    @Ignore
     private String hh21xx = _EMPTY_;
-
+    @Ignore
     private String ss01 = _EMPTY_;
+    @Ignore
     private String ss01xx = _EMPTY_;
+    @Ignore
     private String ss02 = _EMPTY_;
+    @Ignore
     private String ss02xx = _EMPTY_;
+    @Ignore
     private String ss03 = _EMPTY_;
+    @Ignore
     private String ss03xx = _EMPTY_;
+    @Ignore
     private String ss04 = _EMPTY_;
+    @Ignore
     private String ss05 = _EMPTY_;
+    @Ignore
     private String ss05xx = _EMPTY_;
     private String ss07 = _EMPTY_;
+    @Ignore
     private String ss07xx = _EMPTY_;
+    @Ignore
     private String ss08 = _EMPTY_;
+    @Ignore
     private String ss09 = _EMPTY_;
+    @Ignore
     private String ss11 = _EMPTY_;
     private String ss13 = _EMPTY_;
+    @Ignore
     private String ss13xx = _EMPTY_;
+    @Ignore
     private String ss14a = _EMPTY_;
+    @Ignore
     private String ss14b = _EMPTY_;
+    @Ignore
     private String ss14c = _EMPTY_;
+    @Ignore
     private String ss14d = _EMPTY_;
+    @Ignore
     private String ss14e = _EMPTY_;
+    @Ignore
     private String ss14f = _EMPTY_;
+    @Ignore
     private String ss14g = _EMPTY_;
+    @Ignore
     private String ss14h = _EMPTY_;
+    @Ignore
     private String ss14i = _EMPTY_;
+    @Ignore
     private String ss14j = _EMPTY_;
+    @Ignore
     private String ss14k = _EMPTY_;
+    @Ignore
     private String ss14l = _EMPTY_;
+    @Ignore
     private String ss14m = _EMPTY_;
+    @Ignore
     private String ss14n = _EMPTY_;
+    @Ignore
     private String ss14o = _EMPTY_;
+    @Ignore
     private String ss14p = _EMPTY_;
+    @Ignore
     private String ss14q = _EMPTY_;
+    @Ignore
     private String ss14r = _EMPTY_;
+    @Ignore
     private String ss14s = _EMPTY_;
     private String ss21a = _EMPTY_;
     private String ss22 = _EMPTY_;

@@ -10,7 +10,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import edu.aku.dmu.quasi_experimental.Room.QuasiRoomDatabase.Companion.DATABASE_VERSION
 import edu.aku.dmu.quasi_experimental.Room.QuasiRoomDatabase.Companion.dbInstance
 import edu.aku.dmu.quasi_experimental.core.MainApp
+import edu.aku.dmu.quasi_experimental.models.Child
+import edu.aku.dmu.quasi_experimental.models.Clusters
 import edu.aku.dmu.quasi_experimental.models.Form
+import edu.aku.dmu.quasi_experimental.models.Users
 import net.sqlcipher.database.SQLiteDatabase.getBytes
 import net.sqlcipher.database.SupportFactory
 
@@ -23,7 +26,10 @@ import net.sqlcipher.database.SupportFactory
         version = QuasiRoomDatabase.DATABASE_VERSION,
         entities = [
             // add your models here to create tables in db
-             Form :: class
+             Form :: class,
+            Users :: class,
+            Child :: class,
+            Clusters :: class
         ]
 )
 
@@ -33,11 +39,14 @@ abstract class QuasiRoomDatabase : RoomDatabase() {
 
     // Add Dao class here
     abstract fun formsDao(): FormsDao
+    abstract fun usersDao(): UsersDao
+    abstract fun childDao(): ChildDao
+    abstract fun clustersDao(): ClustersDao
 
 
     companion object {
         const val DATABASE_VERSION = 1
-        const val DATABASE_NAME = MainApp.PROJECT_NAME + ".db"
+        const val DATABASE_NAME = MainApp.PROJECT_NAME + ".1db"
 
         @Volatile
         @JvmStatic
