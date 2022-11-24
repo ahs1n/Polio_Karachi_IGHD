@@ -60,7 +60,7 @@ public class ConsentActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.db_excp_error + " FORM-add", Toast.LENGTH_SHORT).show();
             return false;
         }
-        MainApp.form.setId(String.valueOf(rowId));
+        MainApp.form.setId((int) rowId);
         if (rowId > 0) {
             MainApp.form.setUid(MainApp.form.getDeviceId() + MainApp.form.getId());
             db.updatesFormColumn(TableContracts.FormsTable.COLUMN_UID, MainApp.form.getUid());

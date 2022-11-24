@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
         }).check();
 
         bi = DataBindingUtil.setContentView(this, R.layout.activity_login);
-        setSupportActionBar(bi.toolbar);
+//        setSupportActionBar(bi.toolbar);
 
         db = MainApp.appInfo.getDbHelper();
 

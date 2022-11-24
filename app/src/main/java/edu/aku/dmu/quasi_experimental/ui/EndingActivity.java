@@ -96,7 +96,7 @@ public class EndingActivity extends AppCompatActivity {
     }
 
     private void saveDraft() {
-        form.setiStatus(bi.istatusa.isChecked() ? "1"
+        form.setIStatus(bi.istatusa.isChecked() ? "1"
                 : bi.istatusb.isChecked() ? "2"
                 : bi.istatusc.isChecked() ? "3"
                 : bi.istatusd.isChecked() ? "4"
@@ -105,7 +105,7 @@ public class EndingActivity extends AppCompatActivity {
                 : bi.istatusg.isChecked() ? "7"
                 : bi.istatus96.isChecked() ? "96"
                 : "-1");
-        form.setiStatus96x(bi.istatus96x.getText().toString());
+        form.setIStatus96x(bi.istatus96x.getText().toString());
         // form.setEndTime(new SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(new Date().getTime()));
     }
 
@@ -159,7 +159,7 @@ public class EndingActivity extends AppCompatActivity {
             e.printStackTrace();
             Toast.makeText(this, "JSONException(Forms): ", Toast.LENGTH_SHORT).show();
         }
-        int updcount = db.updatesFormColumn(TableContracts.FormsTable.COLUMN_ISTATUS, form.getiStatus());
+        int updcount = db.updatesFormColumn(TableContracts.FormsTable.COLUMN_ISTATUS, form.getIStatus());
         return updcount > 0;
     }
 

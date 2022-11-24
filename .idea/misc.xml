@@ -3,8 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable-v24/ic_settings.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable-v24/sub_labels_separator.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/bg_circle_white_filled.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/bg_rounded_app_color_bordered.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/bg_rounded_app_color_dark_filled.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/bg_rounded_app_color_filled.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/bg_rounded_orange_bordered.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/bg_rounded_orange_filled.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/ic_locked.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/ic_settings.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/ic_user.xml" value="0.38666666666666666" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/splash_screen.xml" value="0.382051282051282" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/drawable/sub_labels_separator.xml" value="0.38666666666666666" />
         <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/layout/activity_child_ending.xml" value="0.34833333333333333" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/layout/activity_consent.xml" value="0.3466666666666667" />
         <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/layout/activity_ending.xml" value="0.34833333333333333" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/layout/activity_identification.xml" value="0.34833333333333333" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/layout/activity_login.xml" value="0.34833333333333333" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/layout/activity_section_ch.xml" value="0.34833333333333333" />
+        <entry key="..\:/Android Office Work/Quasi_Experimental/app/src/main/res/layout/activity_splash.xml" value="0.25" />
       </map>
     </option>
   </component>

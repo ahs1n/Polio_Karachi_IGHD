@@ -62,7 +62,7 @@ public class FormsAdapter extends RecyclerView.Adapter<FormsAdapter.ViewHolder> 
 
         String iStatus = "Status  Unknown";
         int iColor = 0;
-        switch (fc.get(position).getiStatus()) {
+        switch (fc.get(position).getIStatus()) {
             case "1":
                 iStatus = "Complete";
                 iColor = Color.GREEN;

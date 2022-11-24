@@ -16,7 +16,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="edu.aku.dmu.quasi_experimental.core.MainApp"
+        android:name=".core.MainApp"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:icon="@drawable/app_icon"
@@ -30,16 +30,9 @@
         android:usesCleartextTraffic="false"
         tools:replace="android:allowBackup">
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.ChildEndingActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.LoginActivity"
+            android:name=".ui.SplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize|stateHidden">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,119 +40,125 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.ChangePasswordActivity"
+            android:name=".ui.ChildEndingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".ui.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+        <activity
+            android:name=".ui.ChangePasswordActivity"
             android:exported="true" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.EndingActivity"
+            android:name=".ui.EndingActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.SyncActivity"
+            android:name=".ui.SyncActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.database.AndroidManager"
+            android:name=".database.AndroidManager"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.lists.FormsReportPending"
+            android:name=".ui.lists.FormsReportPending"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.lists.FormsReportCluster"
+            android:name=".ui.lists.FormsReportCluster"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.lists.FormsReportDate"
+            android:name=".ui.lists.FormsReportDate"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.TakePhoto"
+            android:name=".ui.TakePhoto"
             android:exported="false"
             android:hardwareAccelerated="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.MainActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
-        <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.lists.HouseholdScreenActivity"
+            android:name=".MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.IdentificationActivity"
+            android:name=".ui.lists.HouseholdScreenActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".ui.IdentificationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.ConsentActivity"
+            android:name=".ui.sections.ConsentActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionCBActivity"
+            android:name=".ui.sections.SectionCBActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionCHActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppThemeEnglish1"
-            android:windowSoftInputMode="adjustResize" />
-
-        <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionIM1Activity"
+            android:name=".ui.sections.SectionCHActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionIM2Activity"
+            android:name=".ui.sections.SectionIM1Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionRIActivity"
+            android:name=".ui.sections.SectionIM2Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionSS_1Activity"
+            android:name=".ui.sections.SectionRIActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.sections.SectionSS_2Activity"
+            android:name=".ui.sections.SectionSS_1Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
-
         <activity
-            android:name="edu.aku.dmu.quasi_experimental.ui.WebViewActivity"
+            android:name=".ui.sections.SectionSS_2Activity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeEnglish1"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.WebViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"

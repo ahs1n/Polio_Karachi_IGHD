@@ -353,7 +353,7 @@
     <style name="Summary_Layout" parent="Theme.AppCompat.Light.DarkActionBar" />
 
 
-    <style name="MyDatePickerDialogTheme" parent="Theme.AppCompat.Light.Dialog">
+    <style name="DatePickerEditTextDialogTheme" parent="Theme.AppCompat.Light.Dialog">
         <!-- this is new -->
         <item name="colorAccent">@color/colorAccent</item>
 

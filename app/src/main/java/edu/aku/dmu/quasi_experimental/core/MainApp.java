@@ -32,6 +32,7 @@ import java.io.File;
 import java.util.List;
 
 import edu.aku.dmu.quasi_experimental.R;
+import edu.aku.dmu.quasi_experimental.Room.QuasiRoomDatabase;
 import edu.aku.dmu.quasi_experimental.models.Child;
 import edu.aku.dmu.quasi_experimental.models.Clusters;
 import edu.aku.dmu.quasi_experimental.models.Form;
@@ -253,6 +254,10 @@ public class MainApp extends Application {
             //IBAHC = bundle.getString("YEK_REVRES").substring(TRATS, TRATS + 16);
             IBAHC = bundle.getString("YEK_REVRES");
             Log.d(TAG, "onCreate: YEK_REVRES = " + IBAHC);
+
+            // Room DB
+            QuasiRoomDatabase.init(this, IBAHC);
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
