@@ -110,7 +110,7 @@ public class HouseholdScreenActivity extends AppCompatActivity {
             bi.btnContinue.setText("Review Next");
         db = MainApp.appInfo.dbHelper;
 
-        MainApp.householdChecked = !MainApp.form.getSs27().equals("");
+//        MainApp.householdChecked = !MainApp.form.getSs27().equals("");
 
         MainApp.childList = new ArrayList<>();
         MainApp.childCompleted = new ArrayList<>();

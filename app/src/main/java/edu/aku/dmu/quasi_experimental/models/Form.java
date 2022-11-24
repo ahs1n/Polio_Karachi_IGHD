@@ -107,15 +107,11 @@ public class Form extends BaseObservable implements Observable {
     private String ss04 = _EMPTY_;
     private String ss05 = _EMPTY_;
     private String ss05xx = _EMPTY_;
-    private String ss06 = _EMPTY_;
-    private String ss06xx = _EMPTY_;
     private String ss07 = _EMPTY_;
     private String ss07xx = _EMPTY_;
     private String ss08 = _EMPTY_;
     private String ss09 = _EMPTY_;
     private String ss11 = _EMPTY_;
-    private String ss12 = _EMPTY_;
-    private String ss12hhx = _EMPTY_;
     private String ss13 = _EMPTY_;
     private String ss13xx = _EMPTY_;
     private String ss14a = _EMPTY_;
@@ -137,38 +133,20 @@ public class Form extends BaseObservable implements Observable {
     private String ss14q = _EMPTY_;
     private String ss14r = _EMPTY_;
     private String ss14s = _EMPTY_;
-    private String ss15a = _EMPTY_;
-    private String ss15b = _EMPTY_;
-    private String ss15c = _EMPTY_;
-    private String ss15d = _EMPTY_;
-    private String ss15e = _EMPTY_;
-    private String ss15f = _EMPTY_;
-    private String ss15g = _EMPTY_;
-    private String ss15h = _EMPTY_;
-    private String ss15i = _EMPTY_;
-    private String ss17 = _EMPTY_;
-    private String ss17xx = _EMPTY_;
-    private String ss18 = _EMPTY_;
-    private String ss18xx = _EMPTY_;
-    private String ss19 = _EMPTY_;
-    private String ss19xx = _EMPTY_;
-    private String ss20 = _EMPTY_;
-    private String ss20xx = _EMPTY_;
     private String ss21a = _EMPTY_;
     private String ss22 = _EMPTY_;
-    private String ss23 = _EMPTY_;
-    private String ss23landx = _EMPTY_;
-    private String ss24 = _EMPTY_;
-    private String ss25a = _EMPTY_;
-    private String ss25b = _EMPTY_;
-    private String ss25c = _EMPTY_;
-    private String ss25d = _EMPTY_;
-    private String ss25e = _EMPTY_;
-    private String ss25f = _EMPTY_;
-    private String ss25g = _EMPTY_;
-    private String ss26 = _EMPTY_;
-    private String ss27 = _EMPTY_;
-    private String ss28 = _EMPTY_;
+    private String a30801 = _EMPTY_;
+    private String a30802 = _EMPTY_;
+    private String a30803 = _EMPTY_;
+    private String a30804 = _EMPTY_;
+    private String a30805 = _EMPTY_;
+    private String a30896 = _EMPTY_;
+    private String a30896x = _EMPTY_;
+    private String a30901 = _EMPTY_;
+    private String a30902 = _EMPTY_;
+    private String a30903 = _EMPTY_;
+    private String a30996 = _EMPTY_;
+    private String a30996x = _EMPTY_;
 
 /*    private String ec13= _EMPTY_;
     private String ec14= _EMPTY_;
@@ -987,27 +965,6 @@ public class Form extends BaseObservable implements Observable {
     }
 
     @Bindable
-    public String getSs06() {
-        return ss06;
-    }
-
-    public void setSs06(String ss06) {
-        this.ss06 = ss06;
-        setSs06xx(ss06.equals("96") ? this.ss06xx : ""); // for all skips, mention all skipped questions
-        notifyPropertyChanged(BR.ss06);
-    }
-
-    @Bindable
-    public String getSs06xx() {
-        return ss06xx;
-    }
-
-    public void setSs06xx(String ss06xx) {
-        this.ss06xx = ss06xx;
-        notifyPropertyChanged(BR.ss06xx);
-    }
-
-    @Bindable
     public String getSs07() {
         return ss07;
     }
@@ -1015,11 +972,10 @@ public class Form extends BaseObservable implements Observable {
     public void setSs07(String ss07) {
         this.ss07 = ss07;
         setSs07xx(ss07.equals("96") ? this.ss07xx : ""); // for all skips, mention all skipped questions
-        final boolean b = ss07.equals("8") || ss07.equals("9") || ss07.equals("96");
+        final boolean b = ss07.equals("9") || ss07.equals("10") || ss07.equals("96");
         setSs08(b ? "" : this.ss08);
         setSs09(b ? "" : this.ss09);
         setSs11(b ? "" : this.ss11);
-        setSs12(b ? "" : this.ss12);
         notifyPropertyChanged(BR.ss07);
     }
 
@@ -1051,7 +1007,6 @@ public class Form extends BaseObservable implements Observable {
     public void setSs09(String ss09) {
         this.ss09 = ss09;
         setSs11(ss09.equals("1") ? this.ss11 : "");
-        setSs12(ss09.equals("1") ? this.ss12 : "");
         notifyPropertyChanged(BR.ss09);
     }
 
@@ -1062,29 +1017,7 @@ public class Form extends BaseObservable implements Observable {
 
     public void setSs11(String ss11) {
         this.ss11 = ss11;
-        setSs12(ss11.equals("2") ? "" : this.ss12);
         notifyPropertyChanged(BR.ss11);
-    }
-
-    @Bindable
-    public String getSs12() {
-        return ss12;
-    }
-
-    public void setSs12(String ss12) {
-        this.ss12 = ss12;
-        setSs12hhx(ss12.equals("66") ? this.ss12hhx : ""); // for all skips, mention all skipped questions
-        notifyPropertyChanged(BR.ss12);
-    }
-
-    @Bindable
-    public String getSs12hhx() {
-        return ss12hhx;
-    }
-
-    public void setSs12hhx(String ss12hhx) {
-        this.ss12hhx = ss12hhx;
-        notifyPropertyChanged(BR.ss12hhx);
     }
 
     @Bindable
@@ -1299,180 +1232,6 @@ public class Form extends BaseObservable implements Observable {
     }
 
     @Bindable
-    public String getSs15a() {
-        return ss15a;
-    }
-
-    public void setSs15a(String ss15a) {
-        this.ss15a = ss15a;
-        notifyPropertyChanged(BR.ss15a);
-    }
-
-    @Bindable
-    public String getSs15b() {
-        return ss15b;
-    }
-
-    public void setSs15b(String ss15b) {
-        this.ss15b = ss15b;
-        notifyPropertyChanged(BR.ss15b);
-    }
-
-    @Bindable
-    public String getSs15c() {
-        return ss15c;
-    }
-
-    public void setSs15c(String ss15c) {
-        this.ss15c = ss15c;
-        notifyPropertyChanged(BR.ss15c);
-    }
-
-    @Bindable
-    public String getSs15d() {
-        return ss15d;
-    }
-
-    public void setSs15d(String ss15d) {
-        this.ss15d = ss15d;
-        notifyPropertyChanged(BR.ss15d);
-    }
-
-    @Bindable
-    public String getSs15e() {
-        return ss15e;
-    }
-
-    public void setSs15e(String ss15e) {
-        this.ss15e = ss15e;
-        notifyPropertyChanged(BR.ss15e);
-    }
-
-    @Bindable
-    public String getSs15f() {
-        return ss15f;
-    }
-
-    public void setSs15f(String ss15f) {
-        this.ss15f = ss15f;
-        notifyPropertyChanged(BR.ss15f);
-    }
-
-    @Bindable
-    public String getSs15g() {
-        return ss15g;
-    }
-
-    public void setSs15g(String ss15g) {
-        this.ss15g = ss15g;
-        notifyPropertyChanged(BR.ss15g);
-    }
-
-    @Bindable
-    public String getSs15h() {
-        return ss15h;
-    }
-
-    public void setSs15h(String ss15h) {
-        this.ss15h = ss15h;
-        notifyPropertyChanged(BR.ss15h);
-    }
-
-    @Bindable
-    public String getSs15i() {
-        return ss15i;
-    }
-
-    public void setSs15i(String ss15i) {
-        this.ss15i = ss15i;
-        notifyPropertyChanged(BR.ss15i);
-    }
-
-    @Bindable
-    public String getSs17() {
-        return ss17;
-    }
-
-    public void setSs17(String ss17) {
-        this.ss17 = ss17;
-        setSs17xx(ss17.equals("96") ? this.ss17xx : ""); // for all skips, mention all skipped questions
-        notifyPropertyChanged(BR.ss17);
-    }
-
-    @Bindable
-    public String getSs17xx() {
-        return ss17xx;
-    }
-
-    public void setSs17xx(String ss17xx) {
-        this.ss17xx = ss17xx;
-        notifyPropertyChanged(BR.ss17xx);
-    }
-
-    @Bindable
-    public String getSs18() {
-        return ss18;
-    }
-
-    public void setSs18(String ss18) {
-        this.ss18 = ss18;
-        setSs18xx(ss18.equals("96") ? this.ss18xx : ""); // for all skips, mention all skipped questions
-        notifyPropertyChanged(BR.ss18);
-    }
-
-    @Bindable
-    public String getSs18xx() {
-        return ss18xx;
-    }
-
-    public void setSs18xx(String ss18xx) {
-        this.ss18xx = ss18xx;
-        notifyPropertyChanged(BR.ss18xx);
-    }
-
-    @Bindable
-    public String getSs19() {
-        return ss19;
-    }
-
-    public void setSs19(String ss19) {
-        this.ss19 = ss19;
-        setSs19xx(ss19.equals("96") ? this.ss19xx : ""); // for all skips, mention all skipped questions
-        notifyPropertyChanged(BR.ss19);
-    }
-
-    @Bindable
-    public String getSs19xx() {
-        return ss19xx;
-    }
-
-    public void setSs19xx(String ss19xx) {
-        this.ss19xx = ss19xx;
-        notifyPropertyChanged(BR.ss19xx);
-    }
-
-    @Bindable
-    public String getSs20() {
-        return ss20;
-    }
-
-    public void setSs20(String ss20) {
-        this.ss20 = ss20;
-        setSs20xx(ss20.equals("96") ? this.ss20xx : ""); // for all skips, mention all skipped questions
-        notifyPropertyChanged(BR.ss20);
-    }
-
-    @Bindable
-    public String getSs20xx() {
-        return ss20xx;
-    }
-
-    public void setSs20xx(String ss20xx) {
-        this.ss20xx = ss20xx;
-        notifyPropertyChanged(BR.ss20xx);
-    }
-
-    @Bindable
     public String getSs21a() {
         return ss21a;
     }
@@ -1489,148 +1248,142 @@ public class Form extends BaseObservable implements Observable {
 
     public void setSs22(String ss22) {
         this.ss22 = ss22;
-        setSs23(ss22.equals("1") ? this.ss23 : "");
         notifyPropertyChanged(BR.ss22);
     }
 
     @Bindable
-    public String getSs23() {
-        return ss23;
+    public String getA30801() {
+        return a30801;
     }
 
-    public void setSs23(String ss23) {
-        this.ss23 = ss23;
-        setSs23landx(ss23.equals("1") || ss23.equals("2") ? this.ss23landx : "");
-        notifyPropertyChanged(BR.ss23);
-    }
-
-    @Bindable
-    public String getSs23landx() {
-        return ss23landx;
-    }
-
-    public void setSs23landx(String ss23landx) {
-        this.ss23landx = ss23landx;
-        notifyPropertyChanged(BR.ss23landx);
+    public void setA30801(String a30801) {
+        if (this.a30801.equals(a30801)) return; // for all checkboxes
+        this.a30801 = a30801;
+        notifyPropertyChanged(BR.a30801);
     }
 
     @Bindable
-    public String getSs24() {
-        return ss24;
+    public String getA30802() {
+        return a30802;
     }
 
-    public void setSs24(String ss24) {
-        this.ss24 = ss24;
-        setSs25a(ss24.equals("1") ? this.ss25a : "");
-        setSs25b(ss24.equals("1") ? this.ss25b : "");
-        setSs25c(ss24.equals("1") ? this.ss25c : "");
-        setSs25d(ss24.equals("1") ? this.ss25d : "");
-        setSs25e(ss24.equals("1") ? this.ss25e : "");
-        setSs25f(ss24.equals("1") ? this.ss25f : "");
-        setSs25g(ss24.equals("1") ? this.ss25g : "");
-        notifyPropertyChanged(BR.ss24);
+    public void setA30802(String a30802) {
+        if (this.a30802.equals(a30802)) return; // for all checkboxes
+        this.a30802 = a30802;
+        notifyPropertyChanged(BR.a30802);
     }
 
     @Bindable
-    public String getSs25a() {
-        return ss25a;
+    public String getA30803() {
+        return a30803;
     }
 
-    public void setSs25a(String ss25a) {
-        this.ss25a = ss25a;
-        notifyPropertyChanged(BR.ss25a);
-    }
-
-    @Bindable
-    public String getSs25b() {
-        return ss25b;
-    }
-
-    public void setSs25b(String ss25b) {
-        this.ss25b = ss25b;
-        notifyPropertyChanged(BR.ss25b);
+    public void setA30803(String a30803) {
+        if (this.a30803.equals(a30803)) return; // for all checkboxes
+        this.a30803 = a30803;
+        notifyPropertyChanged(BR.a30803);
     }
 
     @Bindable
-    public String getSs25c() {
-        return ss25c;
+    public String getA30804() {
+        return a30804;
     }
 
-    public void setSs25c(String ss25c) {
-        this.ss25c = ss25c;
-        notifyPropertyChanged(BR.ss25c);
-    }
-
-    @Bindable
-    public String getSs25d() {
-        return ss25d;
-    }
-
-    public void setSs25d(String ss25d) {
-        this.ss25d = ss25d;
-        notifyPropertyChanged(BR.ss25d);
+    public void setA30804(String a30804) {
+        if (this.a30804.equals(a30804)) return; // for all checkboxes
+        this.a30804 = a30804;
+        notifyPropertyChanged(BR.a30804);
     }
 
     @Bindable
-    public String getSs25e() {
-        return ss25e;
+    public String getA30805() {
+        return a30805;
     }
 
-    public void setSs25e(String ss25e) {
-        this.ss25e = ss25e;
-        notifyPropertyChanged(BR.ss25e);
-    }
-
-    @Bindable
-    public String getSs25f() {
-        return ss25f;
-    }
-
-    public void setSs25f(String ss25f) {
-        this.ss25f = ss25f;
-        notifyPropertyChanged(BR.ss25f);
+    public void setA30805(String a30805) {
+        if (this.a30805.equals(a30805)) return; // for all checkboxes
+        this.a30805 = a30805;
+        notifyPropertyChanged(BR.a30805);
     }
 
     @Bindable
-    public String getSs25g() {
-        return ss25g;
+    public String getA30896() {
+        return a30896;
     }
 
-    public void setSs25g(String ss25g) {
-        this.ss25g = ss25g;
-        notifyPropertyChanged(BR.ss25g);
-    }
-
-    @Bindable
-    public String getSs26() {
-        return ss26;
-    }
-
-    public void setSs26(String ss26) {
-        this.ss26 = ss26;
-        notifyPropertyChanged(BR.ss26);
+    public void setA30896(String a30896) {
+        if (this.a30896.equals(a30896)) return; // for all checkboxes
+        this.a30896 = a30896;
+        setA30896x(a30896.equals("96") ? this.a30896x : "");
+        notifyPropertyChanged(BR.a30896);
     }
 
     @Bindable
-    public String getSs27() {
-        return ss27;
+    public String getA30896x() {
+        return a30896x;
     }
 
-    public void setSs27(String ss27) {
-        this.ss27 = ss27;
-        notifyPropertyChanged(BR.ss27);
+    public void setA30896x(String a30896x) {
+        this.a30896x = a30896x;
+        notifyPropertyChanged(BR.a30896x);
     }
 
     @Bindable
-    public String getSs28() {
-        return ss28;
+    public String getA30901() {
+        return a30901;
     }
 
-    public void setSs28(String ss28) {
-        this.ss28 = ss28;
-        notifyPropertyChanged(BR.ss28);
+    public void setA30901(String a30901) {
+        if (this.a30901.equals(a30901)) return; // for all checkboxes
+        this.a30901 = a30901;
+        notifyPropertyChanged(BR.a30901);
     }
-/*
+
+    @Bindable
+    public String getA30902() {
+        return a30902;
+    }
+
+    public void setA30902(String a30902) {
+        if (this.a30902.equals(a30902)) return; // for all checkboxes
+        this.a30902 = a30902;
+        notifyPropertyChanged(BR.a30902);
+    }
+
+    @Bindable
+    public String getA30903() {
+        return a30903;
+    }
+
+    public void setA30903(String a30903) {
+        if (this.a30903.equals(a30903)) return; // for all checkboxes
+        this.a30903 = a30903;
+        notifyPropertyChanged(BR.a30903);
+    }
+
+    @Bindable
+    public String getA30996() {
+        return a30996;
+    }
+
+    public void setA30996(String a30996) {
+        if (this.a30996.equals(a30996)) return; // for all checkboxes
+        this.a30996 = a30996;
+        setA30996x(a30996.equals("96") ? this.a30996x : "");
+        notifyPropertyChanged(BR.a30996);
+    }
+
+    @Bindable
+    public String getA30996x() {
+        return a30996x;
+    }
+
+    public void setA30996x(String a30996x) {
+        this.a30996x = a30996x;
+        notifyPropertyChanged(BR.a30996x);
+    }
+
+    /*
 
     @Bindable
     public String getEc13() {
@@ -1838,15 +1591,11 @@ public class Form extends BaseObservable implements Observable {
             this.ss04 = json.getString("ss04");
             this.ss05 = json.getString("ss05");
             this.ss05xx = json.getString("ss05xx");
-            this.ss06 = json.getString("ss06");
-            this.ss06xx = json.getString("ss06xx");
             this.ss07 = json.getString("ss07");
             this.ss07xx = json.getString("ss07xx");
             this.ss08 = json.getString("ss08");
             this.ss09 = json.getString("ss09");
             this.ss11 = json.getString("ss11");
-            this.ss12 = json.getString("ss12");
-            this.ss12hhx = json.getString("ss12hhx");
             this.ss13 = json.getString("ss13");
             this.ss13xx = json.getString("ss13xx");
             this.ss14a = json.getString("ss14a");
@@ -1868,38 +1617,8 @@ public class Form extends BaseObservable implements Observable {
             this.ss14q = json.getString("ss14q");
             this.ss14r = json.getString("ss14r");
             this.ss14s = json.getString("ss14s");
-            this.ss15a = json.getString("ss15a");
-            this.ss15b = json.getString("ss15b");
-            this.ss15c = json.getString("ss15c");
-            this.ss15d = json.getString("ss15d");
-            this.ss15e = json.getString("ss15e");
-            this.ss15f = json.getString("ss15f");
-            this.ss15g = json.getString("ss15g");
-            this.ss15h = json.getString("ss15h");
-            this.ss15i = json.getString("ss15i");
-            this.ss17 = json.getString("ss17");
-            this.ss17xx = json.getString("ss17xx");
-            this.ss18 = json.getString("ss18");
-            this.ss18xx = json.getString("ss18xx");
-            this.ss19 = json.getString("ss19");
-            this.ss19xx = json.getString("ss19xx");
-            this.ss20 = json.getString("ss20");
-            this.ss20xx = json.getString("ss20xx");
             this.ss21a = json.getString("ss21a");
             this.ss22 = json.getString("ss22");
-            this.ss23 = json.getString("ss23");
-            this.ss23landx = json.getString("ss23landx");
-            this.ss24 = json.getString("ss24");
-            this.ss25a = json.getString("ss25a");
-            this.ss25b = json.getString("ss25b");
-            this.ss25c = json.getString("ss25c");
-            this.ss25d = json.getString("ss25d");
-            this.ss25e = json.getString("ss25e");
-            this.ss25f = json.getString("ss25f");
-            this.ss25g = json.getString("ss25g");
-            this.ss26 = json.getString("ss26");
-            this.ss27 = json.getString("ss27");
-            this.ss28 = json.getString("ss28");
 
         }
 
@@ -1966,15 +1685,11 @@ public class Form extends BaseObservable implements Observable {
                 .put("ss04", ss04)
                 .put("ss05", ss05)
                 .put("ss05xx", ss05xx)
-                .put("ss06", ss06)
-                .put("ss06xx", ss06xx)
                 .put("ss07", ss07)
                 .put("ss07xx", ss07xx)
                 .put("ss08", ss08)
                 .put("ss09", ss09)
                 .put("ss11", ss11)
-                .put("ss12", ss12)
-                .put("ss12hhx", ss12hhx)
                 .put("ss13", ss13)
                 .put("ss13xx", ss13xx)
                 .put("ss14a", ss14a)
@@ -1996,38 +1711,8 @@ public class Form extends BaseObservable implements Observable {
                 .put("ss14q", ss14q)
                 .put("ss14r", ss14r)
                 .put("ss14s", ss14s)
-                .put("ss15a", ss15a)
-                .put("ss15b", ss15b)
-                .put("ss15c", ss15c)
-                .put("ss15d", ss15d)
-                .put("ss15e", ss15e)
-                .put("ss15f", ss15f)
-                .put("ss15g", ss15g)
-                .put("ss15h", ss15h)
-                .put("ss15i", ss15i)
-                .put("ss17", ss17)
-                .put("ss17xx", ss17xx)
-                .put("ss18", ss18)
-                .put("ss18xx", ss18xx)
-                .put("ss19", ss19)
-                .put("ss19xx", ss19xx)
-                .put("ss20", ss20)
-                .put("ss20xx", ss20xx)
                 .put("ss21a", ss21a)
-                .put("ss22", ss22)
-                .put("ss23", ss23)
-                .put("ss23landx", ss23landx)
-                .put("ss24", ss24)
-                .put("ss25a", ss25a)
-                .put("ss25b", ss25b)
-                .put("ss25c", ss25c)
-                .put("ss25d", ss25d)
-                .put("ss25e", ss25e)
-                .put("ss25f", ss25f)
-                .put("ss25g", ss25g)
-                .put("ss26", ss26)
-                .put("ss27", ss27)
-                .put("ss28", ss28);
+                .put("ss22", ss22);
 
         return json.toString();
 
