@@ -2,11 +2,8 @@ package edu.aku.dmu.polio_karachi_ighd.ui.sections;
 
 import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.child;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -42,7 +39,6 @@ public class SectionCHActivity extends AppCompatActivity {
         setSupportActionBar(bi.toolbar);
         db = MainApp.appInfo.dbHelper;
         bi.setChild(MainApp.child);
-        setGPS();
         if (child.getEc13().equals(""))
             MainApp.child.setEc13(String.valueOf(MainApp.childCount + 1));
         Intent intent = getIntent();
@@ -154,34 +150,4 @@ public class SectionCHActivity extends AppCompatActivity {
         setResult(RESULT_CANCELED, returnIntent);
         finish();
     }
-
-    public void setGPS() {
-        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-        try {
-            String lat = GPSPref.getString("Latitude", "0");
-            String lang = GPSPref.getString("Longitude", "0");
-            String acc = GPSPref.getString("Accuracy", "0");
-
-            if (lat == "0" && lang == "0") {
-                Toast.makeText(this, "Could not obtained points", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "Points set", Toast.LENGTH_SHORT).show();
-            }
-
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-            child.setGpsLat(lat);
-            child.setGpsLng(lang);
-            child.setGpsAcc(acc);
-            child.setGpsDT(date); // Timestamp is converted to date above
-
-//            Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Log.e(TAG, "setGPS: " + e.getMessage());
-        }
-
-    }
-
-
 }

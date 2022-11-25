@@ -16,11 +16,6 @@ public class TableContracts {
         public static final String COLUMN_SNO = "sno";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_GPSLAT = "xlt";
-        public static final String COLUMN_GPSLNG = "xlg";
-        public static final String COLUMN_GPSDATE = "xdt";
-        public static final String COLUMN_GPSACC = "xac";
-
         public static final String COLUMN_SHH = "sHH";
         public static final String COLUMN_SSS = "sSS";
         public static final String COLUMN_DEVICEID = "deviceid";
@@ -130,10 +125,6 @@ public class TableContracts {
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_CSTATUS = "cstatus";
         public static final String COLUMN_SYSDATE = "sysdate";
-        public static final String COLUMN_GPSLAT = "xlt";
-        public static final String COLUMN_GPSLNG = "xlg";
-        public static final String COLUMN_GPSDATE = "xdt";
-        public static final String COLUMN_GPSACC = "xac";
         public static final String COLUMN_SNO = "sno";
         public static final String COLUMN_SCH = "sch";
         public static final String COLUMN_SCB = "scb";

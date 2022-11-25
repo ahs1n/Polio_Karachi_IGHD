@@ -58,7 +58,7 @@ import edu.aku.hassannaqvi.tpvics_r2.models.Villages;
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = PROJECT_NAME + ".db";
     public static final String DATABASE_COPY = PROJECT_NAME + "_copy.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_PASSWORD = IBAHC;
     private final String TAG = "DatabaseHelper";
 
@@ -83,21 +83,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         switch (oldVersion) {
             case 1:
-                db.execSQL(CreateTable.SQL_ALTER_FORMS_GPS_LAT);
-                db.execSQL(CreateTable.SQL_ALTER_FORMS_GPS_LNG);
-                db.execSQL(CreateTable.SQL_ALTER_FORMS_GPS_DATE);
-                db.execSQL(CreateTable.SQL_ALTER_FORMS_GPS_ACC);
-
-                db.execSQL(CreateTable.SQL_ALTER_CHILD_GPS_LAT);
-                db.execSQL(CreateTable.SQL_ALTER_CHILD_GPS_LNG);
-                db.execSQL(CreateTable.SQL_ALTER_CHILD_GPS_DATE);
-                db.execSQL(CreateTable.SQL_ALTER_CHILD_GPS_ACC);
-                // DO NOT BREAK AFTER EACH VERSION
-                //break;
             case 2:
-
-            default:
-
         }
     }
 
@@ -113,10 +99,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_SNO, form.getSno());
         values.put(FormsTable.COLUMN_USERNAME, form.getUserName());
         values.put(FormsTable.COLUMN_SYSDATE, form.getSysDate());
-        values.put(FormsTable.COLUMN_GPSLAT, form.getGpsLat());
-        values.put(FormsTable.COLUMN_GPSLNG, form.getGpsLng());
-        values.put(FormsTable.COLUMN_GPSDATE, form.getGpsDT());
-        values.put(FormsTable.COLUMN_GPSACC, form.getGpsAcc());
 
         values.put(FormsTable.COLUMN_SHH, form.sHHtoString());
 
@@ -154,10 +136,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(ChildTable.COLUMN_USERNAME, child.getUserName());
         values.put(ChildTable.COLUMN_SYSDATE, child.getSysDate());
         values.put(ChildTable.COLUMN_CSTATUS, child.getCstatus());
-        values.put(ChildTable.COLUMN_GPSLAT, child.getGpsLat());
-        values.put(ChildTable.COLUMN_GPSLNG, child.getGpsLng());
-        values.put(ChildTable.COLUMN_GPSDATE, child.getGpsDT());
-        values.put(ChildTable.COLUMN_GPSACC, child.getGpsAcc());
 
         values.put(ChildTable.COLUMN_SCH, child.sCHtoString());
 
