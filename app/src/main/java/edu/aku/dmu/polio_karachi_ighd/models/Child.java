@@ -2785,6 +2785,19 @@ public class Child extends BaseObservable implements Observable {
 
     public void setIm24c(String im24c) {
         this.im24c = im24c;
+        setB110(im24c.equals("1") ? this.b110 : "");
+        setB114(im24c.equals("1") ? this.b114 : "");
+        setB11201(im24c.equals("1") ? "" : this.b11201);
+        setB11202(im24c.equals("1") ? "" : this.b11202);
+        setB11203(im24c.equals("1") ? "" : this.b11203);
+        setB11204(im24c.equals("1") ? "" : this.b11204);
+        setB11205(im24c.equals("1") ? "" : this.b11205);
+        setB11206(im24c.equals("1") ? "" : this.b11206);
+        setB11207(im24c.equals("1") ? "" : this.b11207);
+        setB11208(im24c.equals("1") ? "" : this.b11208);
+        setB11209(im24c.equals("1") ? "" : this.b11209);
+        setB11210(im24c.equals("1") ? "" : this.b11210);
+        setB11296(im24c.equals("1") ? "" : this.b11296);
         notifyPropertyChanged(BR.im24c);
     }
 
@@ -3269,6 +3282,12 @@ public class Child extends BaseObservable implements Observable {
 
     public void setB107(String b107) {
         this.b107 = b107;
+        setB10801(b107.equals("1") ? this.b10801 : "");
+        setB10802(b107.equals("1") ? this.b10802 : "");
+        setB10803(b107.equals("1") ? this.b10803 : "");
+        setB10804(b107.equals("1") ? this.b10804 : "");
+        setB10805(b107.equals("1") ? this.b10805 : "");
+        setB10898(b107.equals("1") ? this.b10898 : "");
         notifyPropertyChanged(BR.b107);
     }
 
