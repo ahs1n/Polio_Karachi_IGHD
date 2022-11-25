@@ -32,7 +32,7 @@ import java.io.File;
 import java.util.List;
 
 import edu.aku.dmu.polio_karachi_ighd.R;
-import edu.aku.dmu.polio_karachi_ighd.Room.QuasiRoomDatabase;
+import edu.aku.dmu.polio_karachi_ighd.Room.PolioIGHDRoomDatabase;
 import edu.aku.dmu.polio_karachi_ighd.models.Child;
 import edu.aku.dmu.polio_karachi_ighd.models.Clusters;
 import edu.aku.dmu.polio_karachi_ighd.models.Form;
@@ -42,7 +42,7 @@ import edu.aku.dmu.polio_karachi_ighd.models.Users;
 
 public class MainApp extends Application {
 
-    public static final String PROJECT_NAME = "Quasi_Experimental_Trial";
+    public static final String PROJECT_NAME = "Polio_Karachi_IGHD";
     public static final String DIST_ID = null;
     public static final String SYNC_LOGIN = "sync_login";
     public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
@@ -256,7 +256,7 @@ public class MainApp extends Application {
             Log.d(TAG, "onCreate: YEK_REVRES = " + IBAHC);
 
             // Room DB
-            QuasiRoomDatabase.init(this, IBAHC);
+            PolioIGHDRoomDatabase.init(this, IBAHC);
 
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();

@@ -1,11 +1,10 @@
-package edu.aku.dmu.quasi_experimental.Room
+package edu.aku.dmu.polio_karachi_ighd.Room
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import edu.aku.dmu.quasi_experimental.contracts.TableContracts
-import edu.aku.dmu.quasi_experimental.models.Clusters
-import edu.aku.dmu.quasi_experimental.models.Users
+import edu.aku.dmu.polio_karachi_ighd.contracts.TableContracts
+import edu.aku.dmu.polio_karachi_ighd.models.Clusters
 import org.json.JSONArray
 import org.json.JSONException
 
@@ -15,7 +14,7 @@ interface ClustersDao {
     fun syncClusters(clustersList: JSONArray): Int {
         var insertCount = 0
         deleteClustersTable()
-        for(i in 0 until clustersList.length()) {
+        for (i in 0 until clustersList.length()) {
             val jsonObjectUser = clustersList.optJSONObject(i)
             val cluster = Clusters()
             cluster.sync(jsonObjectUser)

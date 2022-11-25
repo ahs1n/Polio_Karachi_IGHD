@@ -329,7 +329,7 @@
                                 android:layout_margin="20dp"
                                 android:orientation="vertical">
 
-                                <edu.aku.dmu.quasi_experimental.core.NoMenuEditText
+                                <edu.aku.dmu.polio_karachi_ighd.core.NoMenuEditText
                                     android:id="@+id/username"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
@@ -360,7 +360,7 @@
                                     android:layout_height="wrap_content"
                                     android:orientation="horizontal">
 
-                                    <edu.aku.dmu.quasi_experimental.core.NoMenuEditText
+                                    <edu.aku.dmu.polio_karachi_ighd.core.NoMenuEditText
                                         android:id="@+id/password"
                                         android:layout_width="0dp"
                                         android:layout_height="match_parent"

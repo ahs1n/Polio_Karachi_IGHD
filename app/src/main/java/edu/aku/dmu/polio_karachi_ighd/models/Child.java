@@ -27,6 +27,7 @@ import java.util.Locale;
 
 import edu.aku.dmu.polio_karachi_ighd.BR;
 import edu.aku.dmu.polio_karachi_ighd.contracts.TableContracts;
+import edu.aku.dmu.polio_karachi_ighd.contracts.TableContracts.ChildTable;
 import edu.aku.dmu.polio_karachi_ighd.core.MainApp;
 
 @Entity(tableName = ChildTable.TABLE_NAME)

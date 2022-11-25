@@ -7,10 +7,6 @@ import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import edu.aku.dmu.polio_karachi_ighd.core.MainApp
-import edu.aku.dmu.polio_karachi_ighd.models.Form
-import edu.aku.dmu.polio_karachi_ighd.Room.QuasiRoomDatabase.Companion.DATABASE_VERSION
-import edu.aku.dmu.polio_karachi_ighd.Room.QuasiRoomDatabase.Companion.dbInstance
-import edu.aku.dmu.polio_karachi_ighd.core.MainApp
 import edu.aku.dmu.polio_karachi_ighd.models.Child
 import edu.aku.dmu.polio_karachi_ighd.models.Clusters
 import edu.aku.dmu.polio_karachi_ighd.models.Form
@@ -24,19 +20,18 @@ import net.sqlcipher.database.SupportFactory
 // Copyright (c) 2022 COE. All rights reserved.
 //
 @Database(
-        version = QuasiRoomDatabase.DATABASE_VERSION,
-        entities = [
-            // add your models here to create tables in db
-             Form :: class,
-            Users :: class,
-            Child :: class,
-            Clusters :: class
-        ]
+    version = PolioIGHDRoomDatabase.DATABASE_VERSION,
+    entities = [
+        // add your models here to create tables in db
+        Form::class,
+        Users::class,
+        Child::class,
+        Clusters::class
+    ]
 )
 
 
-
-abstract class QuasiRoomDatabase : RoomDatabase() {
+abstract class PolioIGHDRoomDatabase : RoomDatabase() {
 
     // Add Dao class here
     abstract fun formsDao(): FormsDao
@@ -51,10 +46,10 @@ abstract class QuasiRoomDatabase : RoomDatabase() {
 
         @Volatile
         @JvmStatic
-        var dbInstance: QuasiRoomDatabase? = null
+        var dbInstance: PolioIGHDRoomDatabase? = null
 
         @JvmStatic
-        fun init(context: Context, password: String): QuasiRoomDatabase {
+        fun init(context: Context, password: String): PolioIGHDRoomDatabase {
             if (dbInstance != null)
                 return dbInstance!!
 
@@ -62,7 +57,8 @@ abstract class QuasiRoomDatabase : RoomDatabase() {
                 val passphrase: ByteArray = getBytes(password.toCharArray())
                 val factory = SupportFactory(passphrase)
 
-                dbInstance = Room.databaseBuilder(context, QuasiRoomDatabase::class.java, DATABASE_NAME)
+                dbInstance =
+                    Room.databaseBuilder(context, PolioIGHDRoomDatabase::class.java, DATABASE_NAME)
                         .openHelperFactory(factory)
                         .addMigrations()        // call migration inside addMigrations function in case of any change in DB.
                         .fallbackToDestructiveMigration()

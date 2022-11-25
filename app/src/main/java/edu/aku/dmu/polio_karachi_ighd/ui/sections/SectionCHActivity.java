@@ -71,7 +71,7 @@ public class SectionCHActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.db_excp_error, Toast.LENGTH_SHORT).show();
             return false;
         }
-        MainApp.child.setId(String.valueOf(rowId));
+        MainApp.child.setId((int) rowId);
         if (rowId > 0) {
             MainApp.child.setUid(MainApp.child.getDeviceId() + MainApp.child.getId());
             db.updatesChildColumn(TableContracts.ChildTable.COLUMN_UID, MainApp.child.getUid());
