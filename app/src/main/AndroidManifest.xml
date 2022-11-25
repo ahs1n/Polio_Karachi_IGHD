@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="edu.aku.dmu.quasi_experimental">
+    package="edu.aku.dmu.polio_karachi_ighd">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
@@ -16,7 +16,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name=".core.MainApp"
+        android:name="edu.aku.dmu.polio_karachi_ighd.core.MainApp"
         android:allowBackup="false"
         android:hardwareAccelerated="true"
         android:icon="@drawable/app_icon"
@@ -30,7 +30,7 @@
         android:usesCleartextTraffic="false"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".ui.SplashActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.SplashActivity"
             android:exported="true"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -40,125 +40,125 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.ChildEndingActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.ChildEndingActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".ui.LoginActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden"></activity>
         <activity
-            android:name=".ui.ChangePasswordActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.ChangePasswordActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.EndingActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.EndingActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".ui.SyncActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.SyncActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".database.AndroidManager"
+            android:name="edu.aku.dmu.polio_karachi_ighd.database.AndroidManager"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity
-            android:name=".ui.lists.FormsReportPending"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.lists.FormsReportPending"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.lists.FormsReportCluster"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.lists.FormsReportCluster"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.lists.FormsReportDate"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.lists.FormsReportDate"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.TakePhoto"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.TakePhoto"
             android:exported="false"
             android:hardwareAccelerated="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".ui.lists.HouseholdScreenActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.lists.HouseholdScreenActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".ui.IdentificationActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.IdentificationActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.sections.ConsentActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.sections.ConsentActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".ui.sections.SectionCBActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.sections.SectionCBActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.sections.SectionCHActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.sections.SectionCHActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.sections.SectionIM1Activity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.sections.SectionIM1Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.sections.SectionIM2Activity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.sections.SectionIM2Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.sections.SectionRIActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.sections.SectionRIActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.sections.SectionSS_1Activity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.sections.SectionSS_1Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.sections.SectionSS_2Activity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.sections.SectionSS_2Activity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".ui.WebViewActivity"
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.WebViewActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeEnglish1"

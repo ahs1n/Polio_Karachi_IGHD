@@ -7,7 +7,7 @@
 
         <variable
             name="child"
-            type="edu.aku.dmu.quasi_experimental.models.Child" />
+            type="edu.aku.dmu.polio_karachi_ighd.models.Child" />
     </data>
 
     <LinearLayout

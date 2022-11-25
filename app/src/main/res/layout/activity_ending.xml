@@ -10,7 +10,7 @@
 
         <variable
             name="form"
-            type="edu.aku.dmu.quasi_experimental.models.Form" />
+            type="edu.aku.dmu.polio_karachi_ighd.models.Form" />
     </data>
 
 

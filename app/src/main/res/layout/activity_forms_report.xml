@@ -9,15 +9,15 @@
 
         <variable
             name="custerReport"
-            type="edu.aku.dmu.quasi_experimental.ui.lists.FormsReportCluster" />
+            type="edu.aku.dmu.polio_karachi_ighd.ui.lists.FormsReportCluster" />
 
         <variable
             name="dtReport"
-            type="edu.aku.dmu.quasi_experimental.ui.lists.FormsReportDate" />
+            type="edu.aku.dmu.polio_karachi_ighd.ui.lists.FormsReportDate" />
 
         <variable
             name="pendingReport"
-            type="edu.aku.dmu.quasi_experimental.ui.lists.FormsReportPending" />
+            type="edu.aku.dmu.polio_karachi_ighd.ui.lists.FormsReportPending" />
     </data>
 
     <LinearLayout

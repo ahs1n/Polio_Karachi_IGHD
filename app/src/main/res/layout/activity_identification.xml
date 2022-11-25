@@ -78,12 +78,14 @@
                             android:layout_height="wrap_content"
                             android:orientation="horizontal">
 
-                            <EditText
+                            <com.edittextpicker.aliazaz.EditTextPicker
                                 android:id="@+id/hh05"
                                 android:layout_width="0dp"
                                 android:layout_weight="1"
+                                android:gravity="center"
+                                android:inputType="number"
+                                android:maxLength="9"
                                 android:layout_height="wrap_content"
-                                android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789,. "
                                 android:hint="@string/hh05" />
 
                             <ImageButton

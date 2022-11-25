@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
-        android:background="@drawable/app_bg"
+        android:background="@drawable/appbg"
         android:orientation="vertical">
 
         <!-- CUSTOM TOOLBAR -->

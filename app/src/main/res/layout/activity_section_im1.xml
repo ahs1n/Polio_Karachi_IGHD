@@ -7,11 +7,11 @@
 
         <import type="android.view.View" />
 
-        <import type="edu.aku.dmu.quasi_experimental.R" />
+        <import type="edu.aku.dmu.polio_karachi_ighd.R" />
 
         <variable
             name="form"
-            type="edu.aku.dmu.quasi_experimental.models.Child" />
+            type="edu.aku.dmu.polio_karachi_ighd.models.Child" />
 
     </data>
 
