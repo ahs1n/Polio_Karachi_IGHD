@@ -1,7 +1,7 @@
 package edu.aku.dmu.polio_karachi_ighd.models
 
 import android.database.Cursor
-import edu.aku.dmu.polio_karachi_ighd.contracts.TableContracts.UsersTable
+import edu.aku.dmu.polio_karachi_ighd.contracts.TableContracts
 import edu.aku.dmu.polio_karachi_ighd.core.MainApp._EMPTY_
 import androidx.room.ColumnInfo
 import androidx.room.Entity

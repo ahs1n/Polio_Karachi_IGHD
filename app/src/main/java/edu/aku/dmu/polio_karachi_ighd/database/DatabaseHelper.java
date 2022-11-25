@@ -153,7 +153,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(ChildTable.COLUMN_SNO, child.getSno());
         values.put(ChildTable.COLUMN_USERNAME, child.getUserName());
         values.put(ChildTable.COLUMN_SYSDATE, child.getSysDate());
-        values.put(ChildTable.COLUMN_CSTATUS, child.getCStatus());
+        values.put(ChildTable.COLUMN_CSTATUS, child.getCstatus());
         values.put(ChildTable.COLUMN_GPSLAT, child.getGpsLat());
         values.put(ChildTable.COLUMN_GPSLNG, child.getGpsLng());
         values.put(ChildTable.COLUMN_GPSDATE, child.getGpsDT());

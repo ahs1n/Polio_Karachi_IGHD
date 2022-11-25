@@ -142,6 +142,8 @@ public class Form extends BaseObservable implements Observable {
     @Ignore
     private String hh19b = _EMPTY_;
     @Ignore
+    private String hh19t = _EMPTY_;
+    @Ignore
     private String hh20 = _EMPTY_;
     @Ignore
     private String hh20a = _EMPTY_;
@@ -161,6 +163,8 @@ public class Form extends BaseObservable implements Observable {
     private String ss03 = _EMPTY_;
     @Ignore
     private String ss03xx = _EMPTY_;
+    @Ignore
+    private String ss003 = _EMPTY_;
     @Ignore
     private String ss04 = _EMPTY_;
     @Ignore
@@ -868,6 +872,18 @@ public class Form extends BaseObservable implements Observable {
     }
 
     @Bindable
+    public String getHh19t() {
+        return hh19t;
+    }
+
+    public void setHh19t(String hh19t) {
+        this.hh19t = hh19t;
+        notifyPropertyChanged(BR.hh19t);
+    }
+
+
+
+    @Bindable
     public String getHh20() {
         return hh20;
     }
@@ -1014,6 +1030,16 @@ public class Form extends BaseObservable implements Observable {
     public void setSs03xx(String ss03xx) {
         this.ss03xx = ss03xx;
         notifyPropertyChanged(BR.ss03xx);
+    }
+
+    @Bindable
+    public String getSs003() {
+        return ss003;
+    }
+
+    public void setSs003(String ss003) {
+        this.ss003 = ss003;
+        notifyPropertyChanged(BR.ss003);
     }
 
     @Bindable
@@ -1639,6 +1665,7 @@ public class Form extends BaseObservable implements Observable {
             this.hh19 = json.getString("hh19");
             this.hh19a = json.getString("hh19a");
             this.hh19b = json.getString("hh19b");
+            this.hh19t = json.getString("hh19t");
             this.hh20 = json.getString("hh20");
             this.hh20a = json.getString("hh20a");
             this.hh21 = json.getString("hh21");
@@ -1672,6 +1699,7 @@ public class Form extends BaseObservable implements Observable {
             this.ss02xx = json.getString("ss02xx");
             this.ss03 = json.getString("ss03");
             this.ss03xx = json.getString("ss03xx");
+            this.ss003 = json.getString("ss003");
             this.ss04 = json.getString("ss04");
             this.ss05 = json.getString("ss05");
             this.ss05xx = json.getString("ss05xx");
@@ -1734,7 +1762,7 @@ public class Form extends BaseObservable implements Observable {
                 .put("hh16b", hh16b)
                 .put("hh19", hh19)
                 .put("hh19a", hh19a)
-                .put("hh19b", hh19b)
+                .put("hh19t", hh19t)
                 .put("hh20", hh20)
                 .put("hh20a", hh20a)
                 .put("hh21", hh21)
@@ -1766,6 +1794,7 @@ public class Form extends BaseObservable implements Observable {
                 .put("ss02xx", ss02xx)
                 .put("ss03", ss03)
                 .put("ss03xx", ss03xx)
+                .put("ss003", ss003)
                 .put("ss04", ss04)
                 .put("ss05", ss05)
                 .put("ss05xx", ss05xx)
