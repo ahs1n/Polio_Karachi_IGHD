@@ -60,7 +60,7 @@ android {
             configurations.all {
                 resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
             }
-            applicationId "edu.aku.dmu.quasi_experimental"
+            applicationId "edu.aku.dmu.polio_karachi_ighd"
             versionCode versionBuild
             versionName "${versionNumber}.${versionPatch}${versionType}"
             minSdk 22
@@ -113,7 +113,7 @@ android {
         }
 
         debug {
-            resValue("string", "DB_PASSWORD_quasi_experimental.db", "VaLu@b1ePeRcE!V3")
+            resValue("string", "DB_PASSWORD_polio_Karachi_ighd.db", "VaLu@b1ePeRcE!V3")
         }
     }
     compileOptions {

@@ -7,7 +7,7 @@
 
         <variable
             name="form"
-            type="edu.aku.dmu.quasi_experimental.models.Form" />
+            type="edu.aku.dmu.polio_karachi_ighd.models.Form" />
     </data>
 
     <LinearLayout
@@ -251,6 +251,13 @@
                                 android:onClick="@{()->form.setSs03(`4`)}"
                                 android:text="@string/ss03d" />
 
+                            <TextView
+                                style="@style/sub_labels"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="@string/ss03btitle" />
+
                             <RadioButton
                                 android:id="@+id/ss03e"
                                 android:layout_width="match_parent"
@@ -259,12 +266,30 @@
                                 android:onClick="@{()->form.setSs03(`5`)}"
                                 android:text="@string/ss03e" />
 
+
+                            <RadioButton
+                                android:id="@+id/ss03o"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:checked="@{form.ss03.equals(`6`)}"
+                                android:onClick="@{()->form.setSs03(`6`)}"
+                                android:text="@string/ss03o" />
+
+
+                            <RadioButton
+                                android:id="@+id/ss03p"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:checked="@{form.ss03.equals(`7`)}"
+                                android:onClick="@{()->form.setSs03(`7`)}"
+                                android:text="@string/ss03p" />
+
                             <TextView
                                 style="@style/sub_labels"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="12dp"
-                                android:text="@string/ss03ftitle" />
+                                android:text="@string/ss03htitle" />
 
                             <RadioButton
                                 android:id="@+id/ss03f"
@@ -282,6 +307,13 @@
                                 android:onClick="@{()->form.setSs03(`9`)}"
                                 android:text="@string/ss03g" />
 
+                            <TextView
+                                style="@style/sub_labels"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="@string/ss03ftitle" />
+
                             <RadioButton
                                 android:id="@+id/ss03h"
                                 android:layout_width="match_parent"
@@ -289,13 +321,6 @@
                                 android:checked="@{form.ss03.equals(`10`)}"
                                 android:onClick="@{()->form.setSs03(`10`)}"
                                 android:text="@string/ss03h" />
-
-                            <TextView
-                                style="@style/sub_labels"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="12dp"
-                                android:text="@string/ss03htitle" />
 
                             <RadioButton
                                 android:id="@+id/ss03i"
@@ -353,24 +378,6 @@
                                 android:onClick="@{()->form.setSs03(`16`)}"
                                 android:text="@string/ss03n" />
 
-
-                            <RadioButton
-                                android:id="@+id/ss03o"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:checked="@{form.ss03.equals(`6`)}"
-                                android:onClick="@{()->form.setSs03(`6`)}"
-                                android:text="@string/ss03o" />
-
-
-                            <RadioButton
-                                android:id="@+id/ss03p"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:checked="@{form.ss03.equals(`7`)}"
-                                android:onClick="@{()->form.setSs03(`7`)}"
-                                android:text="@string/ss03p" />
-
                             <RadioButton
                                 android:id="@+id/ss03x"
                                 android:layout_width="match_parent"
@@ -388,6 +395,67 @@
                                 android:tag="ss03x"
                                 android:text="@={form.ss03xx}"
                                 android:visibility="@{form.ss03.equals(`96`) ? View.VISIBLE : View.GONE}" />
+                        </RadioGroup>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- ss003  Radio   -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/fldGrpCVss003"
+                    style="@style/cardView">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Qss003" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="@string/ss003" />
+
+                        </LinearLayout>
+
+                        <RadioGroup
+                            android:id="@+id/ss003"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:id="@+id/ss003a1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:checked="@{form.ss003.equals(`1`)}"
+                                android:onClick="@{()->form.setSs003(`1`)}"
+                                android:text="@string/ss003a1" />
+
+                            <RadioButton
+                                android:id="@+id/ss003a2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:checked="@{form.ss003.equals(`2`)}"
+                                android:onClick="@{()->form.setSs003(`2`)}"
+                                android:text="@string/ss003a2" />
+
+                            <RadioButton
+                                android:id="@+id/ss003a3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:checked="@{form.ss003.equals(`3`)}"
+                                android:onClick="@{()->form.setSs003(`3`)}"
+                                android:text="@string/ss003a3" />
                         </RadioGroup>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

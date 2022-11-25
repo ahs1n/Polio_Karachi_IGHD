@@ -24,6 +24,6 @@
 -keep class net.sqlcipher.** { *; }
 -dontwarn net.sqlcipher.**
 
--keep class edu.aku.dmu.quasi_experimental.database.DatabaseHelper {
+-keep class edu.aku.dmu.polio_karachi_ighd.database.DatabaseHelper {
     public <methods>;
 }

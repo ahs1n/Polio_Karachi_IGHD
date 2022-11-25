@@ -8,7 +8,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.dmu.quasi_experimental.ui.WebViewActivity" />
+            type="edu.aku.dmu.polio_karachi_ighd.ui.WebViewActivity" />
     </data>
 
     <LinearLayout
