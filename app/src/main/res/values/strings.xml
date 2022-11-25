@@ -208,10 +208,10 @@
     <string name="hh16b">Head of Households Contact No </string>
     <string name="hh19">How many members are living in this household? (NUMBER OF PERSONS) (If 95 or more, record ‘95’) Note for enumorators: Persons who live in this dwelling/ compound and usually share a meal together </string>
     <string name="hh19info"> (NUMBER OF PERSONS) (If 95 or more, record ‘95’) Note for enumerators: Persons who live in this dwelling/ compound and usually share a meal together </string>
-    <string name="hh20"> Does this HH have children 06-23 months years of age? (i.e., children who have reached their first birthday, but not their second birthday)</string>
+    <string name="hh20"> Does this HH have children &lt;5 years of age?</string>
     <string name="hh201">Yes</string>
     <string name="hh202">No</string>
-    <string name="hh20a">If Yes, Numbers of childrens 06-23 months:</string>
+    <string name="hh20a">If Yes, Numbers of children`s &lt;5 years Old</string>
     <string name="hh21">Result of Household Questionnaire Discuss any result not completed with supervisor. interview</string>
     <string name="hh21a">Completed</string>
     <string name="hh21b">No HH member at home or no competent respondent at home at time of visit  </string>

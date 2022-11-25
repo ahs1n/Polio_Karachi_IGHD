@@ -53,8 +53,8 @@ public class SectionCHActivity extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         // cal.add(Calendar.MONTH, -6);
         bi.cb03yy.setMaxvalue(Float.parseFloat(String.valueOf(cal.get(Calendar.YEAR))));
-        cal.add(Calendar.MONTH, +6);
-        cal.add(Calendar.MONTH, -23 - 6); // 6 months buffer
+        cal.add(Calendar.MONTH, +1);
+        cal.add(Calendar.MONTH, -59 - 6); // 6 months buffer
         bi.cb03yy.setMinvalue(Float.parseFloat(String.valueOf(cal.get(Calendar.YEAR))));
     }
 

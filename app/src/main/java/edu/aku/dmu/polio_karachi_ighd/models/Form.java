@@ -1762,6 +1762,7 @@ public class Form extends BaseObservable implements Observable {
                 .put("hh16b", hh16b)
                 .put("hh19", hh19)
                 .put("hh19a", hh19a)
+                .put("hh19b", hh19b)
                 .put("hh19t", hh19t)
                 .put("hh20", hh20)
                 .put("hh20a", hh20a)

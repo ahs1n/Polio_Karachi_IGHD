@@ -264,7 +264,7 @@ public class SectionIM1Activity extends AppCompatActivity {
             e.printStackTrace();
         }
         //if (IMdates is valid date(not, 97, 66, 88, 44)){
-        if (MainApp.child.getIm02().equals("1") && (child.getTrueAgeInMonths() > 6 && child.getTrueAgeInMonths() < 24)) {
+        if (MainApp.child.getIm02().equals("1") && (child.getTrueAgeInMonths() > 0 && child.getTrueAgeInMonths() < 60)) {
 
             // Check front photo taken
             if (MainApp.child.getFrontfilename().equals("")) {

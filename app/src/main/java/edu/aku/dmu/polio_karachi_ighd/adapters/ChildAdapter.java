@@ -162,9 +162,9 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
         //MainApp.selectedMWRA = child.getIndexed().equals("1") || child.getIndexed().equals("2") ? "-" : "";
         mainIcon.setBackgroundColor(child.getEc15().equals("1") ? mContext.getResources().getColor(R.color.boy_blue) : mContext.getResources().getColor(R.color.girl_pink));
         //  mainIcon.setBackgroundColor(  ((ColorDrawable) mainIcon.getBackground()).getColor());
-        cloaked.setVisibility(child.getAgeInMonths() >= 6 && child.getAgeInMonths() <= 23 ? View.GONE : View.VISIBLE);
+        cloaked.setVisibility(child.getAgeInMonths() >= 0 && child.getAgeInMonths() <= 59 ? View.GONE : View.VISIBLE);
 
-        if (child.getAgeInMonths() < 6 || child.getAgeInMonths() > 23) {
+        if (child.getAgeInMonths() < 0 || child.getAgeInMonths() > 59) {
             mainIcon.setImageResource(R.drawable.ic_not_available);
             mainIcon.setBackgroundColor(mContext.getResources().getColor(R.color.gray));
         }
@@ -181,7 +181,7 @@ public class ChildAdapter extends RecyclerView.Adapter<ChildAdapter.ViewHolder> 
             // Get the current state of the item
 
             MainApp.child = MainApp.childList.get(position);
-            if (child.getAgeInMonths() >= 6 && child.getAgeInMonths() <= 23) {
+            if (child.getAgeInMonths() >= 0 && child.getAgeInMonths() <= 59) {
 
                 Intent intent = new Intent(mContext, SectionCBActivity.class);
 

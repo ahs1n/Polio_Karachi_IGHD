@@ -60,7 +60,7 @@ public class HouseholdScreenActivity extends AppCompatActivity {
                             } else if (data.getStringExtra("requestCode").equals("2")) {        // Added a Child
 
                                 MainApp.childList.add(MainApp.child);
-                                if (MainApp.child.getAgeInMonths() >= 6 && MainApp.child.getAgeInMonths() <= 23)
+                                if (MainApp.child.getAgeInMonths() >= 0 && MainApp.child.getAgeInMonths() <= 59)
                                     childCount++;
                                 childsAdapter.notifyItemInserted(MainApp.childList.size() - 1);
                                 Toast.makeText(HouseholdScreenActivity.this, "Child added.", Toast.LENGTH_SHORT).show();
@@ -71,10 +71,10 @@ public class HouseholdScreenActivity extends AppCompatActivity {
                                 // MainApp.childList.set(selectedChild, MainApp.child);
                                 long postAgeInMonths = MainApp.childList.get(selectedChild).getAgeInMonths();
 
-                                if ((MainApp.preAgeInMonths < 6 || MainApp.preAgeInMonths > 23) && postAgeInMonths >= 6 && postAgeInMonths <= 23) {
+                                if ((MainApp.preAgeInMonths < 0 || MainApp.preAgeInMonths > 59) && postAgeInMonths >= 0 && postAgeInMonths <= 59) {
                                     childCount++;
                                 }
-                                if (MainApp.preAgeInMonths >= 6 && MainApp.preAgeInMonths <= 23 && (postAgeInMonths < 6 || postAgeInMonths > 23)) {
+                                if (MainApp.preAgeInMonths >= 0 && MainApp.preAgeInMonths <= 59 && (postAgeInMonths < 0 || postAgeInMonths > 59)) {
                                     childCount--;
                                 }
 
@@ -120,7 +120,7 @@ public class HouseholdScreenActivity extends AppCompatActivity {
         try {
             MainApp.childList = db.getChildrenBYUID();
             for (Child child : MainApp.childList) {
-                if (child.getAgeInMonths() >= 6 && child.getAgeInMonths() <= 23)
+                if (child.getAgeInMonths() >= 0 && child.getAgeInMonths() <= 59)
                     childCount++;
 
                 if (!child.getEc22().equals("")) {
