@@ -1,9 +1,9 @@
-package edu.aku.dmu.polio_karachi_ighd.models;
+package edu.aku.dmu.quasi_experimental.models;
 
-import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.PROJECT_NAME;
-import static edu.aku.dmu.polio_karachi_ighd.core.MainApp._EMPTY_;
-import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.selectedCluster;
-import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.selectedHousehold;
+import static edu.aku.dmu.quasi_experimental.core.MainApp.PROJECT_NAME;
+import static edu.aku.dmu.quasi_experimental.core.MainApp._EMPTY_;
+import static edu.aku.dmu.quasi_experimental.core.MainApp.selectedCluster;
+import static edu.aku.dmu.quasi_experimental.core.MainApp.selectedHousehold;
 
 import android.database.Cursor;
 import android.util.Log;
@@ -15,6 +15,7 @@ import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import org.json.JSONException;
@@ -24,22 +25,27 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import edu.aku.dmu.polio_karachi_ighd.BR;
-import edu.aku.dmu.polio_karachi_ighd.contracts.TableContracts.FormsTable;
-import edu.aku.dmu.polio_karachi_ighd.core.MainApp;
+import edu.aku.dmu.quasi_experimental.BR;
+import edu.aku.dmu.quasi_experimental.contracts.TableContracts.FormsTable;
+import edu.aku.dmu.quasi_experimental.core.MainApp;
 
 @Entity(tableName = FormsTable.TABLE_NAME)
 public class Form extends BaseObservable implements Observable {
-
+    @Ignore
     private String TAG = "Form";
+    @Ignore
     private final transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
     // FORM SECTIONS
+    @ColumnInfo(name = FormsTable.COLUMN_SHH)
     private String sHH = _EMPTY_;
+
     private String sCH = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SSS)
     private String sSS = _EMPTY_;
     private String sCB = _EMPTY_;
     private String sIM = _EMPTY_;
     // APP VARIABLES
+    @ColumnInfo(name = FormsTable.COLUMN_PROJECT_NAME)
     private String projectName = PROJECT_NAME;
 
     // APP VARIABLES
@@ -47,93 +53,169 @@ public class Form extends BaseObservable implements Observable {
     @NonNull
     @ColumnInfo(name = FormsTable.COLUMN_ID)
     private long id = 0;
+    @ColumnInfo(name = FormsTable.COLUMN_UID)
     private String uid = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_USERNAME)
     private String userName = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SYSDATE)
     private String sysDate = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_EB_CODE)
     private String ebCode = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_HHID)
     private String hhid = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SNO)
     private String sno = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_DEVICEID)
     private String deviceId = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_DEVICETAGID)
     private String deviceTag = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_APPVERSION)
     private String appver = _EMPTY_;
+    @Ignore
     private String endTime = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_ISTATUS)
     private String iStatus = _EMPTY_;
     private String iStatus96x = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SYNCED)
     private String synced = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_SYNC_DATE)
     private String syncDate = _EMPTY_;
+    @Ignore
     private String entryType = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_GPSLAT)
     private String gpsLat = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_GPSLNG)
     private String gpsLng = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_GPSDATE)
     private String gpsDT = _EMPTY_;
+    @ColumnInfo(name = FormsTable.COLUMN_GPSACC)
     private String gpsAcc = _EMPTY_;
 
 
     // FIELD VARIABLES
+    @Ignore
     private String hh01 = _EMPTY_;
+    @Ignore
     private String hh02 = _EMPTY_;
+    @Ignore
     private String hh03 = _EMPTY_;
+    @Ignore
     private String hh03a = _EMPTY_;
+    @Ignore
     private String hh04 = _EMPTY_;
+    @Ignore
     private String hh04a = _EMPTY_;
+    @Ignore
     private String hh05 = _EMPTY_;
+    @Ignore
     private String hh06 = _EMPTY_;
+    @Ignore
     private String hh07 = _EMPTY_;
+    @Ignore
     private String hh08 = _EMPTY_;
+    @Ignore
     private String hh09 = _EMPTY_;
+    @Ignore
     private String hh10 = _EMPTY_;
+    @Ignore
     private String hh11 = _EMPTY_;
+    @Ignore
     private String hh12 = _EMPTY_;
+    @Ignore
     private String hh13 = _EMPTY_;
+    @Ignore
     private String hh18 = _EMPTY_;
+    @Ignore
     private String hh13a = _EMPTY_;
+    @Ignore
     private String hh14 = _EMPTY_;
+    @Ignore
     private String hh15 = _EMPTY_;
+    @Ignore
     private String hh16a = _EMPTY_;
+    @Ignore
     private String hh16b = _EMPTY_;
+    @Ignore
     private String hh19 = _EMPTY_;
-    private String hh19t = _EMPTY_;
+    @Ignore
     private String hh19a = _EMPTY_;
+    @Ignore
     private String hh19b = _EMPTY_;
+    @Ignore
     private String hh20 = _EMPTY_;
+    @Ignore
     private String hh20a = _EMPTY_;
+    @Ignore
     private String hh21 = _EMPTY_;
+    @Ignore
     private String hh21xx = _EMPTY_;
-
+    @Ignore
     private String ss01 = _EMPTY_;
+    @Ignore
     private String ss01xx = _EMPTY_;
+    @Ignore
     private String ss02 = _EMPTY_;
+    @Ignore
     private String ss02xx = _EMPTY_;
+    @Ignore
     private String ss03 = _EMPTY_;
+    @Ignore
     private String ss03xx = _EMPTY_;
-    private String ss003 = _EMPTY_;
+    @Ignore
     private String ss04 = _EMPTY_;
+    @Ignore
     private String ss05 = _EMPTY_;
+    @Ignore
     private String ss05xx = _EMPTY_;
     private String ss07 = _EMPTY_;
+    @Ignore
     private String ss07xx = _EMPTY_;
+    @Ignore
     private String ss08 = _EMPTY_;
+    @Ignore
     private String ss09 = _EMPTY_;
+    @Ignore
     private String ss11 = _EMPTY_;
     private String ss13 = _EMPTY_;
+    @Ignore
     private String ss13xx = _EMPTY_;
+    @Ignore
     private String ss14a = _EMPTY_;
+    @Ignore
     private String ss14b = _EMPTY_;
+    @Ignore
     private String ss14c = _EMPTY_;
+    @Ignore
     private String ss14d = _EMPTY_;
+    @Ignore
     private String ss14e = _EMPTY_;
+    @Ignore
     private String ss14f = _EMPTY_;
+    @Ignore
     private String ss14g = _EMPTY_;
+    @Ignore
     private String ss14h = _EMPTY_;
+    @Ignore
     private String ss14i = _EMPTY_;
+    @Ignore
     private String ss14j = _EMPTY_;
+    @Ignore
     private String ss14k = _EMPTY_;
+    @Ignore
     private String ss14l = _EMPTY_;
+    @Ignore
     private String ss14m = _EMPTY_;
+    @Ignore
     private String ss14n = _EMPTY_;
+    @Ignore
     private String ss14o = _EMPTY_;
+    @Ignore
     private String ss14p = _EMPTY_;
+    @Ignore
     private String ss14q = _EMPTY_;
+    @Ignore
     private String ss14r = _EMPTY_;
+    @Ignore
     private String ss14s = _EMPTY_;
     private String ss21a = _EMPTY_;
     private String ss22 = _EMPTY_;
@@ -776,16 +858,6 @@ public class Form extends BaseObservable implements Observable {
     }
 
     @Bindable
-    public String getHh19t() {
-        return hh19t;
-    }
-
-    public void setHh19t(String hh19t) {
-        this.hh19t = hh19t;
-        notifyPropertyChanged(BR.hh19t);
-    }
-
-    @Bindable
     public String getHh19b() {
         return hh19b;
     }
@@ -942,16 +1014,6 @@ public class Form extends BaseObservable implements Observable {
     public void setSs03xx(String ss03xx) {
         this.ss03xx = ss03xx;
         notifyPropertyChanged(BR.ss03xx);
-    }
-
-    @Bindable
-    public String getSs003() {
-        return ss003;
-    }
-
-    public void setSs003(String ss003) {
-        this.ss003 = ss003;
-        notifyPropertyChanged(BR.ss003);
     }
 
     @Bindable
@@ -1575,7 +1637,6 @@ public class Form extends BaseObservable implements Observable {
             this.hh16a = json.getString("hh16a");
             this.hh16b = json.getString("hh16b");
             this.hh19 = json.getString("hh19");
-            this.hh19t = json.getString("hh19t");
             this.hh19a = json.getString("hh19a");
             this.hh19b = json.getString("hh19b");
             this.hh20 = json.getString("hh20");
@@ -1611,7 +1672,6 @@ public class Form extends BaseObservable implements Observable {
             this.ss02xx = json.getString("ss02xx");
             this.ss03 = json.getString("ss03");
             this.ss03xx = json.getString("ss03xx");
-            this.ss003 = json.getString("ss003");
             this.ss04 = json.getString("ss04");
             this.ss05 = json.getString("ss05");
             this.ss05xx = json.getString("ss05xx");
@@ -1673,7 +1733,6 @@ public class Form extends BaseObservable implements Observable {
                 .put("hh16a", hh16a)
                 .put("hh16b", hh16b)
                 .put("hh19", hh19)
-                .put("hh19t", hh19t)
                 .put("hh19a", hh19a)
                 .put("hh19b", hh19b)
                 .put("hh20", hh20)
@@ -1707,7 +1766,6 @@ public class Form extends BaseObservable implements Observable {
                 .put("ss02xx", ss02xx)
                 .put("ss03", ss03)
                 .put("ss03xx", ss03xx)
-                .put("ss003", ss003)
                 .put("ss04", ss04)
                 .put("ss05", ss05)
                 .put("ss05xx", ss05xx)

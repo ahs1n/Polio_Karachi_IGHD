@@ -7,10 +7,15 @@ import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.form;
 import android.database.Cursor;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.Observable;
 import androidx.databinding.PropertyChangeRegistry;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,286 +29,435 @@ import edu.aku.dmu.polio_karachi_ighd.BR;
 import edu.aku.dmu.polio_karachi_ighd.contracts.TableContracts;
 import edu.aku.dmu.polio_karachi_ighd.core.MainApp;
 
+@Entity(tableName = ChildTable.TABLE_NAME)
 public class Child extends BaseObservable implements Observable {
 
+    @Ignore
     private final String TAG = "Form";
+    @Ignore
     private final transient PropertyChangeRegistry propertyChangeRegistry = new PropertyChangeRegistry();
     // APP VARIABLES
+    @ColumnInfo(name = ChildTable.COLUMN_PROJECT_NAME)
     private String projectName = PROJECT_NAME;
     // APP VARIABLES
-    private String id = _EMPTY_;
+    @PrimaryKey(autoGenerate = true)
+    @NonNull
+    @ColumnInfo(name = ChildTable.COLUMN_ID)
+    private long id = 0;
+    @ColumnInfo(name = ChildTable.COLUMN_UID)
     private String uid = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_UUID)
     private String uuid = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_USERNAME)
     private String userName = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_SYSDATE)
     private String sysDate = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_CSTATUS)
     private String cstatus = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_EB_CODE)
     private String ebCode = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_HHID)
     private String hhid = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_SNO)
     private String sno = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_DEVICEID)
     private String deviceId = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_DEVICETAGID)
     private String deviceTag = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_APPVERSION)
     private String appver = _EMPTY_;
+    @Ignore
     private String endTime = _EMPTY_;
-
+    @ColumnInfo(name = ChildTable.COLUMN_SYNCED)
     private String synced = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_SYNC_DATE)
     private String syncDate = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_GPSLAT)
     private String gpsLat = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_GPSLNG)
     private String gpsLng = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_GPSDATE)
     private String gpsDT = _EMPTY_;
+    @ColumnInfo(name = ChildTable.COLUMN_GPSACC)
     private String gpsAcc = _EMPTY_;
-
 
     // Field Variables
     // CH
+    @Ignore
     private String ec13 = _EMPTY_;
+    @Ignore
     private String ec14 = _EMPTY_;
+    @Ignore
     private String ec15 = _EMPTY_;
+    @Ignore
     private String ec16 = _EMPTY_;
+    @Ignore
     private String ec17 = _EMPTY_;
+    @Ignore
     private String cb03dd = _EMPTY_;
+    @Ignore
     private String cb03mm = _EMPTY_;
+    @Ignore
     private String cb03yy = _EMPTY_;
+    @Ignore
     private String cb03dk = _EMPTY_;
+    @Ignore
     private String cb04mm = _EMPTY_;
+    @Ignore
     private String cb04yy = _EMPTY_;
 
     // CB
+    @Ignore
     private String ec01 = _EMPTY_;
+    @Ignore
     private String ec02 = _EMPTY_;
+    @Ignore
     private String ec03 = _EMPTY_;
+    @Ignore
     private String ec04 = _EMPTY_;
+    @Ignore
     private String ec04a = _EMPTY_;
+    @Ignore
     private String ec05 = _EMPTY_;
+    @Ignore
     private String ec06 = _EMPTY_;
+    @Ignore
     private String ec07 = _EMPTY_;
+    @Ignore
     private String ec09 = _EMPTY_;
+    @Ignore
     private String ec11 = _EMPTY_;
+    @Ignore
     private String ec12 = _EMPTY_;
+    @Ignore
     private String ec13cline = _EMPTY_;
+    @Ignore
     private String ec14cname = _EMPTY_;
+    @Ignore
     private String ec18 = _EMPTY_;
+    @Ignore
     private String ec19 = _EMPTY_;
+    @Ignore
     private String ec21 = _EMPTY_;
+    @Ignore
     private String ec22 = _EMPTY_;
+    @Ignore
     private String ec2206x = _EMPTY_;
+    @Ignore
     private String ec2296x = _EMPTY_;
+    @Ignore
     private String cb01a = _EMPTY_;
+    @Ignore
     private String cb01b = _EMPTY_;
+    @Ignore
     private String cb02a = _EMPTY_;
+    @Ignore
     private String cb02b = _EMPTY_;
 
     // IM
+    @Ignore
     private String im01 = _EMPTY_;
+    @Ignore
     private String im02 = _EMPTY_;
+    @Ignore
     private String im02a = _EMPTY_;
+    @Ignore
     private String im02a96x = _EMPTY_;
+    @Ignore
     private String im03 = _EMPTY_;
+    @Ignore
     private String im0396x = _EMPTY_;
+    @Ignore
     private String im04dd = _EMPTY_;
+    @Ignore
     private String im04mm = _EMPTY_;
+    @Ignore
     private String im04yy = _EMPTY_;
+    @Ignore
     private String im0497 = _EMPTY_;
+    @Ignore
     private String backfilename = _EMPTY_;
+    @Ignore
     private String frontfilename = _EMPTY_;
+    @Ignore
     private String im0501dd = _EMPTY_;
+    @Ignore
     private String im0501mm = _EMPTY_;
+    @Ignore
     private String im0501yy = _EMPTY_;
+    @Ignore
     private String im0502dd = _EMPTY_;
+    @Ignore
     private String im0502mm = _EMPTY_;
+    @Ignore
     private String im0502yy = _EMPTY_;
+    @Ignore
     private String im0503dd = _EMPTY_;
+    @Ignore
     private String im0503mm = _EMPTY_;
+    @Ignore
     private String im0503yy = _EMPTY_;
+    @Ignore
     private String im0504dd = _EMPTY_;
+    @Ignore
     private String im0504mm = _EMPTY_;
+    @Ignore
     private String im0504yy = _EMPTY_;
+    @Ignore
     private String im0505dd = _EMPTY_;
+    @Ignore
     private String im0505mm = _EMPTY_;
+    @Ignore
     private String im0505yy = _EMPTY_;
+    @Ignore
     private String im0506dd = _EMPTY_;
+    @Ignore
     private String im0506mm = _EMPTY_;
+    @Ignore
     private String im0506yy = _EMPTY_;
+    @Ignore
     private String im0507dd = _EMPTY_;
+    @Ignore
     private String im0507mm = _EMPTY_;
+    @Ignore
     private String im0507yy = _EMPTY_;
+    @Ignore
     private String im0508dd = _EMPTY_;
+    @Ignore
     private String im0508mm = _EMPTY_;
+    @Ignore
     private String im0508yy = _EMPTY_;
+    @Ignore
     private String im0509dd = _EMPTY_;
+    @Ignore
     private String im0509mm = _EMPTY_;
+    @Ignore
     private String im0509yy = _EMPTY_;
+    @Ignore
     private String im0510dd = _EMPTY_;
+    @Ignore
     private String im0510mm = _EMPTY_;
+    @Ignore
     private String im0510yy = _EMPTY_;
+    @Ignore
     private String im0510add = _EMPTY_;
+    @Ignore
     private String im0510amm = _EMPTY_;
+    @Ignore
     private String im0510ayy = _EMPTY_;
+    @Ignore
     private String im0511dd = _EMPTY_;
+    @Ignore
     private String im0511mm = _EMPTY_;
+    @Ignore
     private String im0511yy = _EMPTY_;
+    @Ignore
     private String im0512dd = _EMPTY_;
+    @Ignore
     private String im0512mm = _EMPTY_;
+    @Ignore
     private String im0512yy = _EMPTY_;
+    @Ignore
     private String im0513dd = _EMPTY_;
+    @Ignore
     private String im0513mm = _EMPTY_;
+    @Ignore
     private String im0513yy = _EMPTY_;
+    @Ignore
     private String im0514dd = _EMPTY_;
+    @Ignore
     private String im0514mm = _EMPTY_;
+    @Ignore
     private String im0514yy = _EMPTY_;
+    @Ignore
     private String im0515dd = _EMPTY_;
+    @Ignore
     private String im0515mm = _EMPTY_;
+    @Ignore
     private String im0515yy = _EMPTY_;
+    @Ignore
     private String im0515bdd = _EMPTY_;
+    @Ignore
     private String im0515bmm = _EMPTY_;
+    @Ignore
     private String im0515byy = _EMPTY_;
+    @Ignore
     private String im0516dd = _EMPTY_;
+    @Ignore
     private String im0516mm = _EMPTY_;
+    @Ignore
     private String im0516yy = _EMPTY_;
+    @Ignore
     private String im0517dd = _EMPTY_;
+    @Ignore
     private String im0517mm = _EMPTY_;
+    @Ignore
     private String im0517yy = _EMPTY_;
     //private String im07 = _EMPTY_;
+    @Ignore
     private String im08 = _EMPTY_;
+    @Ignore
     private String im09 = _EMPTY_;
+    @Ignore
     private String im10 = _EMPTY_;
+    @Ignore
     private String im10a = _EMPTY_;
+    @Ignore
     private String im11 = _EMPTY_;
+    @Ignore
     private String im12 = _EMPTY_;
+    @Ignore
     private String im12a = _EMPTY_;
+    @Ignore
     private String im12a98 = _EMPTY_;
+    @Ignore
     private String im14 = _EMPTY_;
+    @Ignore
     private String im15 = _EMPTY_;
+    @Ignore
     private String im16 = _EMPTY_;
+    @Ignore
     private String im17 = _EMPTY_;
+    @Ignore
     private String im18 = _EMPTY_;
+    @Ignore
     private String im19 = _EMPTY_;
+    @Ignore
     private String im20 = _EMPTY_;
+    @Ignore
     private String im20a = _EMPTY_;
-
+    @Ignore
     private String im21 = _EMPTY_;
+    @Ignore
     private String im22 = _EMPTY_;
+    @Ignore
     private String im22a = _EMPTY_;
+    @Ignore
     private String im23 = _EMPTY_;
+    @Ignore
     private String im236x = _EMPTY_;
+    @Ignore
     private String im23a = _EMPTY_;
+    @Ignore
     private String im2401 = _EMPTY_;
+    @Ignore
     private String im2402 = _EMPTY_;
+    @Ignore
     private String im2403 = _EMPTY_;
+    @Ignore
     private String im2404 = _EMPTY_;
+    @Ignore
     private String im2405 = _EMPTY_;
+    @Ignore
     private String im2406 = _EMPTY_;
+    @Ignore
     private String im2407 = _EMPTY_;
+    @Ignore
     private String im2408 = _EMPTY_;
+    @Ignore
     private String im2409 = _EMPTY_;
+    @Ignore
     private String im2410 = _EMPTY_;
+    @Ignore
     private String im2411 = _EMPTY_;
+    @Ignore
     private String im2412 = _EMPTY_;
+    @Ignore
     private String im2413 = _EMPTY_;
+    @Ignore
     private String im2414 = _EMPTY_;
+    @Ignore
     private String im2415 = _EMPTY_;
+    @Ignore
     private String im2416 = _EMPTY_;
+    @Ignore
     private String im2498 = _EMPTY_;
+    @Ignore
     private String im2496 = _EMPTY_;
+    @Ignore
     private String im2496x = _EMPTY_;
+    @Ignore
     private String im24a = _EMPTY_;
+    @Ignore
     private String im24b = _EMPTY_;
+    @Ignore
     private String im24b98 = _EMPTY_;
+    @Ignore
     private String im24c = _EMPTY_;
     // private String im24d = _EMPTY_;
+    @Ignore
     private String im25 = _EMPTY_;
+    @Ignore
     private String im26 = _EMPTY_;
-
+    @Ignore
     private String im050198 = _EMPTY_;
+    @Ignore
     private String im050298 = _EMPTY_;
+    @Ignore
     private String im050398 = _EMPTY_;
+    @Ignore
     private String im050498 = _EMPTY_;
+    @Ignore
     private String im050598 = _EMPTY_;
+    @Ignore
     private String im050698 = _EMPTY_;
+    @Ignore
     private String im050798 = _EMPTY_;
+    @Ignore
     private String im050898 = _EMPTY_;
+    @Ignore
     private String im050998 = _EMPTY_;
+    @Ignore
     private String im051098 = _EMPTY_;
+    @Ignore
     private String im0510a98 = _EMPTY_;
+    @Ignore
     private String im051198 = _EMPTY_;
+    @Ignore
     private String im051298 = _EMPTY_;
+    @Ignore
     private String im051398 = _EMPTY_;
+    @Ignore
     private String im051498 = _EMPTY_;
+    @Ignore
     private String im051598 = _EMPTY_;
+    @Ignore
     private String im0515b98 = _EMPTY_;
+    @Ignore
     private String im051698 = _EMPTY_;
+    @Ignore
     private String im051798 = _EMPTY_;
-
+    @Ignore
     private String im050295 = _EMPTY_;
+    @Ignore
     private String im050495 = _EMPTY_;
+    @Ignore
     private String im050595 = _EMPTY_;
+    @Ignore
     private String im050695 = _EMPTY_;
+    @Ignore
     private String im050895 = _EMPTY_;
+    @Ignore
     private String im050995 = _EMPTY_;
+    @Ignore
     private String im051095 = _EMPTY_;
+    @Ignore
     private String im0510a95 = _EMPTY_;
+    @Ignore
     private String im051295 = _EMPTY_;
+    @Ignore
     private String im051395 = _EMPTY_;
+    @Ignore
     private String im051495 = _EMPTY_;
+    @Ignore
     private String im0515b95 = _EMPTY_;
+    @Ignore
     private String im051795 = _EMPTY_;
-
-    private String b107 = _EMPTY_;
-    private String b108 = _EMPTY_;
-    private String b10801 = _EMPTY_;
-    private String b10802 = _EMPTY_;
-    private String b10803 = _EMPTY_;
-    private String b10804 = _EMPTY_;
-    private String b10805 = _EMPTY_;
-    private String b10898 = _EMPTY_;
-    private String b110 = _EMPTY_;
-    private String b114 = _EMPTY_;
-    private String b112 = _EMPTY_;
-    private String b11201 = _EMPTY_;
-    private String b11202 = _EMPTY_;
-    private String b11203 = _EMPTY_;
-    private String b11204 = _EMPTY_;
-    private String b11205 = _EMPTY_;
-    private String b11206 = _EMPTY_;
-    private String b11207 = _EMPTY_;
-    private String b11208 = _EMPTY_;
-    private String b11209 = _EMPTY_;
-    private String b11210 = _EMPTY_;
-    private String b11296 = _EMPTY_;
-    private String b11296x = _EMPTY_;
-    private String b105 = _EMPTY_;
-    private String b106 = _EMPTY_;
-    private String b10601 = _EMPTY_;
-    private String b10601x = _EMPTY_;
-    private String b10602 = _EMPTY_;
-    private String b10602x = _EMPTY_;
-    private String b115 = _EMPTY_;
-    private String b116 = _EMPTY_;
-    private String b117 = _EMPTY_;
-    private String b118 = _EMPTY_;
-    private String b11896x = _EMPTY_;
-    private String b11901 = _EMPTY_;
-    private String b11902 = _EMPTY_;
-    private String b11903 = _EMPTY_;
-    private String b11904 = _EMPTY_;
-    private String b11905 = _EMPTY_;
-    private String b11906 = _EMPTY_;
-    private String b11996 = _EMPTY_;
-    private String b11998 = _EMPTY_;
-    private String b11996x = _EMPTY_;
-    private String b120 = _EMPTY_;
-    private String b121 = _EMPTY_;
-    private String b12101 = _EMPTY_;
-    private String b12102 = _EMPTY_;
-    private String b12103 = _EMPTY_;
-    private String b12104 = _EMPTY_;
-    private String b12105 = _EMPTY_;
-    private String b12196 = _EMPTY_;
-    private String b12198 = _EMPTY_;
-    private String b12196x = _EMPTY_;
-
-
+    @Ignore
     private long ageInMonths = -1;
+    @Ignore
     private long trueAgeInMonths = -1;
+    @Ignore
     private boolean ageCheck;
 
 
@@ -336,11 +490,11 @@ public class Child extends BaseObservable implements Observable {
         this.projectName = projectName;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -2540,8 +2694,6 @@ public class Child extends BaseObservable implements Observable {
         setIm24c(im24a.equals("1") ? this.im24c : "");
         setIm25(im24a.equals("2") ? this.im25 : "");
         setIm26(im24a.equals("2") ? this.im26 : "");
-        setB110(im24a.equals("1") ? this.b110 : "");
-        setB114(im24a.equals("1") ? this.b114 : "");
         /* setIm24d(im24a.equals("1") ? this.im24d : "");*/
         notifyPropertyChanged(BR.im24a);
     }
@@ -3052,618 +3204,9 @@ public class Child extends BaseObservable implements Observable {
         notifyPropertyChanged(BR.im051795);
     }
 
-    @Bindable
-    public String getB107() {
-        return b107;
-    }
-
-    public void setB107(String b107) {
-        this.b107 = b107;
-        notifyPropertyChanged(BR.b107);
-    }
-
-    @Bindable
-    public String getB108() {
-        return b108;
-    }
-
-    public void setB108(String b108) {
-        this.b108 = b108;
-        notifyPropertyChanged(BR.b108);
-    }
-
-    @Bindable
-    public String getB10801() {
-        return b10801;
-    }
-
-    public void setB10801(String b10801) {
-        if (this.b10801.equals(b10801)) return; // for all checkboxes
-        this.b10801 = b10801;
-        notifyPropertyChanged(BR.b10801);
-    }
-
-    @Bindable
-    public String getB10802() {
-        return b10802;
-    }
-
-    public void setB10802(String b10802) {
-        if (this.b10802.equals(b10802)) return; // for all checkboxes
-        this.b10802 = b10802;
-        notifyPropertyChanged(BR.b10802);
-    }
-
-    @Bindable
-    public String getB10803() {
-        return b10803;
-    }
-
-    public void setB10803(String b10803) {
-        if (this.b10803.equals(b10803)) return; // for all checkboxes
-        this.b10803 = b10803;
-        notifyPropertyChanged(BR.b10803);
-    }
-
-    @Bindable
-    public String getB10804() {
-        return b10804;
-    }
-
-    public void setB10804(String b10804) {
-        if (this.b10804.equals(b10804)) return; // for all checkboxes
-        this.b10804 = b10804;
-        notifyPropertyChanged(BR.b10804);
-    }
-
-    @Bindable
-    public String getB10805() {
-        return b10805;
-    }
-
-    public void setB10805(String b10805) {
-        if (this.b10805.equals(b10805)) return; // for all checkboxes
-        this.b10805 = b10805;
-        notifyPropertyChanged(BR.b10805);
-    }
-
-    @Bindable
-    public String getB10898() {
-        return b10898;
-    }
-
-    public void setB10898(String b10898) {
-        if (this.b10898.equals(b10898)) return; // for all checkboxes
-        this.b10898 = b10898;
-        setB10801(b10898.equals("98") ? "" : this.b10801);
-        setB10802(b10898.equals("98") ? "" : this.b10802);
-        setB10803(b10898.equals("98") ? "" : this.b10803);
-        setB10804(b10898.equals("98") ? "" : this.b10804);
-        setB10805(b10898.equals("98") ? "" : this.b10805);
-        notifyPropertyChanged(BR.b10898);
-    }
-
-    @Bindable
-    public String getB110() {
-        return b110;
-    }
-
-    public void setB110(String b110) {
-        this.b110 = b110;
-        notifyPropertyChanged(BR.b110);
-    }
-
-    @Bindable
-    public String getB114() {
-        return b114;
-    }
-
-    public void setB114(String b114) {
-        this.b114 = b114;
-        notifyPropertyChanged(BR.b114);
-    }
-
-    @Bindable
-    public String getB112() {
-        return b112;
-    }
-
-    public void setB112(String b112) {
-        this.b112 = b112;
-        notifyPropertyChanged(BR.b112);
-    }
-
-    @Bindable
-    public String getB11201() {
-        return b11201;
-    }
-
-    public void setB11201(String b11201) {
-        if (this.b11201.equals(b11201)) return; // for all checkboxes
-        this.b11201 = b11201;
-        notifyPropertyChanged(BR.b11201);
-    }
-
-    @Bindable
-    public String getB11202() {
-        return b11202;
-    }
-
-    public void setB11202(String b11202) {
-        if (this.b11202.equals(b11202)) return; // for all checkboxes
-        this.b11202 = b11202;
-        notifyPropertyChanged(BR.b11202);
-    }
-
-    @Bindable
-    public String getB11203() {
-        return b11203;
-    }
-
-    public void setB11203(String b11203) {
-        if (this.b11203.equals(b11203)) return; // for all checkboxes
-        this.b11203 = b11203;
-        notifyPropertyChanged(BR.b11203);
-    }
-
-    @Bindable
-    public String getB11204() {
-        return b11204;
-    }
-
-    public void setB11204(String b11204) {
-        if (this.b11204.equals(b11204)) return; // for all checkboxes
-        this.b11204 = b11204;
-        notifyPropertyChanged(BR.b11204);
-    }
-
-    @Bindable
-    public String getB11205() {
-        return b11205;
-    }
-
-    public void setB11205(String b11205) {
-        if (this.b11205.equals(b11205)) return; // for all checkboxes
-        this.b11205 = b11205;
-        notifyPropertyChanged(BR.b11205);
-    }
-
-    @Bindable
-    public String getB11206() {
-        return b11206;
-    }
-
-    public void setB11206(String b11206) {
-        if (this.b11206.equals(b11206)) return; // for all checkboxes
-        this.b11206 = b11206;
-        notifyPropertyChanged(BR.b11206);
-    }
-
-    @Bindable
-    public String getB11207() {
-        return b11207;
-    }
-
-    public void setB11207(String b11207) {
-        if (this.b11207.equals(b11207)) return; // for all checkboxes
-        this.b11207 = b11207;
-        notifyPropertyChanged(BR.b11207);
-    }
-
-    @Bindable
-    public String getB11208() {
-        return b11208;
-    }
-
-    public void setB11208(String b11208) {
-        if (this.b11208.equals(b11208)) return; // for all checkboxes
-        this.b11208 = b11208;
-        notifyPropertyChanged(BR.b11208);
-    }
-
-    @Bindable
-    public String getB11209() {
-        return b11209;
-    }
-
-    public void setB11209(String b11209) {
-        if (this.b11209.equals(b11209)) return; // for all checkboxes
-        this.b11209 = b11209;
-        notifyPropertyChanged(BR.b11209);
-    }
-
-    @Bindable
-    public String getB11210() {
-        return b11210;
-    }
-
-    public void setB11210(String b11210) {
-        if (this.b11210.equals(b11210)) return; // for all checkboxes
-        this.b11210 = b11210;
-        notifyPropertyChanged(BR.b11210);
-    }
-
-    @Bindable
-    public String getB11296() {
-        return b11296;
-    }
-
-    public void setB11296(String b11296) {
-        if (this.b11296.equals(b11296)) return; // for all checkboxes
-        this.b11296 = b11296;
-        setB11296x(b11296.equals("96") ? this.b11296x : "");
-        notifyPropertyChanged(BR.b11296);
-    }
-
-    @Bindable
-    public String getB11296x() {
-        return b11296x;
-    }
-
-    public void setB11296x(String b11296x) {
-        this.b11296x = b11296x;
-        notifyPropertyChanged(BR.b11296x);
-    }
-
-    @Bindable
-    public String getB105() {
-        return b105;
-    }
-
-    public void setB105(String b105) {
-        this.b105 = b105;
-        setB10601(b105.equals(1) ? this.b10601 : "");
-        setB10601x(b105.equals(1) ? this.b10601x : "");
-        setB10602(b105.equals(1) ? this.b10602 : "");
-        setB10602x(b105.equals(1) ? this.b10602x : "");
-        notifyPropertyChanged(BR.b105);
-    }
-
-    @Bindable
-    public String getB106() {
-        return b106;
-    }
-
-    public void setB106(String b106) {
-        this.b106 = b106;
-        notifyPropertyChanged(BR.b106);
-    }
-
-    @Bindable
-    public String getB10601() {
-        return b10601;
-    }
-
-    public void setB10601(String b10601) {
-        if (this.b10601.equals(b10601)) return; // for all checkboxes
-        this.b10601 = b10601;
-        setB10601x(b10601.equals("1") ? this.b10601x : "");
-        notifyPropertyChanged(BR.b10601);
-    }
-
-    @Bindable
-    public String getB10601x() {
-        return b10601x;
-    }
-
-    public void setB10601x(String b10601x) {
-        this.b10601x = b10601x;
-        notifyPropertyChanged(BR.b10601x);
-    }
-
-    @Bindable
-    public String getB10602() {
-        return b10602;
-    }
-
-    public void setB10602(String b10602) {
-        if (this.b10602.equals(b10602)) return; // for all checkboxes
-        this.b10602 = b10602;
-        setB10602x(b10602.equals("2") ? this.b10602x : "");
-        notifyPropertyChanged(BR.b10602);
-    }
-
-    @Bindable
-    public String getB10602x() {
-        return b10602x;
-    }
-
-    public void setB10602x(String b10602x) {
-        this.b10602x = b10602x;
-        notifyPropertyChanged(BR.b10602x);
-    }
-
-    @Bindable
-    public String getB115() {
-        return b115;
-    }
-
-    public void setB115(String b115) {
-        this.b115 = b115;
-        setB116(b115.equals("1") ? this.b116 : "");
-        notifyPropertyChanged(BR.b115);
-    }
-
-    @Bindable
-    public String getB116() {
-        return b116;
-    }
-
-    public void setB116(String b116) {
-        this.b116 = b116;
-        notifyPropertyChanged(BR.b116);
-    }
-
-    @Bindable
-    public String getB117() {
-        return b117;
-    }
-
-    public void setB117(String b117) {
-        this.b117 = b117;
-        setB118(b117.equals("1") ? this.b118 : "");
-        setB11901(b117.equals("1") ? this.b11901 : "");
-        setB11902(b117.equals("1") ? this.b11902 : "");
-        setB11903(b117.equals("1") ? this.b11903 : "");
-        setB11904(b117.equals("1") ? this.b11904 : "");
-        setB11905(b117.equals("1") ? this.b11905 : "");
-        setB11906(b117.equals("1") ? this.b11906 : "");
-        setB11996(b117.equals("1") ? this.b11996 : "");
-        setB11998(b117.equals("1") ? this.b11998 : "");
-        notifyPropertyChanged(BR.b117);
-    }
-
-    @Bindable
-    public String getB118() {
-        return b118;
-    }
-
-    public void setB118(String b118) {
-        this.b118 = b118;
-        setB11896x(b118.equals("96") ? this.b11896x : "");
-        notifyPropertyChanged(BR.b118);
-    }
-
-    @Bindable
-    public String getB11896x() {
-        return b11896x;
-    }
-
-    public void setB11896x(String b11896x) {
-        this.b11896x = b11896x;
-        notifyPropertyChanged(BR.b11896x);
-    }
-
-    @Bindable
-    public String getB11901() {
-        return b11901;
-    }
-
-    public void setB11901(String b11901) {
-        if (this.b11901.equals(b11901)) return; // for all checkboxes
-        this.b11901 = b11901;
-        notifyPropertyChanged(BR.b11901);
-    }
-
-    @Bindable
-    public String getB11902() {
-        return b11902;
-    }
-
-    public void setB11902(String b11902) {
-        if (this.b11902.equals(b11902)) return; // for all checkboxes
-        this.b11902 = b11902;
-        notifyPropertyChanged(BR.b11902);
-    }
-
-    @Bindable
-    public String getB11903() {
-        return b11903;
-    }
-
-    public void setB11903(String b11903) {
-        if (this.b11903.equals(b11903)) return; // for all checkboxes
-        this.b11903 = b11903;
-        notifyPropertyChanged(BR.b11903);
-    }
-
-    @Bindable
-    public String getB11904() {
-        return b11904;
-    }
-
-    public void setB11904(String b11904) {
-        if (this.b11904.equals(b11904)) return; // for all checkboxes
-        this.b11904 = b11904;
-        notifyPropertyChanged(BR.b11904);
-    }
-
-    @Bindable
-    public String getB11905() {
-        return b11905;
-    }
-
-    public void setB11905(String b11905) {
-        if (this.b11905.equals(b11905)) return; // for all checkboxes
-        this.b11905 = b11905;
-        notifyPropertyChanged(BR.b11905);
-    }
-
-    @Bindable
-    public String getB11906() {
-        return b11906;
-    }
-
-    public void setB11906(String b11906) {
-        if (this.b11906.equals(b11906)) return; // for all checkboxes
-        this.b11906 = b11906;
-        notifyPropertyChanged(BR.b11906);
-    }
-
-    @Bindable
-    public String getB11996() {
-        return b11996;
-    }
-
-    public void setB11996(String b11996) {
-        if (this.b11996.equals(b11996)) return; // for all checkboxes
-        this.b11996 = b11996;
-        setB11996x(b11996.equals("96") ? this.b11996x : "");
-        notifyPropertyChanged(BR.b11996);
-    }
-
-    @Bindable
-    public String getB11998() {
-        return b11998;
-    }
-
-    public void setB11998(String b11998) {
-        if (this.b11998.equals(b11998)) return; // for all checkboxes
-        this.b11998 = b11998;
-        setB11901(b11998.equals("98") ? "" : this.b11901);
-        setB11902(b11998.equals("98") ? "" : this.b11902);
-        setB11903(b11998.equals("98") ? "" : this.b11903);
-        setB11904(b11998.equals("98") ? "" : this.b11904);
-        setB11905(b11998.equals("98") ? "" : this.b11905);
-        setB11906(b11998.equals("98") ? "" : this.b11906);
-        setB11996(b11998.equals("98") ? "" : this.b11996);
-        notifyPropertyChanged(BR.b11998);
-    }
-
-    @Bindable
-    public String getB11996x() {
-        return b11996x;
-    }
-
-    public void setB11996x(String b11996x) {
-        this.b11996x = b11996x;
-        notifyPropertyChanged(BR.b11996x);
-    }
-
-    @Bindable
-    public String getB120() {
-        return b120;
-    }
-
-    public void setB120(String b120) {
-        this.b120 = b120;
-        setB12101(b120.equals("1") ? this.b12101 : "");
-        setB12102(b120.equals("1") ? this.b12102 : "");
-        setB12103(b120.equals("1") ? this.b12103 : "");
-        setB12104(b120.equals("1") ? this.b12104 : "");
-        setB12105(b120.equals("1") ? this.b12105 : "");
-        setB12196(b120.equals("1") ? this.b12196 : "");
-        setB12198(b120.equals("1") ? this.b12198 : "");
-        notifyPropertyChanged(BR.b120);
-    }
-
-    @Bindable
-    public String getB121() {
-        return b121;
-    }
-
-    public void setB121(String b121) {
-        this.b121 = b121;
-        notifyPropertyChanged(BR.b121);
-    }
-
-    @Bindable
-    public String getB12101() {
-        return b12101;
-    }
-
-    public void setB12101(String b12101) {
-        if (this.b12101.equals(b12101)) return; // for all checkboxes
-        this.b12101 = b12101;
-        notifyPropertyChanged(BR.b12101);
-    }
-
-    @Bindable
-    public String getB12102() {
-        return b12102;
-    }
-
-    public void setB12102(String b12102) {
-        if (this.b12102.equals(b12102)) return; // for all checkboxes
-        this.b12102 = b12102;
-        notifyPropertyChanged(BR.b12102);
-    }
-
-    @Bindable
-    public String getB12103() {
-        return b12103;
-    }
-
-    public void setB12103(String b12103) {
-        if (this.b12103.equals(b12103)) return; // for all checkboxes
-        this.b12103 = b12103;
-        notifyPropertyChanged(BR.b12103);
-    }
-
-    @Bindable
-    public String getB12104() {
-        return b12104;
-    }
-
-    public void setB12104(String b12104) {
-        if (this.b12104.equals(b12104)) return; // for all checkboxes
-        this.b12104 = b12104;
-        notifyPropertyChanged(BR.b12104);
-    }
-
-    @Bindable
-    public String getB12105() {
-        return b12105;
-    }
-
-    public void setB12105(String b12105) {
-        if (this.b12105.equals(b12105)) return; // for all checkboxes
-        this.b12105 = b12105;
-        notifyPropertyChanged(BR.b12105);
-    }
-
-    @Bindable
-    public String getB12196() {
-        return b12196;
-    }
-
-    public void setB12196(String b12196) {
-        if (this.b12196.equals(b12196)) return; // for all checkboxes
-        this.b12196 = b12196;
-        setB12196x(b12196.equals("96") ? this.b12196x : "");
-        notifyPropertyChanged(BR.b12196);
-    }
-
-    @Bindable
-    public String getB12198() {
-        return b12198;
-    }
-
-    public void setB12198(String b12198) {
-        if (this.b12198.equals(b12198)) return; // for all checkboxes
-        this.b12198 = b12198;
-        setB12101(b12198.equals("98") ? "" : this.b12101);
-        setB12102(b12198.equals("98") ? "" : this.b12102);
-        setB12103(b12198.equals("98") ? "" : this.b12103);
-        setB12104(b12198.equals("98") ? "" : this.b12104);
-        setB12105(b12198.equals("98") ? "" : this.b12105);
-        setB12196(b12198.equals("98") ? "" : this.b12196);
-        notifyPropertyChanged(BR.b12198);
-    }
-
-    @Bindable
-    public String getB12196x() {
-        return b12196x;
-    }
-
-    public void setB12196x(String b12196x) {
-        this.b12196x = b12196x;
-        notifyPropertyChanged(BR.b12196x);
-    }
-
 
     public Child Hydrate(Cursor cursor) throws JSONException {
-        this.id = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildTable.COLUMN_ID));
+        this.id = cursor.getLong(cursor.getColumnIndexOrThrow(TableContracts.ChildTable.COLUMN_ID));
         this.uid = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildTable.COLUMN_UID));
         this.uuid = cursor.getString(cursor.getColumnIndexOrThrow(TableContracts.ChildTable.COLUMN_UUID));
 /*
@@ -3907,59 +3450,6 @@ public class Child extends BaseObservable implements Observable {
             this.im051495 = json.getString("im051495");
             this.im0515b95 = json.getString("im0515b95");
             this.im051795 = json.getString("im051795");
-            this.b107 = json.getString("b107");
-            this.b108 = json.getString("b108");
-            this.b10801 = json.getString("b10801");
-            this.b10802 = json.getString("b10802");
-            this.b10803 = json.getString("b10803");
-            this.b10804 = json.getString("b10804");
-            this.b10805 = json.getString("b10805");
-            this.b10898 = json.getString("b10898");
-            this.b110 = json.getString("b110");
-            this.b114 = json.getString("b114");
-            this.b112 = json.getString("b112");
-            this.b11201 = json.getString("b11201");
-            this.b11202 = json.getString("b11202");
-            this.b11203 = json.getString("b11203");
-            this.b11204 = json.getString("b11204");
-            this.b11205 = json.getString("b11205");
-            this.b11206 = json.getString("b11206");
-            this.b11207 = json.getString("b11207");
-            this.b11208 = json.getString("b11208");
-            this.b11209 = json.getString("b11209");
-            this.b11210 = json.getString("b11210");
-            this.b11296 = json.getString("b11296");
-            this.b11296x = json.getString("b11296x");
-            this.b105 = json.getString("b105");
-            this.b106 = json.getString("b106");
-            this.b10601 = json.getString("b10601");
-            this.b10601x = json.getString("b10601x");
-            this.b10602 = json.getString("b10602");
-            this.b10602x = json.getString("b10602x");
-            this.b115 = json.getString("b115");
-            this.b116 = json.getString("b116");
-            this.b117 = json.getString("b117");
-            this.b118 = json.getString("b118");
-            this.b11896x = json.getString("b11896x");
-            this.b11901 = json.getString("b11901");
-            this.b11902 = json.getString("b11902");
-            this.b11903 = json.getString("b11903");
-            this.b11904 = json.getString("b11904");
-            this.b11905 = json.getString("b11905");
-            this.b11906 = json.getString("b11906");
-            this.b11996 = json.getString("b11996");
-            this.b11998 = json.getString("b11998");
-            this.b11996x = json.getString("b11996x");
-            this.b120 = json.getString("b120");
-            this.b121 = json.getString("b121");
-            this.b12101 = json.getString("b12101");
-            this.b12102 = json.getString("b12102");
-            this.b12103 = json.getString("b12103");
-            this.b12104 = json.getString("b12104");
-            this.b12105 = json.getString("b12105");
-            this.b12198 = json.getString("b12198");
-            this.b12196 = json.getString("b12196");
-            this.b12196x = json.getString("b12196x");
         }
     }
 
@@ -4138,60 +3628,7 @@ public class Child extends BaseObservable implements Observable {
                 .put("im051395", im051395)
                 .put("im051495", im051495)
                 .put("im0515b95", im0515b95)
-                .put("im051795", im051795)
-                .put("b107", b107)
-                .put("b108", b108)
-                .put("b10801", b10801)
-                .put("b10802", b10802)
-                .put("b10803", b10803)
-                .put("b10804", b10804)
-                .put("b10805", b10805)
-                .put("b10898", b10898)
-                .put("b110", b110)
-                .put("b114", b114)
-                .put("b112", b112)
-                .put("b11201", b11201)
-                .put("b11202", b11202)
-                .put("b11203", b11203)
-                .put("b11204", b11204)
-                .put("b11205", b11205)
-                .put("b11206", b11206)
-                .put("b11207", b11207)
-                .put("b11208", b11208)
-                .put("b11209", b11209)
-                .put("b11210", b11210)
-                .put("b11296", b11296)
-                .put("b11296x", b11296x)
-                .put("b105", b105)
-                .put("b106", b106)
-                .put("b10601", b10601)
-                .put("b10601x", b10601x)
-                .put("b10602", b10602)
-                .put("b10602x", b10602x)
-                .put("b115", b115)
-                .put("b116", b116)
-                .put("b117", b117)
-                .put("b118", b118)
-                .put("b11896x", b11896x)
-                .put("b11901", b11901)
-                .put("b11902", b11902)
-                .put("b11903", b11903)
-                .put("b11904", b11904)
-                .put("b11905", b11905)
-                .put("b11906", b11906)
-                .put("b11996", b11996)
-                .put("b11998", b11998)
-                .put("b11996x", b11996x)
-                .put("b120", b120)
-                .put("b121", b121)
-                .put("b12101", b12101)
-                .put("b12102", b12102)
-                .put("b12103", b12103)
-                .put("b12104", b12104)
-                .put("b12105", b12105)
-                .put("b12198", b12198)
-                .put("b12196", b12196)
-                .put("b12196x", b12196x);
+                .put("im051795", im051795);
 
         return json.toString();
     }
