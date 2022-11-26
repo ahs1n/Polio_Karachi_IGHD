@@ -65,9 +65,11 @@ public class SectionIM1Activity extends AppCompatActivity {
         Calendar cal = Calendar.getInstance();
         // cal.add(Calendar.MONTH, -6);
         bi.im04yy.setMaxvalue(Float.parseFloat(String.valueOf(cal.get(Calendar.YEAR))));
-        cal.add(Calendar.MONTH, +6);
-        cal.add(Calendar.MONTH, -23 - 6); // 6 months buffer
+        cal.add(Calendar.MONTH, +1);
+        cal.add(Calendar.MONTH, -59 - 6); // 6 months buffer
         bi.im04yy.setMinvalue(Float.parseFloat(String.valueOf(cal.get(Calendar.YEAR))));
+
+        bi.im01text.setText(String.format(getResources().getString(R.string.im01), child.getEc14()));
     }
 
 

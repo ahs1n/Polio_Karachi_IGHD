@@ -361,6 +361,7 @@
 
                 <!-- ec20  Title   -->
                 <TextView
+                    android:id="@+id/ec20info"
                     style="@style/info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -369,6 +370,7 @@
 
                     />              <!-- ec20  Title   -->
                 <TextView
+                    android:id="@+id/ec21info"
                     style="@style/info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

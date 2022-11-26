@@ -45,6 +45,9 @@ public class SectionCBActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         requestCode = intent.getStringExtra("requestCode");
+
+        bi.ec20info.setText(String.format(getResources().getString(R.string.ec20), child.getEc14()));
+        bi.ec21info.setText(String.format(getResources().getString(R.string.ec21info), child.getEc14()));
     }
 
     private boolean updateDB() {

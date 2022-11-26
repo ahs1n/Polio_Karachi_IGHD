@@ -4,6 +4,8 @@ import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.child;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -39,6 +41,7 @@ public class SectionCHActivity extends AppCompatActivity {
         setSupportActionBar(bi.toolbar);
         db = MainApp.appInfo.dbHelper;
         bi.setChild(MainApp.child);
+        setupListener();
         if (child.getEc13().equals(""))
             MainApp.child.setEc13(String.valueOf(MainApp.childCount + 1));
         Intent intent = getIntent();
@@ -52,6 +55,30 @@ public class SectionCHActivity extends AppCompatActivity {
         cal.add(Calendar.MONTH, +1);
         cal.add(Calendar.MONTH, -59 - 6); // 6 months buffer
         bi.cb03yy.setMinvalue(Float.parseFloat(String.valueOf(cal.get(Calendar.YEAR))));
+
+//        bi.cb03info.setText(String.format(getResources().getString(R.string.cb03), selectedChildName));
+    }
+
+    private void setupListener() {
+        bi.ec14.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                bi.cb0title.setText(getString(R.string.cb0title1) + " " + child.getEc14().toUpperCase() + getString(R.string.cb0title2));
+                bi.cb03text.setText(getString(R.string.cb03t1) + " " + child.getEc14().toUpperCase() + " " + getString(R.string.cb03t2));
+                bi.cb03info.setText(getString(R.string.cb03info1) + " " + child.getEc14().toUpperCase() + " " + getString(R.string.cb03info2));
+                bi.cb04text.setText(getString(R.string.cb04t1) + " " + child.getEc14().toUpperCase() + getString(R.string.cb04t2));
+            }
+        });
     }
 
     private boolean insertNewRecord() {

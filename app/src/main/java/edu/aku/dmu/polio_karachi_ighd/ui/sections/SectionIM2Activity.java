@@ -50,6 +50,23 @@ public class SectionIM2Activity extends AppCompatActivity {
         db = MainApp.appInfo.dbHelper;
         bi.setForm(child);
         if (MainApp.superuser) bi.btnContinue.setText("Review Next");
+
+        bi.im08text.setText(String.format(getResources().getString(R.string.im08), child.getEc14()));
+        bi.im09text.setText(String.format(getResources().getString(R.string.im09), child.getEc14()));
+        bi.im10text.setText(String.format(getResources().getString(R.string.im10), child.getEc14()));
+        bi.im10atext.setText(String.format(getResources().getString(R.string.im10a), child.getEc14()));
+        bi.im14text.setText(String.format(getResources().getString(R.string.im14), child.getEc14()));
+        bi.im16text.setText(String.format(getResources().getString(R.string.im16), child.getEc14()));
+        bi.im18text.setText(String.format(getResources().getString(R.string.im18), child.getEc14()));
+        bi.im20text.setText(String.format(getResources().getString(R.string.im20), child.getEc14()));
+        bi.im21text.setText(String.format(getResources().getString(R.string.im21), child.getEc14()));
+        bi.im22atext.setText(String.format(getResources().getString(R.string.im22a), child.getEc14()));
+        bi.im23text.setText(String.format(getResources().getString(R.string.im23), child.getEc14()));
+        bi.im24text.setText(String.format(getResources().getString(R.string.im24), child.getEc14()));
+        bi.im24atext.setText(String.format(getResources().getString(R.string.im24a), child.getEc14()));
+        bi.im24btext.setText(String.format(getResources().getString(R.string.im24b), child.getEc14()));
+        bi.im24ctext.setText(String.format(getResources().getString(R.string.im24c), child.getEc14()));
+        bi.b110text.setText(String.format(getResources().getString(R.string.b110), child.getEc14()));
     }
 
 

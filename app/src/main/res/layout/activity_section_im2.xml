@@ -75,6 +75,7 @@
                                     android:text="@string/Qim08" />
 
                                 <TextView
+                                    android:id="@+id/im08text"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:text="@string/im08" />
@@ -150,6 +151,7 @@
                                         android:text="@string/Qim09" />
 
                                     <TextView
+                                        android:id="@+id/im09text"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:text="@string/im09" />
@@ -219,6 +221,7 @@
                                         android:text="@string/Qim10" />
 
                                     <TextView
+                                        android:id="@+id/im10text"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:text="@string/im10" />
@@ -470,6 +473,7 @@
                                         android:text="@string/Qim10a" />
 
                                     <TextView
+                                        android:id="@+id/im10atext"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:text="@string/im10a" />
@@ -539,6 +543,7 @@
                                         android:text="@string/Qim14" />
 
                                     <TextView
+                                        android:id="@+id/im14text"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:text="@string/im14" />
@@ -656,6 +661,7 @@
                                         android:text="@string/Qim16" />
 
                                     <TextView
+                                        android:id="@+id/im16text"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:text="@string/im16" />
@@ -773,6 +779,7 @@
                                         android:text="@string/Qim18" />
 
                                     <TextView
+                                        android:id="@+id/im18text"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:text="@string/im18" />
@@ -890,6 +897,7 @@
                                         android:text="@string/Qim20" />
 
                                     <TextView
+                                        android:id="@+id/im20text"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:text="@string/im20" />
@@ -1008,6 +1016,7 @@
                                         android:text="@string/Qim21" />
 
                                     <TextView
+                                        android:id="@+id/im21text"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:text="@string/im21" />
@@ -1122,6 +1131,7 @@
                                         android:text="@string/Qim22a" />
 
                                     <TextView
+                                        android:id="@+id/im22atext"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
                                         android:text="@string/im22a" />
@@ -1195,6 +1205,7 @@
                                     android:text="@string/Qim23" />
 
                                 <TextView
+                                    android:id="@+id/im23text"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:text="@string/im23" />
@@ -1350,6 +1361,7 @@
                                     android:text="@string/Qim24" />
 
                                 <TextView
+                                    android:id="@+id/im24text"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:text="@string/im24" />
@@ -1724,6 +1736,7 @@
                                 android:text="@string/Qim24a" />
 
                             <TextView
+                                android:id="@+id/im24atext"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="@string/im24a" />
@@ -1794,6 +1807,7 @@
                                 android:text="@string/Qim24b" />
 
                             <TextView
+                                android:id="@+id/im24btext"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="@string/im24b" />
@@ -1860,6 +1874,7 @@
                                 android:text="@string/Qim24c" />
 
                             <TextView
+                                android:id="@+id/im24ctext"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="@string/im24c" />
@@ -1996,6 +2011,7 @@
                                 android:text="@string/Q_b110" />
 
                             <TextView
+                                android:id="@+id/b110text"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:text="@string/b110" />
