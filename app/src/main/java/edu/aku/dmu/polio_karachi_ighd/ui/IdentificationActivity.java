@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
@@ -41,6 +42,7 @@ public class IdentificationActivity extends AppCompatActivity {
         setTheme(MainApp.langRTL ? R.style.AppThemeUrdu : R.style.AppThemeEnglish1);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_identification);
         db = MainApp.appInfo.dbHelper;
+        setupSkips();
         //   populateSpinner();
 
         bi.btnContinue.setText(R.string.open_hh_form);
@@ -94,8 +96,48 @@ public class IdentificationActivity extends AppCompatActivity {
             }
         });
 
+
+        bi.newhhno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                c = charSequence.length();
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                c1 = charSequence.length();
+                String txt = charSequence.toString();
+                Log.d(TAG, "onTextChanged: c-" + c + " c1-" + c1 + "\t\t\tCHAR: " + charSequence);
+                Log.d(TAG, "onTextChanged: i-" + i + " i1-" + i1 + " i2-" + i2 + "\t\t\tCHAR: " + charSequence);
+
+                if (c1 > 1 && charSequence.charAt(1) != '-') {
+                    txt = txt.charAt(0) + "-" + txt.substring(1);
+                    bi.newhhno.setText(txt);
+                }
+                if (c1 > 6 && charSequence.charAt(6) != '-') {
+                    txt = txt.substring(0, 6) + "-" + txt.substring(6);
+                    bi.newhhno.setText(txt);
+                }
+                bi.newhhno.setSelection(bi.newhhno.getText().length());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
     }
 
+    private void setupSkips() {
+        bi.checkHh16a.setOnCheckedChangeListener(((compoundButton, b) -> {
+            Toast.makeText(IdentificationActivity.this, "CHECKED_CLICK_ORIGINAL", Toast.LENGTH_SHORT).show();
+            if (b) {
+                Clear.clearAllFields(bi.newhh1);
+                Clear.clearAllFields(bi.newhhdetails);
+            }
+        }));
+
+        bi.newhh.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.newhhdetails));
+    }
 
     private boolean formValidation() {
         return Validator.emptyCheckingContainer(this, bi.GrpName);

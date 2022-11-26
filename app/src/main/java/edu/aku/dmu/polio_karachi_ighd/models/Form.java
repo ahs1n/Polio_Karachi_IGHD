@@ -83,6 +83,9 @@ public class Form extends BaseObservable implements Observable {
     @Ignore
     private String entryType = _EMPTY_;
 
+    private String newhh = _EMPTY_;
+    private String newhhid = _EMPTY_;
+    private String newhhhead = _EMPTY_;
 
     // FIELD VARIABLES
     @Ignore
@@ -274,6 +277,36 @@ public class Form extends BaseObservable implements Observable {
         setHh12(selectedHousehold.getHhid());
         setHh11(selectedHousehold.getEbCode());
 
+    }
+
+    @Bindable
+    public String getNewhh() {
+        return newhh;
+    }
+
+    public void setNewhh(String newhh) {
+        this.newhh = newhh;
+        notifyPropertyChanged(BR.newhh);
+    }
+
+    @Bindable
+    public String getNewhhid() {
+        return newhhid;
+    }
+
+    public void setNewhhid(String newhhid) {
+        this.newhhid = newhhid;
+        notifyPropertyChanged(BR.newhhid);
+    }
+
+    @Bindable
+    public String getNewhhhead() {
+        return newhhhead;
+    }
+
+    public void setNewhhhead(String newhhhead) {
+        this.newhhhead = newhhhead;
+        notifyPropertyChanged(BR.newhhhead);
     }
 
     public String getTAG() {
@@ -1445,119 +1478,6 @@ public class Form extends BaseObservable implements Observable {
         notifyPropertyChanged(BR.a30996x);
     }
 
-    /*
-
-    @Bindable
-    public String getEc13() {
-        return ec13;
-    }
-
-    public void setEc13(String ec13) {
-        this.ec13 = ec13;
-        notifyPropertyChanged(BR.ec13);
-    }
-
-    @Bindable
-    public String getEc14() {
-        return ec14;
-    }
-
-    public void setEc14(String ec14) {
-        this.ec14 = ec14;
-        notifyPropertyChanged(BR.ec14);
-    }
-
-    @Bindable
-    public String getEc15() {
-        return ec15;
-    }
-
-    public void setEc15(String ec15) {
-        this.ec15 = ec15;
-        notifyPropertyChanged(BR.ec15);
-    }
-
-    @Bindable
-    public String getEc16() {
-        return ec16;
-    }
-
-    public void setEc16(String ec16) {
-        this.ec16 = ec16;
-        notifyPropertyChanged(BR.ec16);
-    }
-
-    @Bindable
-    public String getEc17() {
-        return ec17;
-    }
-
-    public void setEc17(String ec17) {
-        this.ec17 = ec17;
-        notifyPropertyChanged(BR.ec17);
-    }
-
-    @Bindable
-    public String getCb03_dd() {
-        return cb03_dd;
-    }
-
-    public void setCb03_dd(String cb03_dd) {
-        this.cb03_dd = cb03_dd;
-        notifyPropertyChanged(BR.cb03_dd);
-    }
-
-    @Bindable
-    public String getCb03_mm() {
-        return cb03_mm;
-    }
-
-    public void setCb03_mm(String cb03_mm) {
-        this.cb03_mm = cb03_mm;
-        notifyPropertyChanged(BR.cb03_mm);
-    }
-
-    @Bindable
-    public String getCb03_yy() {
-        return cb03_yy;
-    }
-
-    public void setCb03_yy(String cb03_yy) {
-        this.cb03_yy = cb03_yy;
-        notifyPropertyChanged(BR.cb03_yy);
-    }
-
-    @Bindable
-    public String getCb03_dk() {
-        return cb03_dk;
-    }
-
-    public void setCb03_dk(String cb03_dk) {
-        this.cb03_dk = cb03_dk;
-        notifyPropertyChanged(BR.cb03_dk);
-    }
-
-    @Bindable
-    public String getCb04_mm() {
-        return cb04_mm;
-    }
-
-    public void setCb04_mm(String cb04_mm) {
-        this.cb04_mm = cb04_mm;
-        notifyPropertyChanged(BR.cb04_mm);
-    }
-
-    @Bindable
-    public String getCb04_yy() {
-        return cb04_yy;
-    }
-
-    public void setCb04_yy(String cb04_yy) {
-        this.cb04_yy = cb04_yy;
-        notifyPropertyChanged(BR.cb04_yy);
-    }
-*/
-
 
     public Form Hydrate(Cursor cursor) throws JSONException {
         this.id = cursor.getInt(cursor.getColumnIndexOrThrow(FormsTable.COLUMN_ID));
@@ -1589,6 +1509,9 @@ public class Form extends BaseObservable implements Observable {
             JSONObject json = null;
             json = new JSONObject(string);
 
+            this.newhh = json.getString("newhh");
+            this.newhhid = json.getString("newhhid");
+            this.newhhhead = json.getString("newhhhead");
             this.hh01 = json.getString("hh01");
             this.hh02 = json.getString("hh02");
             this.hh03 = json.getString("hh03");
@@ -1688,6 +1611,9 @@ public class Form extends BaseObservable implements Observable {
         Log.d(TAG, "sAtoString: ");
         JSONObject json = new JSONObject();
         json.put("hh01", hh01)
+                .put("newhh", newhh)
+                .put("newhhid", newhhid)
+                .put("newhhhead", newhhhead)
                 .put("hh02", hh02)
                 .put("hh03", hh03)
                 .put("hh03a", hh03a)
