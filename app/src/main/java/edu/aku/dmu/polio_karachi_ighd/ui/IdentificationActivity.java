@@ -1,5 +1,6 @@
 package edu.aku.dmu.polio_karachi_ighd.ui;
 
+import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.form;
 import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.selectedCluster;
 import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.selectedHousehold;
 
@@ -97,7 +98,7 @@ public class IdentificationActivity extends AppCompatActivity {
         });
 
 
-        bi.newhhno.addTextChangedListener(new TextWatcher() {
+        bi.newhhid.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 c = charSequence.length();
@@ -112,13 +113,13 @@ public class IdentificationActivity extends AppCompatActivity {
 
                 if (c1 > 1 && charSequence.charAt(1) != '-') {
                     txt = txt.charAt(0) + "-" + txt.substring(1);
-                    bi.newhhno.setText(txt);
+                    bi.newhhid.setText(txt);
                 }
                 if (c1 > 6 && charSequence.charAt(6) != '-') {
                     txt = txt.substring(0, 6) + "-" + txt.substring(6);
-                    bi.newhhno.setText(txt);
+                    bi.newhhid.setText(txt);
                 }
-                bi.newhhno.setSelection(bi.newhhno.getText().length());
+                bi.newhhid.setSelection(bi.newhhid.getText().length());
             }
 
             @Override
@@ -128,8 +129,8 @@ public class IdentificationActivity extends AppCompatActivity {
     }
 
     private void setupSkips() {
+
         bi.checkHh16a.setOnCheckedChangeListener(((compoundButton, b) -> {
-            Toast.makeText(IdentificationActivity.this, "CHECKED_CLICK_ORIGINAL", Toast.LENGTH_SHORT).show();
             if (b) {
                 Clear.clearAllFields(bi.newhh1);
                 Clear.clearAllFields(bi.newhhdetails);
@@ -161,6 +162,15 @@ public class IdentificationActivity extends AppCompatActivity {
             Toast.makeText(this, "This form has been locked.", Toast.LENGTH_SHORT).show();
         } else {
             finish();
+            MainApp.newHH = (
+                    bi.newhha.isChecked() ? "1"
+                            : bi.newhhb.isChecked() ? "2"
+                            : "-1");
+            MainApp.newHHID = bi.newhhid.getText().toString();
+            MainApp.newHHHead = bi.newhhhead.getText().toString();
+
+            form.setNewhhid(bi.newhhid.getText().toString());
+            form.setNewhhhead(bi.newhhhead.getText().toString());
             startActivity(new Intent(this, ConsentActivity.class));
         }
 
@@ -228,6 +238,7 @@ public class IdentificationActivity extends AppCompatActivity {
 
         bi.hh16a.setText(null);
         bi.headhh.setVisibility(View.GONE);
+        bi.newhh1.setVisibility(View.GONE);
 
         bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(IdentificationActivity.this, R.color.gray));
         bi.btnContinue.setEnabled(false);
@@ -236,6 +247,7 @@ public class IdentificationActivity extends AppCompatActivity {
         if (selectedHousehold != null) {
             bi.hh16a.setText(selectedHousehold.getHhhead());    // Name of Head
             bi.headhh.setVisibility(View.VISIBLE);
+            bi.newhh1.setVisibility(View.VISIBLE);
             bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
             bi.btnContinue.setEnabled(true);
         } else {

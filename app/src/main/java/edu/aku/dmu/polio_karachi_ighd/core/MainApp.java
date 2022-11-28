@@ -111,6 +111,10 @@ public class MainApp extends Application {
     public static NoMenuEditText noMenuEditText;
     protected static LocationManager locationManager;
 
+    public static String newHH = "";
+    public static String newHHID = "";
+    public static String newHHHead = "";
+
 
     public static void hideSystemUI(View decorView) {
         // Enables regular immersive mode.
