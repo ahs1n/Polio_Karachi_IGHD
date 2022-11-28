@@ -48,10 +48,12 @@
             android:name="edu.aku.dmu.polio_karachi_ighd.ui.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name="edu.aku.dmu.polio_karachi_ighd.ui.ChangePasswordActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name="edu.aku.dmu.polio_karachi_ighd.ui.EndingActivity"
             android:exported="false"

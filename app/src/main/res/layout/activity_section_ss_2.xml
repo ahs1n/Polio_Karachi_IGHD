@@ -183,6 +183,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:checked="@{form.a30801.equals(`1`)}"
+                                android:enabled="@{!form.a30805.equals(`5`)}"
                                 android:onClick="@{()->form.setA30801(form.a30801.equals(`1`)?``:`1`)}"
                                 android:text="@string/a30801" />
 
@@ -191,6 +192,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:checked="@{form.a30802.equals(`2`)}"
+                                android:enabled="@{!form.a30805.equals(`5`)}"
                                 android:onClick="@{()->form.setA30802(form.a30802.equals(`2`)?``:`2`)}"
                                 android:text="@string/a30802" />
 
@@ -199,6 +201,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:checked="@{form.a30803.equals(`3`)}"
+                                android:enabled="@{!form.a30805.equals(`5`)}"
                                 android:onClick="@{()->form.setA30803(form.a30803.equals(`3`)?``:`3`)}"
                                 android:text="@string/a30803" />
 
@@ -207,6 +210,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:checked="@{form.a30804.equals(`4`)}"
+                                android:enabled="@{!form.a30805.equals(`5`)}"
                                 android:onClick="@{()->form.setA30804(form.a30804.equals(`4`)?``:`4`)}"
                                 android:text="@string/a30804" />
 
@@ -223,6 +227,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:checked="@{form.a30896.equals(`96`)}"
+                                android:enabled="@{!form.a30805.equals(`5`)}"
                                 android:onClick="@{()->form.setA30896(form.a30896.equals(`96`)?``:`96`)}"
                                 android:text="@string/a30896" />
 

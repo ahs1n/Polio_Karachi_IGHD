@@ -11,7 +11,7 @@
         <!--DO NOT BIND FIELDS IN IDENTIFICATION SECTION WITH ANY MODEL CLASS
         <variable
             name="form"
-            type="edu.aku.hassannaqvi.tpvics_r2.models.Form" />-->
+            type="edu.aku.dmu.polio_karachi_ighd.models.Form" />-->
 
     </data>
 
