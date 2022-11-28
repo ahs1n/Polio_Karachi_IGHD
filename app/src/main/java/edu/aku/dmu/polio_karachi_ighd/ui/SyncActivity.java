@@ -977,4 +977,10 @@ public class SyncActivity extends AppCompatActivity {
     public void btnContinue(View view) {
         finish();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
+    }
 }

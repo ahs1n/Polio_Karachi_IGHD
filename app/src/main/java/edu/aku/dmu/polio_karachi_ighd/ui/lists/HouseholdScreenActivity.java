@@ -167,6 +167,7 @@ public class HouseholdScreenActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        MainApp.lockScreen(this);
         // Toast.makeText(this, "Activity Resumed!", Toast.LENGTH_SHORT).show();
         if (childCount >= Integer.parseInt(MainApp.form.getHh20a()) && MainApp.householdChecked) {
             bi.btnContinue.setEnabled(childCount == MainApp.childCompleted.size());

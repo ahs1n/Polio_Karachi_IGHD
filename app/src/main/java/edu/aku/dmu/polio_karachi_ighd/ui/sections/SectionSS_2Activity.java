@@ -91,5 +91,9 @@ public class SectionSS_2Activity extends AppCompatActivity {
         //  setResult(RESULT_CANCELED); finish();
     }
 
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
+    }
 }

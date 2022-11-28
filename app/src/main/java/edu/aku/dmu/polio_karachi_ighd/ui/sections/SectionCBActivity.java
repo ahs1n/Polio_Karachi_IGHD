@@ -50,6 +50,7 @@ public class SectionCBActivity extends AppCompatActivity {
         bi.ec21info.setText(String.format(getResources().getString(R.string.ec21info), child.getEc14()));
     }
 
+
     private boolean updateDB() {
         if (MainApp.superuser) return true;
 
@@ -68,6 +69,7 @@ public class SectionCBActivity extends AppCompatActivity {
             return false;
         }
     }
+
 
     public void btnContinue(View view) {
         if (!formValidation()) return;
@@ -110,6 +112,7 @@ public class SectionCBActivity extends AppCompatActivity {
         finish();
     }
 
+
     private boolean formValidation() {
 
         if (!Validator.emptyCheckingContainer(this, bi.GrpName)) {
@@ -140,5 +143,11 @@ public class SectionCBActivity extends AppCompatActivity {
         returnIntent.putExtra("requestCode", requestCode);
         setResult(RESULT_CANCELED, returnIntent);
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MainApp.lockScreen(this);
     }
 }
