@@ -1,12 +1,10 @@
 package edu.aku.dmu.polio_karachi_ighd.models
 
+//import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.codec.binary.StringUtils
 import android.database.Cursor
-import edu.aku.dmu.polio_karachi_ighd.contracts.TableContracts
-import edu.aku.dmu.polio_karachi_ighd.core.MainApp._EMPTY_
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.codec.binary.StringUtils
 import edu.aku.dmu.polio_karachi_ighd.contracts.TableContracts.UsersTable
 import edu.aku.dmu.polio_karachi_ighd.core.MainApp._EMPTY_
 import org.json.JSONException

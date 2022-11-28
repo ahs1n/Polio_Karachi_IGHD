@@ -236,6 +236,7 @@ public class LoginActivity extends AppCompatActivity {
                 return false;
             }
         });
+//        throw new RuntimeException("Test Crash");
     }
 
     @Override

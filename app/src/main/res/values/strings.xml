@@ -1,6 +1,7 @@
 <resources>
 
-    <string name="app_name">Polio Karachi IGHD Trial - English</string>
+    <string name="app_name">Polio Karachi IGHD Trial</string>
+    <string name="project_name">Polio Karachi IGHD Trial - English</string>
     <string name="btnDownload" translatable="false">Download Data</string>
     <string name="btnUpload">Upload Data</string>
     <string name="promptemail">Email</string>

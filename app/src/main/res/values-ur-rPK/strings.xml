@@ -70,7 +70,8 @@
     <string name="sectionchlistofchildren0623monthsoldsubheading"> 0 سے 59 ماہ کی عمر کے بچوں کی فہرست</string>
 
     <!--    <string name="istatus">انٹرویوکا نتیجہ: انٹرویوکے درست نتیجے کا دیئے گئے آپشنز کے مطابق تعین کریں</string>-->
-    <string name="app_name"> Polio Karachi IGHD - Urdu </string>
+    <string name="app_name"> Polio Karachi IGHD Trial</string>
+    <string name="project_name"> Polio Karachi IGHD Trial - Urdu </string>
     <string name="btnSync">Download Data</string>
     <string name="btnUpload">Upload Data</string>
     <string name="promptemail">Email</string>
@@ -371,7 +372,7 @@
     <string name="hh12">گھرانہ نمبر </string>
     <string name="hh01">انٹرویو کی تاریخ  </string>
     <string name="hh02">انٹرویو کا وقت:</string>
-    <string name="hh18t">اسلام وعلیکم، میرا نام %1$s ہے۔\n\n ہمارا تعلق قومی ادارہ صحت، حکومت پاکستان سے ہے۔ہم پاکستان میں بچوں کی صحت کے حوالے سے ایک سروے کا انعقاد کررہے ہیں۔میں آپ سے آپ کے (بچے کا نام) کی حفاظتی ٹیکوں کی گزشتہ معلومات کے بارے میں بات کرنا چاہتا/چاہتی ہوں۔اس انٹرویو میں تقریباً 30منٹس لگیں گے۔ آپ سے حاصل کردہ تمام معلومات مکمل طور پر خفیہ رہیں گی اور آپ کا نام ظاہرنہیں کیا جائے گا۔  اگر آپ کسی سوال کا جواب نہیں دینا چاہتے/چاہتی ہیں یا اس انٹرویوکو روکنا چاہتے ہیں ، تو براہ کرم مجھے بتائیں۔ </string>
+    <string name="hh18t">اسلام وعلیکم، میرا نام %1$s ہے۔\n\n  </string>
     <string name="hh18">کیا میں اب انٹرویو شروع کر سکتی/سکتا ہوں؟</string>
     <string name="hh18a"> ہاں، اجازت مل گئی ہے</string>
     <string name="hh18b">نہیں، اجازت نہیں ملی </string>

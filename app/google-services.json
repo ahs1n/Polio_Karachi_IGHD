@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "172416024577",
+    "project_id": "polio-karachi-ighd",
+    "storage_bucket": "polio-karachi-ighd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172416024577:android:63ed060b44bd133d3d4000",
+        "android_client_info": {
+          "package_name": "edu.aku.dmu.polio_karachi_ighd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172416024577-kru3hcf0nppo0odanmbopibr1pu8h188.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNWjm1EwLmyVd4dMH2GvkwY7XWmSKhZsA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172416024577-kru3hcf0nppo0odanmbopibr1pu8h188.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
