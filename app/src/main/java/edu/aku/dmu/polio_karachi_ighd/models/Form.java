@@ -1406,6 +1406,11 @@ public class Form extends BaseObservable implements Observable {
         setA30803(a30805.equals("5") ? "" : this.a30803);
         setA30804(a30805.equals("5") ? "" : this.a30804);
         setA30896(a30805.equals("5") ? "" : this.a30896);
+
+        setA30901(a30805.equals("5") ? "" : this.a30901);
+        setA30902(a30805.equals("5") ? "" : this.a30902);
+        setA30903(a30805.equals("5") ? "" : this.a30903);
+        setA30996(a30805.equals("5") ? "" : this.a30996);
         notifyPropertyChanged(BR.a30805);
     }
 
