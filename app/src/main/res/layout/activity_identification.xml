@@ -69,7 +69,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text="@string/hh05" />
+                                android:text="@string/ec11" />
 
                         </LinearLayout>
 
@@ -84,7 +84,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:hint="@string/hh05"
+                                android:hint="@string/ec11"
                                 android:inputType="number"
                                 android:maxLength="9" />
 
@@ -270,9 +270,9 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:hint="#-####-###"
-                                android:inputType="textCapCharacters"
-                                android:maxLength="10"
+                                android:hint="####"
+                                android:inputType="number"
+                                android:maxLength="4"
                                 android:textAllCaps="true" />
 
                             <ImageButton
@@ -281,39 +281,6 @@
                                 android:backgroundTint="@color/colorAccent"
                                 android:onClick="checkHH"
                                 android:src="@drawable/search" />
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/headhh"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bottom"
-                            android:orientation="horizontal"
-                            android:visibility="gone"
-                            tools:visibility="visible">
-
-                            <TextView
-                                style="@style/sub_labels"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:text="@string/hh16a" />
-
-                            <TextView
-                                android:id="@+id/hh16a"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center_vertical"
-                                android:textColor="@color/colorPrimary" />
-
-                            <CheckBox
-                                android:id="@+id/checkHh16a"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center_horizontal|center_vertical"
-                                android:text="@string/confirm" />
 
                         </LinearLayout>
 
@@ -382,39 +349,60 @@
                                     android:layout_weight="1"
                                     android:text="@string/hh12" />
 
-                                <TextView
-                                    style="@style/sub_labels"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="@string/hh16a" />
-                            </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
                                 <com.edittextpicker.aliazaz.EditTextPicker
                                     android:id="@+id/newhhid"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:hint="#-####-###"
-                                    android:inputType="textCapCharacters"
-                                    android:maxLength="10"
-                                    android:textAllCaps="true" />
-
-                                <EditText
-                                    android:id="@+id/newhhhead"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "
-                                    android:hint="@string/hh16a"
-                                    android:inputType="textPersonName|textCapWords" />
+                                    android:hint="####"
+                                    android:inputType="number"
+                                    android:maxLength="4"
+                                    android:textAllCaps="true"
+                                    app:pattern="^[0-9]{4,4}$" />
                             </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/headhh"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bottom"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            tools:visibility="visible">
+
+                            <TextView
+                                style="@style/sub_labels"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/hh16a" />
+
+                            <!--<TextView
+                                android:id="@+id/hh16a"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@null"
+                                android:gravity="center_vertical"
+                                android:textColor="@color/colorPrimary" />-->
+
+                            <EditText
+                                android:id="@+id/newhhhead"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "
+                                android:hint="@string/hh16a"
+                                android:inputType="textPersonName|textCapWords" />
+
+                            <!--<CheckBox
+                                android:id="@+id/checkHh16a"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:text="@string/confirm" />-->
 
                         </LinearLayout>
 

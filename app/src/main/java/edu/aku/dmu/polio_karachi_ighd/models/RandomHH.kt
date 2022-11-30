@@ -43,7 +43,8 @@ class RandomHH {
 
         this.tabno = jsonObject.getString(RandomHHTable.COLUMN_TAB_NO)
 
-        this.hhid = "$tabno-$structure-$extension"
+//        this.hhid = "$tabno-$structure-$extension"
+        this.hhid = "$structure"
         this.randomDT = jsonObject.getString(RandomHHTable.COLUMN_RANDOMDT)
         this.hhhead = jsonObject.getString(RandomHHTable.COLUMN_HH_HEAD)
         this.contact = jsonObject.getString(RandomHHTable.COLUMN_CONTACT)

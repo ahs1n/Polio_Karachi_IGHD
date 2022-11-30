@@ -6,8 +6,6 @@ import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.selectedHousehold;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -52,7 +50,7 @@ public class IdentificationActivity extends AppCompatActivity {
         MainApp.form = new Form();
 
 
-        bi.hh12.addTextChangedListener(new TextWatcher() {
+        /*bi.hh12.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 //  Log.d(TAG, "beforeTextChanged: charSequence-"+charSequence+" i-"+i+ " i1-"+i1 +" i2-"+i2);
@@ -66,7 +64,7 @@ public class IdentificationActivity extends AppCompatActivity {
                 String txt = charSequence.toString();
                 Log.d(TAG, "onTextChanged: c-" + c + " c1-" + c1 + "\t\t\tCHAR: " + charSequence);
                 Log.d(TAG, "onTextChanged: i-" + i + " i1-" + i1 + " i2-" + i2 + "\t\t\tCHAR: " + charSequence);
-         /*       if (c == 0 && c1 == 1)
+         *//*       if (c == 0 && c1 == 1)
                     bi.hh12.setText(bi.hh12.getText().toString() + "-"); // A-
                 if (c == 5 && c1 == 6)
                     bi.hh12.setText(bi.hh12.getText().toString() + "-"); // A-0001-
@@ -74,7 +72,7 @@ public class IdentificationActivity extends AppCompatActivity {
                 if (c == 8 && c1 == 7)
                     bi.hh12.setText(bi.hh12.getText().toString().substring(0, 6)); // A-0001
                 if (c == 3 && c1 == 2)
-                    bi.hh12.setText(bi.hh12.getText().toString().substring(0, 1)); // A*/
+                    bi.hh12.setText(bi.hh12.getText().toString().substring(0, 1)); // A*//*
 
                 if (c1 > 1 && charSequence.charAt(1) != '-') {
                     txt = txt.charAt(0) + "-" + txt.substring(1);
@@ -125,17 +123,10 @@ public class IdentificationActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
             }
-        });
+        });*/
     }
 
     private void setupSkips() {
-
-        bi.checkHh16a.setOnCheckedChangeListener(((compoundButton, b) -> {
-            if (b) {
-                Clear.clearAllFields(bi.newhh1);
-                Clear.clearAllFields(bi.newhhdetails);
-            }
-        }));
 
         bi.newhh.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.newhhdetails));
     }
@@ -202,7 +193,8 @@ public class IdentificationActivity extends AppCompatActivity {
         bi.hh07.setText(null);      //  District
         bi.hh08.setText(null);      //  Tehsil
         bi.hh09.setText(null);      //  City/Village
-        bi.hh16a.setText(null);
+        bi.newhhhead.setText(null);
+//        bi.hh16a.setText(null);
 
         bi.checkHh06.setChecked(false);
         bi.checkHh07.setChecked(false);
@@ -236,16 +228,20 @@ public class IdentificationActivity extends AppCompatActivity {
     public void checkHH(View view) {
         if (!formValidation()) return;
 
-        bi.hh16a.setText(null);
+//        bi.hh16a.setText(null);
+        bi.newhhhead.setText(null);
         bi.headhh.setVisibility(View.GONE);
         bi.newhh1.setVisibility(View.GONE);
+        bi.newhh.clearCheck();
+        bi.newhha.setChecked(false);
+        bi.newhhb.setChecked(false);
 
         bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(IdentificationActivity.this, R.color.gray));
         bi.btnContinue.setEnabled(false);
 
         selectedHousehold = db.getRandomByhhid(bi.hh12.getText().toString());
         if (selectedHousehold != null) {
-            bi.hh16a.setText(selectedHousehold.getHhhead());    // Name of Head
+//            bi.hh16a.setText(selectedHousehold.getHhhead());    // Name of Head
             bi.headhh.setVisibility(View.VISIBLE);
             bi.newhh1.setVisibility(View.VISIBLE);
             bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
