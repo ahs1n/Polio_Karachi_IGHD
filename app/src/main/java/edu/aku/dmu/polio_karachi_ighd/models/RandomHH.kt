@@ -36,7 +36,7 @@ class RandomHH {
         this.LUID = jsonObject.getString(RandomHHTable.COLUMN_LUID)
         this.ebCode = jsonObject.getString(RandomHHTable.COLUMN_EB_CODE)
         this.structure = jsonObject.getString(RandomHHTable.COLUMN_STRUCTURE_NO)
-        this.structure = String.format("%04d", Integer.valueOf(this.structure))
+        this.structure = String.format("%03d", Integer.valueOf(this.structure))
 
         this.extension = jsonObject.getString(RandomHHTable.COLUMN_FAMILY_EXT_CODE)
         this.extension = String.format("%03d", Integer.valueOf(this.extension))

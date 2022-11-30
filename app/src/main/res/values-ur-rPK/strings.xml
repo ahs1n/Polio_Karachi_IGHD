@@ -43,6 +43,9 @@
     <string name="b10898">معلوم نہیں </string>
     <string name="downloadDataDesc">Please download the data before login</string>
 
+    <string name="uc">یونین کونسل</string>
+    <string name="chw">سی ایج ڈبلیو</string>
+
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="btnResetPassword">Reset Password</string>
@@ -737,7 +740,7 @@
     <string name="b11210">مطالبات کی بنیاد پر انکار</string>
     <string name="b11296">دیگر وضاحت کریں</string>
     <string name="b105">کیا آپ کے بچے کو کبھی آئی پی وی ویکسین یا دوسری خوراک ملی ہے؟</string>
-    <string name="b106">اگر ہاں توآپ کے بچے کو کب آئی پی وی ویکسین یا تیسری خوراک ملی؟</string>
+    <string name="b106">اگر ہاں توآپ کے بچے کو کب آئی پی وی ویکسین یا دوسری خوراک ملی؟</string>
     <string name="b115">کیا آپ کے بچے کو پچھلے 6 ماہ کے دوران وٹامن A- سپلیمنٹ/ کیپسول دیا گیا؟   </string>
     <string name="b10501"> ہاں</string>
     <string name="b10601">مہینہ</string>

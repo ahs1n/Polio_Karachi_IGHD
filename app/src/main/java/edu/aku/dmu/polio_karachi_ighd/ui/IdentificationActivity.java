@@ -213,10 +213,10 @@ public class IdentificationActivity extends AppCompatActivity {
 
         if (selectedCluster != null) {
             String[] geoarea = selectedCluster.getGeoarea().split("\\|");
-            bi.hh06.setText(geoarea[0]);    //  Province
-            bi.hh07.setText(geoarea[1]);    //  District
-            bi.hh08.setText(geoarea[2]);    //  Tehsil
-            bi.hh09.setText(geoarea[3]);    //  City/Village
+            bi.hh06.setText(geoarea[0]);    //  District
+            bi.hh07.setText(geoarea[1]);    //  Tehsil
+            bi.hh08.setText(geoarea[2]);    //  uc
+            bi.hh09.setText(geoarea[3]);    //  CHW
             bi.fldGrpIdentifier.setVisibility(View.VISIBLE);
         } else {
             Toast.makeText(this, "Enumeration Block not found", Toast.LENGTH_SHORT).show();

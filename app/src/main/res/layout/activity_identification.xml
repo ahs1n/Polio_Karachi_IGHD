@@ -116,7 +116,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:text="@string/hh06" />
+                                    android:text="@string/hh07" />
 
                                 <TextView
                                     android:id="@+id/hh06"
@@ -147,7 +147,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:text="@string/hh07" />
+                                    android:text="@string/hh08" />
 
                                 <TextView
                                     android:id="@+id/hh07"
@@ -178,7 +178,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:text="@string/hh08" />
+                                    android:text="@string/uc" />
 
                                 <TextView
                                     android:id="@+id/hh08"
@@ -209,7 +209,7 @@
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:text="@string/hh09" />
+                                    android:text="@string/chw" />
 
                                 <TextView
                                     android:id="@+id/hh09"
@@ -270,9 +270,9 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:hint="####"
+                                android:hint="###"
                                 android:inputType="number"
-                                android:maxLength="4"
+                                android:maxLength="3"
                                 android:textAllCaps="true" />
 
                             <ImageButton
@@ -355,11 +355,11 @@
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:hint="####"
+                                    android:hint="###"
                                     android:inputType="number"
-                                    android:maxLength="4"
+                                    android:maxLength="3"
                                     android:textAllCaps="true"
-                                    app:pattern="^[0-9]{4,4}$" />
+                                    app:pattern="^[0-9]{3,3}$" />
                             </LinearLayout>
 
                         </LinearLayout>

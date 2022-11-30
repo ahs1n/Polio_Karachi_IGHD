@@ -20,7 +20,8 @@
     <string name="onlyfortesting">ONLY FOR TESTING</string>
     <string name="database">Database</string>
     <string name="district" translatable="false">DISTRICT</string>
-    <string name="uc" translatable="false">UC</string>
+    <string name="uc">Union Council</string>
+    <string name="chw">CHW</string>
     <string name="btnSave" translatable="false">Save</string>
     <string name="btnEnd" translatable="false">Cancel</string>
     <string name="signin" translatable="false">SIGN IN</string>
@@ -712,7 +713,7 @@
     <string name="b11210">Demands based refusal   </string>
     <string name="b11296">Other specify </string>
     <string name="b105">Has your child received vitamin A- supplement/ capsule during last 6 months?</string>
-    <string name="b106">If yes, when your child received IPV Vaccine or III- Dosage?</string>
+    <string name="b106">If yes, when your child received IPV Vaccine or II- Dosage?</string>
     <string name="b115">Has your child received vitamin A- supplement/ capsule during last 6 months?</string>
     <string name="b10501">Yes</string>
     <string name="b10601">Month</string>
