@@ -60,14 +60,12 @@ public class HouseholdScreenActivity extends AppCompatActivity {
                             } else if (data.getStringExtra("requestCode").equals("2")) {        // Added a Child
 
                                 MainApp.childList.add(MainApp.child);
-                                if (MainApp.child.getAgeInMonths() >= 0 && MainApp.child.getAgeInMonths() <= 59)
+                                if (MainApp.child.getAgeInMonths() >= 0)
                                     childCount++;
                                 childsAdapter.notifyItemInserted(MainApp.childList.size() - 1);
                                 Toast.makeText(HouseholdScreenActivity.this, "Child added.", Toast.LENGTH_SHORT).show();
 
                             } else if (data.getStringExtra("requestCode").equals("3")) {        // Long Press to edit age/gender
-
-
                                 // MainApp.childList.set(selectedChild, MainApp.child);
                                 long postAgeInMonths = MainApp.childList.get(selectedChild).getAgeInMonths();
 
@@ -120,12 +118,12 @@ public class HouseholdScreenActivity extends AppCompatActivity {
         try {
             MainApp.childList = db.getChildrenBYUID();
             for (Child child : MainApp.childList) {
-                if (child.getAgeInMonths() >= 0 && child.getAgeInMonths() <= 59)
+                if (child.getAgeInMonths() >= 0)
                     childCount++;
 
-                if (!child.getEc22().equals("")) {
+                /*if (!child.getEc22().equals("")) {
                     MainApp.childCompleted.add(Integer.parseInt(child.getEc13()) - 1);
-                }
+                }*/
 
             }
 
@@ -170,8 +168,12 @@ public class HouseholdScreenActivity extends AppCompatActivity {
         MainApp.lockScreen(this);
         // Toast.makeText(this, "Activity Resumed!", Toast.LENGTH_SHORT).show();
         if (childCount >= Integer.parseInt(MainApp.form.getHh20a()) && MainApp.householdChecked) {
-            bi.btnContinue.setEnabled(childCount == MainApp.childCompleted.size());
-            bi.btnContinue.setBackground(childCount == MainApp.childCompleted.size() ? getResources().getDrawable(R.drawable.button_shape_green) : getResources().getDrawable(R.drawable.button_shape_gray));
+//            bi.btnContinue.setEnabled(childCount == MainApp.childCompleted.size());
+            bi.btnContinue.setEnabled(MainApp.childCompleted.size() > 0);
+//            bi.btnContinue.setEnabled(childCount == Integer.parseInt(MainApp.form.getHh20a()));
+//            bi.btnContinue.setBackground(childCount == MainApp.childCompleted.size() ? getResources().getDrawable(R.drawable.button_shape_green) : getResources().getDrawable(R.drawable.button_shape_gray));
+//            bi.btnContinue.setBackground(childCount == Integer.parseInt(MainApp.form.getHh20a()) ? getResources().getDrawable(R.drawable.button_shape_green) : getResources().getDrawable(R.drawable.button_shape_gray));
+            bi.btnContinue.setBackground(MainApp.childCompleted.size() > 0 ? getResources().getDrawable(R.drawable.button_shape_green) : getResources().getDrawable(R.drawable.button_shape_gray));
             bi.childCompleteStatus.setVisibility(View.VISIBLE);
         }
         bi.hhcheck.setVisibility(MainApp.householdChecked ? View.VISIBLE : View.INVISIBLE);

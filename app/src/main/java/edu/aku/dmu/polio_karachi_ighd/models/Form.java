@@ -277,9 +277,6 @@ public class Form extends BaseObservable implements Observable {
         setHh09(selectedCluster.getGeoarea().split("\\|")[3]);
         setHh12(selectedHousehold.getHhid());
         setHh11(selectedHousehold.getEbCode());
-        setNewhh(MainApp.newHH);
-        setNewhhid(MainApp.newHHID);
-        setNewhhhead(MainApp.newHHHead);
 
     }
 
@@ -1616,6 +1613,19 @@ public class Form extends BaseObservable implements Observable {
             this.ss14s = json.getString("ss14s");
             this.ss21a = json.getString("ss21a");
             this.ss22 = json.getString("ss22");
+            this.a30801 = json.getString("a30801");
+            this.a30802 = json.getString("a30802");
+            this.a30803 = json.getString("a30803");
+            this.a30804 = json.getString("a30804");
+            this.a30805 = json.getString("a30805");
+            this.a30896 = json.getString("a30896");
+            this.a30896x = json.getString("a30896x");
+            this.a30901 = json.getString("a30901");
+            this.a30902 = json.getString("a30902");
+            this.a30903 = json.getString("a30903");
+            this.a30996 = json.getString("a30996");
+            this.a30996x = json.getString("a30996x");
+
 
         }
 
@@ -1714,7 +1724,19 @@ public class Form extends BaseObservable implements Observable {
                 .put("ss14r", ss14r)
                 .put("ss14s", ss14s)
                 .put("ss21a", ss21a)
-                .put("ss22", ss22);
+                .put("ss22", ss22)
+                .put("a30801", a30801)
+                .put("a30802", a30802)
+                .put("a30803", a30803)
+                .put("a30804", a30804)
+                .put("a30805", a30805)
+                .put("a30896", a30896)
+                .put("a30896x", a30896x)
+                .put("a30901", a30901)
+                .put("a30902", a30902)
+                .put("a30903", a30903)
+                .put("a30996", a30996)
+                .put("a30996x", a30996x);
 
         return json.toString();
 

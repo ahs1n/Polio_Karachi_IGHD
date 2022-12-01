@@ -40,6 +40,10 @@ public class ConsentActivity extends AppCompatActivity {
 
         String consentText = getString(R.string.hh18t, MainApp.user.getFullname());
         bi.consentTextView.setText(consentText);
+
+        form.setNewhh(MainApp.newHH);
+        form.setNewhhid(MainApp.newHHID);
+        form.setNewhhhead(MainApp.newHHHead);
     }
 
 

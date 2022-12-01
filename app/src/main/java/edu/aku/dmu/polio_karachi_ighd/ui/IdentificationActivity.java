@@ -153,10 +153,10 @@ public class IdentificationActivity extends AppCompatActivity {
             Toast.makeText(this, "This form has been locked.", Toast.LENGTH_SHORT).show();
         } else {
             finish();
+
             MainApp.newHH = (
                     bi.newhha.isChecked() ? "1"
-                            : bi.newhhb.isChecked() ? "2"
-                            : "-1");
+                            : "2");
             MainApp.newHHID = bi.newhhid.getText().toString();
             MainApp.newHHHead = bi.newhhhead.getText().toString();
 
