@@ -1515,7 +1515,7 @@ public class Form extends BaseObservable implements Observable {
     }
 
     public void sHHHydrate(String string) throws JSONException {
-        Log.d(TAG, "sAHydrate: " + string);
+        Log.d(TAG, "sHHHydrate: " + string);
         if (string != null) {
             JSONObject json = null;
             json = new JSONObject(string);
@@ -1570,7 +1570,7 @@ public class Form extends BaseObservable implements Observable {
     }
 
     public void sSSHydrate(String string) throws JSONException {
-        Log.d(TAG, "sAHydrate: " + string);
+        Log.d(TAG, "sSSHydrate: " + string);
         if (string != null) {
             JSONObject json = null;
             json = new JSONObject(string);
@@ -1632,7 +1632,7 @@ public class Form extends BaseObservable implements Observable {
     }
 
     public String sHHtoString() throws JSONException {
-        Log.d(TAG, "sAtoString: ");
+        Log.d(TAG, "sHHtoString: ");
         JSONObject json = new JSONObject();
         json.put("hh01", hh01)
                 .put("newhh", newhh)
@@ -1685,7 +1685,7 @@ public class Form extends BaseObservable implements Observable {
     }
 
     public String sSStoString() throws JSONException {
-        Log.d(TAG, "sAtoString: ");
+        Log.d(TAG, "sSStoString: ");
         JSONObject json = new JSONObject();
         json.put("ss01", ss01)
                 .put("ss01xx", ss01xx)
