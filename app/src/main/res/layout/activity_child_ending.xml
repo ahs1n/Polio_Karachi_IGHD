@@ -84,48 +84,36 @@
                                 android:id="@+id/ec2201"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{child.ec22.equals(`1`)}"
-                                android:onClick="@{()->child.setEc22(`1`)}"
                                 android:text="@string/ec2201" />
 
                             <RadioButton
                                 android:id="@+id/ec2202"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{child.ec22.equals(`2`)}"
-                                android:onClick="@{()->child.setEc22(`2`)}"
                                 android:text="@string/ec2202" />
 
                             <RadioButton
                                 android:id="@+id/ec2203"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{child.ec22.equals(`3`)}"
-                                android:onClick="@{()->child.setEc22(`3`)}"
                                 android:text="@string/ec2203" />
 
                             <RadioButton
                                 android:id="@+id/ec2204"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{child.ec22.equals(`4`)}"
-                                android:onClick="@{()->child.setEc22(`4`)}"
                                 android:text="@string/ec2204" />
 
                             <RadioButton
                                 android:id="@+id/ec2205"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{child.ec22.equals(`5`)}"
-                                android:onClick="@{()->child.setEc22(`5`)}"
                                 android:text="@string/ec2205" />
 
                             <RadioButton
                                 android:id="@+id/ec2206"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{child.ec22.equals(`6`)}"
-                                android:onClick="@{()->child.setEc22(`6`)}"
                                 android:text="@string/ec2206" />
 
                             <EditText
@@ -135,15 +123,12 @@
                                 android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789,. "
                                 android:hint="@string/ec2206"
                                 android:tag="ec2206"
-                                android:text="@={child.ec2206x}"
                                 android:visibility="@{child.ec22.equals(`6`) ? View.VISIBLE : View.GONE}" />
 
                             <RadioButton
                                 android:id="@+id/ec2296"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{child.ec22.equals(`96`)}"
-                                android:onClick="@{()->child.setEc22(`96`)}"
                                 android:text="@string/ec2296" />
 
                             <EditText
@@ -153,10 +138,12 @@
                                 android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789,. "
                                 android:hint="@string/ec2296"
                                 android:tag="ec2296"
-                                android:text="@={child.ec2296x}"
                                 android:visibility="@{child.ec22.equals(`96`) ? View.VISIBLE : View.GONE}" />
+
                         </RadioGroup>
+
                     </LinearLayout>
+
                 </androidx.cardview.widget.CardView>
 
 

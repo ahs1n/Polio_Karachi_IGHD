@@ -133,6 +133,7 @@ public class SectionCHActivity extends AppCompatActivity {
             //   i = new Intent(this, SectionCBActivity.class).putExtra("complete", true);
             //  startActivity(i);
             Intent returnIntent = new Intent();
+            returnIntent.putExtra("complete", true);
             returnIntent.putExtra("requestCode", requestCode);
             setResult(RESULT_OK, returnIntent);
             finish();
@@ -143,6 +144,7 @@ public class SectionCHActivity extends AppCompatActivity {
 
     public void btnEnd(View view) {
         Intent returnIntent = new Intent();
+        returnIntent.putExtra("complete", false);
         returnIntent.putExtra("requestCode", requestCode);
         setResult(RESULT_CANCELED, returnIntent);
         finish();

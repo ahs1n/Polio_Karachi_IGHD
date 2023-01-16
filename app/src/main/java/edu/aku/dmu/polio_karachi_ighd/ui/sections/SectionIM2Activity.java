@@ -141,7 +141,9 @@ public class SectionIM2Activity extends AppCompatActivity {
         if (!formValidation()) return;
         if (updateDB()) {
             Intent forwardIntent = new Intent(this, ChildEndingActivity.class);
+            forwardIntent.putExtra("complete", true);
             forwardIntent.putExtra("requestCode", requestCode);
+            //forwardIntent.putExtra("checkToEnable", 7);
             forwardIntent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
             setResult(RESULT_OK, forwardIntent);
 

@@ -80,9 +80,7 @@ public class CipherSecure {
 
         byte[] ciphertext = cipher.doFinal(decoded, IV_LENGTH, decoded.length - IV_LENGTH);
 
-        String newString = new String(ciphertext, StandardCharsets.UTF_8);
-
-        return newString;
+        return new String(ciphertext, StandardCharsets.UTF_8);
     }
 
 

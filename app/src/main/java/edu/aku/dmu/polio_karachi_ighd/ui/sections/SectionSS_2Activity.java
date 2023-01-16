@@ -63,6 +63,7 @@ public class SectionSS_2Activity extends AppCompatActivity {
         // saveDraft();
         if (updateDB()) {
             Intent returnIntent = new Intent();
+            returnIntent.putExtra("complete", true);
             returnIntent.putExtra("requestCode", "1");
             setResult(RESULT_OK, returnIntent);
             finish();
@@ -74,6 +75,7 @@ public class SectionSS_2Activity extends AppCompatActivity {
 
     public void btnEnd(View view) {
         Intent returnIntent = new Intent();
+        returnIntent.putExtra("complete", false);
         returnIntent.putExtra("requestCode", "1");
         setResult(RESULT_CANCELED, returnIntent);
         finish();

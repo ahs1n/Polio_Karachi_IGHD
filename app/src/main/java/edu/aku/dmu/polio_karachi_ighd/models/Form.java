@@ -897,6 +897,7 @@ public class Form extends BaseObservable implements Observable {
 
     public void setHh21(String hh21) {
         this.hh21 = hh21;
+        setHh21xx(hh21.equals("96") ? this.hh21xx : "");
         notifyPropertyChanged(BR.hh21);
     }
 

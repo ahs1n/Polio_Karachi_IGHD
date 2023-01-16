@@ -107,8 +107,7 @@ public class HouseholdScreenActivity extends AppCompatActivity {
         if (MainApp.superuser)
             bi.btnContinue.setText("Review Next");
         db = MainApp.appInfo.dbHelper;
-
-//        MainApp.householdChecked = !MainApp.form.getSs27().equals("");
+        MainApp.householdChecked = false;
 
         MainApp.childList = new ArrayList<>();
         MainApp.childCompleted = new ArrayList<>();
@@ -182,15 +181,10 @@ public class HouseholdScreenActivity extends AppCompatActivity {
 
 
     public void btnContinue(View view) {
-        if (childCount < Integer.parseInt(MainApp.form.getHh20a())) {
-            displayProceedDialog();
-        } else {
-            proceedSelect();
-
-        }
-
-
+        if (childCount < Integer.parseInt(MainApp.form.getHh20a())) displayProceedDialog();
+        else proceedSelect();
     }
+
 
     private void displayProceedDialog() {
         new AlertDialog.Builder(this)
@@ -219,18 +213,13 @@ public class HouseholdScreenActivity extends AppCompatActivity {
     }
 
 
+
     private void addChild() {
-
-
-        if (childCount >= Integer.parseInt(MainApp.form.getHh20a())) {
-            displayAddMoreDialog();
-        } else {
-            addMoreMWRA();
-
-        }
-
-
+        if (childCount >= Integer.parseInt(MainApp.form.getHh20a())) displayAddMoreDialog();
+        else addMoreMWRA();
     }
+
+
 
     private void displayAddMoreDialog() {
         new AlertDialog.Builder(this)
@@ -253,15 +242,15 @@ public class HouseholdScreenActivity extends AppCompatActivity {
 
     }
 
+
     private void addMoreMWRA() {
         MainApp.child = new Child();
         // TODO: UNCOMMENT two line to launch the child info activity (CH)
         Intent intent = new Intent(this, SectionCHActivity.class);
         intent.putExtra("requestCode", "2");
-
-
         MemberInfoLauncher.launch(intent);
     }
+
 
     private void addHouseholdInfo() {
         //TODO: UNCOMMENT two line to launch the child info activity (CH)
@@ -270,13 +259,13 @@ public class HouseholdScreenActivity extends AppCompatActivity {
         MemberInfoLauncher.launch(intent);
     }
 
+
     public void btnEnd(View view) {
-
         finish();
-
         startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));
-
     }
+
+
 
    /* @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

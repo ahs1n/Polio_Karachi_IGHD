@@ -81,7 +81,7 @@ public class ChildEndingActivity extends AppCompatActivity {
                 break;
 
             default:
-                bi.ec2201.setEnabled(!check);
+                bi.ec2201.setEnabled(check);
                 bi.ec2202.setEnabled(!check);
                 bi.ec2203.setEnabled(!check);
                 bi.ec2204.setEnabled(!check);
@@ -95,6 +95,17 @@ public class ChildEndingActivity extends AppCompatActivity {
     }
 
     private void saveDraft() {
+        child.setEc22(bi.ec2201.isChecked() ? "1"
+                : bi.ec2201.isChecked() ? "2"
+                : bi.ec2202.isChecked() ? "3"
+                : bi.ec2203.isChecked() ? "4"
+                : bi.ec2204.isChecked() ? "5"
+                : bi.ec2205.isChecked() ? "6"
+                : bi.ec2206.isChecked() ? "7"
+                : bi.ec2296.isChecked() ? "96"
+                : "-1");
+        child.setEc2206x(bi.ec2206x.getText().toString());
+        child.setEc2296x(bi.ec2296x.getText().toString());
 
     }
 

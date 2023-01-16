@@ -139,7 +139,7 @@ public class DataDownWorkerALL extends Worker {
     public Result doWork() {
         startTime = System.currentTimeMillis();
 
-        String nTitle = uploadTable + " : Data Upload";
+        String nTitle = uploadTable + " : Data Download";
 
         StringBuilder result = new StringBuilder();
         CipherSecure cipherSecure = new CipherSecure();

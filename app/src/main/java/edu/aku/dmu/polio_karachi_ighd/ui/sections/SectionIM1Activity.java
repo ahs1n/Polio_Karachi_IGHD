@@ -239,6 +239,7 @@ public class SectionIM1Activity extends AppCompatActivity {
 
     public void btnEnd(View view) {
         Intent returnIntent = new Intent();
+        returnIntent.putExtra("complete", false);
         returnIntent.putExtra("requestCode", requestCode);
         setResult(RESULT_CANCELED, returnIntent);
         //startActivity(new Intent(this, EndingActivity.class).putExtra("complete", false));

@@ -22,8 +22,8 @@
     <string name="ec06">Province </string>
     <string name="ec07">District </string>
     <string name="ec09">City </string>
-    <string name="ec11">Cluster Number</string>
-    <string name="ec12">Household Number</string>
+    <string name="ec11">کلسٹر نمبر</string>
+    <string name="ec12">گھریلو نمبر</string>
     <string name="ss23land">Land</string>
     <!--    <string name="im07">Check IM4: Are all vaccines (BCG to Measles-2) recorded?</string>-->
     <string name="im0701">Yes</string>
@@ -34,7 +34,7 @@
     <string name="b10701">ہاں</string>
     <string name="b10702">نہیں </string>
     <string name="b10798">معلوم نہیں </string>
-    <string name="b108">آپ نے کن ذرائع سے اعلانات سنے ہیں؟</string>
+    <string name="b108">آپ نے کن ذرائع سے اعلانات سنے ہیں ؟</string>
     <string name="b10801">ایل ایچ ڈبلیو</string>
     <string name="b10802">ہسپتال/ ڈاکٹر </string>
     <string name="b10803">سوشل میڈیا </string>

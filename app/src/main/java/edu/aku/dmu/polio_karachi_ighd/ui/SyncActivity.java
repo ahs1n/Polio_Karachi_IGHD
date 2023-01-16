@@ -300,8 +300,7 @@ public class SyncActivity extends AppCompatActivity {
 
                 String tableName = downloadTables.get(position).gettableName();
 
-                if (workInfo.getState() != null &&
-                        workInfo.getState() == WorkInfo.State.SUCCEEDED) {
+                if (workInfo.getState() != null && workInfo.getState() == WorkInfo.State.SUCCEEDED) {
 
                     String result = MainApp.downloadData[position];
 

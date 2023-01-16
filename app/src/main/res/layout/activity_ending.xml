@@ -61,6 +61,11 @@
                             android:background="@drawable/bottom"
                             android:orientation="horizontal">
 
+                            <TextView
+                                style="@style/quesNum"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="@string/Qhh21" />
 
                             <TextView
                                 android:layout_width="match_parent"
@@ -78,56 +83,42 @@
                                 android:id="@+id/istatusa"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{form.hh21.equals(`1`)}"
-                                android:onClick="@{()->form.setHh21(`1`)}"
                                 android:text="@string/istatus01" />
 
                             <RadioButton
                                 android:id="@+id/istatusb"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{form.hh21.equals(`2`)}"
-                                android:onClick="@{()->form.setHh21(`2`)}"
                                 android:text="@string/istatus02" />
 
                             <RadioButton
                                 android:id="@+id/istatusc"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{form.hh21.equals(`3`)}"
-                                android:onClick="@{()->form.setHh21(`3`)}"
                                 android:text="@string/istatus03" />
 
                             <RadioButton
                                 android:id="@+id/istatusd"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{form.hh21.equals(`4`)}"
-                                android:onClick="@{()->form.setHh21(`4`)}"
                                 android:text="@string/istatus04" />
 
                             <RadioButton
                                 android:id="@+id/istatuse"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{form.hh21.equals(`5`)}"
-                                android:onClick="@{()->form.setHh21(`5`)}"
                                 android:text="@string/istatus05" />
 
                             <RadioButton
                                 android:id="@+id/istatusf"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{form.hh21.equals(`6`)}"
-                                android:onClick="@{()->form.setHh21(`6`)}"
                                 android:text="@string/istatus06" />
 
                             <RadioButton
                                 android:id="@+id/istatusg"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:checked="@{form.hh21.equals(`7`)}"
-                                android:onClick="@{()->form.setHh21(`7`)}"
                                 android:text="@string/istatus07" />
 
                             <RadioButton

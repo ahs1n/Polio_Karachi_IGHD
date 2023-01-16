@@ -55,6 +55,11 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
+            android:name="edu.aku.dmu.polio_karachi_ighd.ui.LockActivity"
+            android:exported="true"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name="edu.aku.dmu.polio_karachi_ighd.ui.EndingActivity"
             android:exported="false"
             android:screenOrientation="portrait"

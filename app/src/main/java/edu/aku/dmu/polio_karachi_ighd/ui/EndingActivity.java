@@ -106,6 +106,9 @@ public class EndingActivity extends AppCompatActivity {
                 : bi.istatus96.isChecked() ? "96"
                 : "-1");
         form.setIStatus96x(bi.istatus96x.getText().toString());
+        form.setHh21(form.getIStatus());
+        form.setHh21xx(form.getIStatus96x());
+
         // form.setEndTime(new SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(new Date().getTime()));
     }
 
