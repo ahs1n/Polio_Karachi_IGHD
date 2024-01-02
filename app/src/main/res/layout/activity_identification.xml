@@ -277,136 +277,128 @@
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
-
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_2sdp" />
-
-                        <LinearLayout
-                            android:id="@+id/newhh1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:visibility="gone"
-                            tools:visibility="visible">
-
-                            <RadioGroup
-                                android:id="@+id/newhh"
+                            <View
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    style="@style/sub_labels"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="2"
-                                    android:gravity="start|center_vertical"
-                                    android:text="Are you in above mentioned household" />
-
-                                <RadioButton
-                                    android:id="@+id/newhha"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="@string/yes" />
-
-                                <RadioButton
-                                    android:id="@+id/newhhb"
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="@string/no" />
-                            </RadioGroup>
-                        </LinearLayout>
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="@dimen/_2sdp" />
-
-                        <LinearLayout
-                            android:id="@+id/newhhdetails"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:visibility="@{newhhb.checked ? View.VISIBLE : View.GONE}">
+                                android:layout_height="@dimen/_2sdp" />
 
                             <LinearLayout
+                                android:id="@+id/newhh1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:visibility="gone"
+                                tools:visibility="visible">
+
+                                <RadioGroup
+                                    android:id="@+id/newhh"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/sub_labels"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="2"
+                                        android:gravity="start|center_vertical"
+                                        android:text="Are you in above mentioned household" />
+
+                                    <RadioButton
+                                        android:id="@+id/newhha"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:text="@string/yes" />
+
+                                    <RadioButton
+                                        android:id="@+id/newhhb"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:text="@string/no" />
+                                </RadioGroup>
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_2sdp" />
+
+                            <LinearLayout
+                                android:id="@+id/newhhdetails"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:visibility="@{newhhb.checked ? View.VISIBLE : View.GONE}">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/sub_labels"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:text="@string/hh12" />
+
+                                    <com.edittextpicker.aliazaz.EditTextPicker
+                                        android:id="@+id/newhhid"
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:gravity="center"
+                                        android:hint="###"
+                                        android:inputType="number"
+                                        android:maxLength="3"
+                                        android:textAllCaps="true"
+                                        app:pattern="^[0-9]{3,3}$" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/headhh"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@drawable/bottom"
+                                android:orientation="horizontal"
+                                android:visibility="gone"
+                                tools:visibility="visible">
 
                                 <TextView
                                     style="@style/sub_labels"
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:text="@string/hh12" />
+                                    android:text="@string/hh16a" />
 
-                                <com.edittextpicker.aliazaz.EditTextPicker
-                                    android:id="@+id/newhhid"
+                                <!--<TextView
+                                    android:id="@+id/hh16a"
                                     android:layout_width="0dp"
                                     android:layout_height="match_parent"
                                     android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:hint="###"
-                                    android:inputType="number"
-                                    android:maxLength="3"
-                                    android:textAllCaps="true"
-                                    app:pattern="^[0-9]{3,3}$" />
+                                    android:background="@null"
+                                    android:gravity="center_vertical"
+                                    android:textColor="@color/colorPrimary" />-->
+
+                                <EditText
+                                    android:id="@+id/newhhhead"
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "
+                                    android:hint="@string/hh16a"
+                                    android:inputType="textPersonName|textCapWords" />
+
+                                <!--<CheckBox
+                                    android:id="@+id/checkHh16a"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_horizontal|center_vertical"
+                                    android:text="@string/confirm" />-->
+
                             </LinearLayout>
-
                         </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/headhh"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bottom"
-                            android:orientation="horizontal"
-                            android:visibility="gone"
-                            tools:visibility="visible">
-
-                            <TextView
-                                style="@style/sub_labels"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:text="@string/hh16a" />
-
-                            <!--<TextView
-                                android:id="@+id/hh16a"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@null"
-                                android:gravity="center_vertical"
-                                android:textColor="@color/colorPrimary" />-->
-
-                            <EditText
-                                android:id="@+id/newhhhead"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:digits="AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz "
-                                android:hint="@string/hh16a"
-                                android:inputType="textPersonName|textCapWords" />
-
-                            <!--<CheckBox
-                                android:id="@+id/checkHh16a"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:gravity="center_horizontal|center_vertical"
-                                android:text="@string/confirm" />-->
-
-                        </LinearLayout>
-
-                    </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
 

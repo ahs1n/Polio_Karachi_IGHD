@@ -1,5 +1,6 @@
 package edu.aku.dmu.polio_karachi_ighd.ui;
 
+import static edu.aku.dmu.polio_karachi_ighd.core.MainApp._EMPTY_;
 import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.form;
 import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.selectedCluster;
 import static edu.aku.dmu.polio_karachi_ighd.core.MainApp.selectedHousehold;
@@ -19,7 +20,10 @@ import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
 
+import java.util.Objects;
+
 import edu.aku.dmu.polio_karachi_ighd.R;
+import edu.aku.dmu.polio_karachi_ighd.core.AppTextWatcher;
 import edu.aku.dmu.polio_karachi_ighd.core.MainApp;
 import edu.aku.dmu.polio_karachi_ighd.database.DatabaseHelper;
 import edu.aku.dmu.polio_karachi_ighd.databinding.ActivityIdentificationBinding;
@@ -42,6 +46,7 @@ public class IdentificationActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_identification);
         db = MainApp.appInfo.dbHelper;
         setupSkips();
+        initUI();
         //   populateSpinner();
 
         bi.btnContinue.setText(R.string.open_hh_form);
@@ -125,6 +130,49 @@ public class IdentificationActivity extends AppCompatActivity {
             }
         });*/
     }
+
+    private void initUI() {
+        // Cluster Search
+        bi.hh05.addTextChangedListener(new AppTextWatcher(bi.hh05.getId(), iAppTextWatcher));
+
+        // Household Search
+        bi.hh12.addTextChangedListener(new AppTextWatcher(bi.hh12.getId(), iAppTextWatcher));
+    }
+
+
+    AppTextWatcher.IAppTextWatcher iAppTextWatcher = new AppTextWatcher.IAppTextWatcher() {
+        @Override
+        public void afterTextChanged(int viewId, String text) {
+            if (viewId == bi.hh05.getId()) {
+                // Cluster search
+                if (Objects.requireNonNull(bi.hh05.getText()).toString().length() < 9) {
+                    bi.hh06.setText(_EMPTY_);
+                    bi.hh07.setText(_EMPTY_);
+                    bi.hh08.setText(_EMPTY_);
+                    bi.hh09.setText(_EMPTY_);
+                    bi.hh12.setText(_EMPTY_);
+                    bi.checkHh06.setChecked(false);
+                    bi.checkHh07.setChecked(false);
+                    bi.checkHh08.setChecked(false);
+                    bi.checkHh09.setChecked(false);
+                    bi.fldGrpCVhh12.setVisibility(View.GONE);
+                    bi.fldGrpIdentifier.setVisibility(View.GONE);
+                }
+            } else if (viewId == bi.hh12.getId()) {
+                // Household search
+                if (Objects.requireNonNull(bi.hh12.getText()).toString().length() < 3) {
+                    bi.newhh1.setVisibility(View.GONE);
+                    bi.newhh.clearCheck();
+                    bi.newhha.setChecked(false);
+                    bi.newhhb.setChecked(false);
+                    bi.newhhid.setText(_EMPTY_);
+                    bi.newhhhead.setText(_EMPTY_);
+                    bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(IdentificationActivity.this, R.color.gray));
+                    bi.btnContinue.setEnabled(false);
+                }
+            }
+        }
+    };
 
     private void setupSkips() {
 
@@ -220,8 +268,6 @@ public class IdentificationActivity extends AppCompatActivity {
             bi.fldGrpIdentifier.setVisibility(View.VISIBLE);
         } else {
             Toast.makeText(this, "Enumeration Block not found", Toast.LENGTH_SHORT).show();
-
-
         }
     }
 
@@ -230,7 +276,6 @@ public class IdentificationActivity extends AppCompatActivity {
 
 //        bi.hh16a.setText(null);
         bi.newhhhead.setText(null);
-        bi.headhh.setVisibility(View.GONE);
         bi.newhh1.setVisibility(View.GONE);
         bi.newhh.clearCheck();
         bi.newhha.setChecked(false);
@@ -242,7 +287,6 @@ public class IdentificationActivity extends AppCompatActivity {
         selectedHousehold = db.getRandomByhhid(bi.hh12.getText().toString());
         if (selectedHousehold != null) {
 //            bi.hh16a.setText(selectedHousehold.getHhhead());    // Name of Head
-            bi.headhh.setVisibility(View.VISIBLE);
             bi.newhh1.setVisibility(View.VISIBLE);
             bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
             bi.btnContinue.setEnabled(true);

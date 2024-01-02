@@ -48,7 +48,7 @@ import edu.aku.dmu.polio_karachi_ighd.ui.LockActivity;
 
 public class MainApp extends Application {
 
-    public static final String PROJECT_NAME = "Polio_Karachi_IGHD";
+    public static final String PROJECT_NAME = "Polio_Karachi_IGHD_Endline";
     public static final String DIST_ID = null;
     public static final String SYNC_LOGIN = "sync_login";
     public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server

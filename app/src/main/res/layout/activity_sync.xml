@@ -376,7 +376,8 @@
                     android:paddingBottom="0dp"
                     android:text="Also upload unlocked forms"
                     android:textColor="@color/colorPrimary"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:visibility="gone" />
             </LinearLayout>
 
 
