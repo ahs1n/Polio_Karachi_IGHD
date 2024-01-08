@@ -247,7 +247,7 @@ public class SyncActivity extends AppCompatActivity {
                     downloadTables.add(new SyncModel(RandomHHTable.TABLE_NAME, select, filter));
                     select = " * ";
                     filter = " deviceid = '" + MainApp.deviceid + "_x' ";
-                    downloadTables.add(new SyncModel("Unlocked", select, filter));
+//                    downloadTables.add(new SyncModel("Unlocked", select, filter));
                 }
                 MainApp.downloadData = new String[downloadTables.size()];
                 setAdapter(downloadTables);

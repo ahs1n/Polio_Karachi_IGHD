@@ -177,7 +177,7 @@ public class ChildEndingActivity extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(this, "Back Press Not Allowed", Toast.LENGTH_SHORT).show();
         setResult(RESULT_CANCELED);
-        finish();
+//        finish();
     }
 
     @Override

@@ -93,31 +93,26 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:background="@drawable/bottom"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bottom"
-                            android:orientation="horizontal">
+                        <TextView
+                            style="@style/quesNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/Qhh14" />
 
-                            <TextView
-                                style="@style/quesNum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:text="@string/Qhh14" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="@string/hh14" />
-
-                        </LinearLayout>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/hh14" />
 
                         <com.edittextpicker.aliazaz.EditTextPicker
                             android:id="@+id/hh14"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
                             android:gravity="center"
                             android:hint="##"
                             android:inputType="number"
@@ -195,20 +190,24 @@
                                 android:text="@string/Qhh13a" />
 
                             <TextView
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="match_parent"
+                                android:layout_weight="1"
                                 android:text="@string/hh13a" />
 
-                        </LinearLayout>
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/hh13a"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:hint="03000000000"
+                                android:inputType="phone|textNoSuggestions"
+                                android:maxLength="11"
+                                android:text="@={form.hh13a}"
+                                app:pattern="^[0-9]{11,11}$" />
 
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/hh13a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="03000000000"
-                            android:inputType="phone|textNoSuggestions"
-                            android:maxLength="11"
-                            android:text="@={form.hh13a}" />
+                        </LinearLayout>
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -317,42 +316,38 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVhh16b"
                     style="@style/cardView"
-                    android:visibility="@{form.hh15.equals(`2`) ? View.VISIBLE : View.GONE}"
-
-                    >
+                    android:visibility="@{form.hh15.equals(`2`) ? View.VISIBLE : View.GONE}">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:background="@drawable/bottom"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bottom"
-                            android:orientation="horizontal">
+                        <TextView
+                            style="@style/quesNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/Qhh16b" />
 
-                            <TextView
-                                style="@style/quesNum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:text="@string/Qhh16b" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="@string/hh16b" />
-
-                        </LinearLayout>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/hh16b" />
 
                         <com.edittextpicker.aliazaz.EditTextPicker
                             android:id="@+id/hh16b"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
                             android:hint="03000000000"
                             android:inputType="number"
                             android:maxLength="11"
-                            android:text="@={form.hh16b}" />
+                            android:text="@={form.hh16b}"
+                            app:pattern="^[0-9]{11,11}$" />
+
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -547,31 +542,26 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:background="@drawable/bottom"
+                        android:orientation="horizontal">
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bottom"
-                            android:orientation="horizontal">
+                        <TextView
+                            style="@style/quesNum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/Qhh20a" />
 
-                            <TextView
-                                style="@style/quesNum"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:text="@string/Qhh20a" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:text="@string/hh20a" />
-
-                        </LinearLayout>
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="@string/hh20a" />
 
                         <com.edittextpicker.aliazaz.EditTextPicker
                             android:id="@+id/hh20a"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.5"
                             android:gravity="center"
                             android:hint="##"
                             android:inputType="number"

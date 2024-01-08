@@ -161,10 +161,13 @@ public class IdentificationActivity extends AppCompatActivity {
             } else if (viewId == bi.hh12.getId()) {
                 // Household search
                 if (Objects.requireNonNull(bi.hh12.getText()).toString().length() < 3) {
-                    bi.newhh1.setVisibility(View.GONE);
+                    bi.hhHeadName.setVisibility(View.GONE);
+                    bi.hhHead.setText(_EMPTY_);
+                    bi.newhh.setVisibility(View.GONE);
                     bi.newhh.clearCheck();
                     bi.newhha.setChecked(false);
                     bi.newhhb.setChecked(false);
+                    bi.checkHhhead.setChecked(false);
                     bi.newhhid.setText(_EMPTY_);
                     bi.newhhhead.setText(_EMPTY_);
                     bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(IdentificationActivity.this, R.color.gray));
@@ -242,12 +245,14 @@ public class IdentificationActivity extends AppCompatActivity {
         bi.hh08.setText(null);      //  Tehsil
         bi.hh09.setText(null);      //  City/Village
         bi.newhhhead.setText(null);
+        bi.hhHead.setText(null);
 //        bi.hh16a.setText(null);
 
         bi.checkHh06.setChecked(false);
         bi.checkHh07.setChecked(false);
         bi.checkHh08.setChecked(false);
         bi.checkHh09.setChecked(false);
+        bi.checkHhhead.setChecked(false);
 
         bi.fldGrpIdentifier.setVisibility(View.GONE);
         bi.headhh.setVisibility(View.GONE);
@@ -276,10 +281,13 @@ public class IdentificationActivity extends AppCompatActivity {
 
 //        bi.hh16a.setText(null);
         bi.newhhhead.setText(null);
-        bi.newhh1.setVisibility(View.GONE);
+        bi.hhHead.setText(null);
+        bi.hhHeadName.setVisibility(View.GONE);
+        bi.newhh.setVisibility(View.GONE);
         bi.newhh.clearCheck();
         bi.newhha.setChecked(false);
         bi.newhhb.setChecked(false);
+        bi.checkHhhead.setChecked(false);
 
         bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(IdentificationActivity.this, R.color.gray));
         bi.btnContinue.setEnabled(false);
@@ -287,7 +295,9 @@ public class IdentificationActivity extends AppCompatActivity {
         selectedHousehold = db.getRandomByhhid(bi.hh12.getText().toString());
         if (selectedHousehold != null) {
 //            bi.hh16a.setText(selectedHousehold.getHhhead());    // Name of Head
-            bi.newhh1.setVisibility(View.VISIBLE);
+            bi.newhh.setVisibility(View.VISIBLE);
+            bi.hhHeadName.setVisibility(View.VISIBLE);
+            bi.hhHead.setText(selectedHousehold.getHhhead());
             bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
             bi.btnContinue.setEnabled(true);
         } else {
