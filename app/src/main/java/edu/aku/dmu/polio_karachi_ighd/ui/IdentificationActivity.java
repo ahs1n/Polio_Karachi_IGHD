@@ -161,8 +161,8 @@ public class IdentificationActivity extends AppCompatActivity {
             } else if (viewId == bi.hh12.getId()) {
                 // Household search
                 if (Objects.requireNonNull(bi.hh12.getText()).toString().length() < 3) {
-                    bi.hhHeadName.setVisibility(View.GONE);
-                    bi.hhHead.setText(_EMPTY_);
+//                    bi.hhHeadName.setVisibility(View.GONE);
+//                    bi.hhHead.setText(_EMPTY_);
                     bi.newhh.setVisibility(View.GONE);
                     bi.newhh.clearCheck();
                     bi.newhha.setChecked(false);
@@ -281,8 +281,8 @@ public class IdentificationActivity extends AppCompatActivity {
 
 //        bi.hh16a.setText(null);
         bi.newhhhead.setText(null);
-        bi.hhHead.setText(null);
-        bi.hhHeadName.setVisibility(View.GONE);
+//        bi.hhHead.setText(null);
+//        bi.hhHeadName.setVisibility(View.GONE);
         bi.newhh.setVisibility(View.GONE);
         bi.newhh.clearCheck();
         bi.newhha.setChecked(false);
@@ -296,8 +296,8 @@ public class IdentificationActivity extends AppCompatActivity {
         if (selectedHousehold != null) {
 //            bi.hh16a.setText(selectedHousehold.getHhhead());    // Name of Head
             bi.newhh.setVisibility(View.VISIBLE);
-            bi.hhHeadName.setVisibility(View.VISIBLE);
-            bi.hhHead.setText(selectedHousehold.getHhhead());
+//            bi.hhHeadName.setVisibility(View.VISIBLE);
+//            bi.hhHead.setText(selectedHousehold.getHhhead());
             bi.btnContinue.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorAccent));
             bi.btnContinue.setEnabled(true);
         } else {
